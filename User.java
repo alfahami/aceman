@@ -41,6 +41,23 @@ public class User {
         this.adherant = adherant;
     }
 
+    public User(User source){
+        this.id = source.id;
+        this.passport = source.passport;
+        this.idStayCard = source.idStayCard;
+        this.matriculeAmci = source.matriculeAmci;
+        this.idCity = source.idCity;
+        this.idAdhesion = source.idAdhesion;
+        this.idFormation = source.idFormation;
+        this.role = source.role;
+        this.firstName = source.firstName;
+        this.lastName = source.lastName;
+        this.birthDate = source.birthDate;
+        this.age = source.age;
+        this.email = source.email;
+        this.adherant = source.adherant;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -161,6 +178,26 @@ public class User {
     public int toAge(String birthDate){
         return Period.between(LocalDate.parse(birthDate), LocalDate.now()).getYears();
     }
+
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", passport='" + getPassport() + "'" +
+            ", idStayCard='" + getIdStayCard() + "'" +
+            ", matriculeAmci='" + getMatriculeAmci() + "'" +
+            ", idCity='" + getIdCity() + "'" +
+            ", idAdhesion='" + getIdAdhesion() + "'" +
+            ", idFormation='" + getIdFormation() + "'" +
+            ", role='" + getRole() + "'" +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", birthDate='" + getBirthDate() + "'" +
+            ", age='" + getAge() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", adherant='" + isAdherant() + "'" +
+            "}";
+    }
+
 
     
 
