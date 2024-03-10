@@ -4,8 +4,6 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
         
-        Member admin = addMember();
-        System.out.println(admin.toString());
 
         
  
@@ -29,8 +27,6 @@ public class Main {
         boolean mAdmission = scan.nextBoolean();
 
         return new Member(passport, regNumber, fname, lname, birthDate, email, mAdmission);
-
-
     }  
 
     public static FacultyInstitute addFacultyInstitute(){

@@ -1,25 +1,25 @@
 public class Acemanager {
-    private Member[] users;
+    private Member[] members;
     private Formation[] formations;
     private StayCard[] stayCards;
     private FacultyInstitute[] facultyInstitutes;
 
 
-    public Acemanager(Member[] users) {
-        this.users = new Member[users.length];
-        for (int i = 0; i < this.users.length; i++) {
-            this.users[i] = users[i];
-        }
+    public Acemanager(Member[] members) {
+        this.members = new Member[members.length];
+        for (int i = 0; i < this.members.length; i++) {
+            this.members[i] = members[i];
+            this.members[i].setId(i+1);
+        }        
     }
-
 
     public Member getUser(int index) {
-        return this.users[index];
+        return this.members[index];
     }
 
-    public void setUsers(Member user, int index) {
+    public void setmembers(Member user, int index) {
        Member copy = new Member(user);
-       this.users[index] = copy;
+       this.members[index] = copy;
     }
 
     public Formation[] getFormations() {
@@ -48,7 +48,7 @@ public class Acemanager {
 
     public String toString() {
         return "{" +
-            " users='" + "'" +
+            " members='" + "'" +
             ", formations='" + getFormations() + "'" +
             ", stayCards='" + getStayCards() + "'" +
             ", facultyInstitutes='" + getFacultyInstitutes() + "'" +
