@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-public class User {
+public class Member {
     private int id;
     private String passport;
 
@@ -21,14 +21,9 @@ public class User {
     private boolean isMember;
 
 
-    public User(int id, String passport, int idStayCard, int matriculeAmci, int idCity, int idFormation, int role, String firstName, String lastName, String birthDate, String email, boolean isMember) {
-        this.id = id;
+    public Member(String passport, int matriculeAmci, String firstName, String lastName, String birthDate, String email, boolean isMember) {
         this.passport = passport;
-        this.idStayCard = idStayCard;
         this.matriculeAmci = matriculeAmci;
-        this.idCity = idCity;
-        this.idFormation = idFormation;
-        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -37,15 +32,12 @@ public class User {
         this.isMember = isMember;
     }
 
-    public User(User source){
-        this.id = source.id;
+    public Member(Member source){
         this.passport = source.passport;
         this.idStayCard = source.idStayCard;
         this.matriculeAmci = source.matriculeAmci;
-        this.idCity = source.idCity;
         this.idMembership = source.idMembership;
         this.idFormation = source.idFormation;
-        this.role = source.role;
         this.firstName = source.firstName;
         this.lastName = source.lastName;
         this.birthDate = source.birthDate;

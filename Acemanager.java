@@ -1,24 +1,24 @@
 public class Acemanager {
-    private User[] users;
+    private Member[] users;
     private Formation[] formations;
     private StayCard[] stayCards;
     private FacultyInstitute[] facultyInstitutes;
 
 
-    public Acemanager(User[] users) {
-        this.users = new User[users.length];
+    public Acemanager(Member[] users) {
+        this.users = new Member[users.length];
         for (int i = 0; i < this.users.length; i++) {
             this.users[i] = users[i];
         }
     }
 
 
-    public User getUser(int index) {
+    public Member getUser(int index) {
         return this.users[index];
     }
 
-    public void setUsers(User user, int index) {
-       User copy = new User(user);
+    public void setUsers(Member user, int index) {
+       Member copy = new Member(user);
        this.users[index] = copy;
     }
 
