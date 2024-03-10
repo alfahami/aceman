@@ -2,11 +2,11 @@ public class FacultyInstitute {
     private int idFacultyInstitute;
     private int idCity;
     private String nameFacInst;
+    private Formation[] formations;
 
 
-    public FacultyInstitute(int idFacultyInstitute, int idCity, String nameFacInst) {
-        this.idFacultyInstitute = idFacultyInstitute;
-        this.idCity = idCity;
+    public FacultyInstitute(String nameFacInst, Formation[] formations) {
+        
         this.nameFacInst = nameFacInst;
     }
 

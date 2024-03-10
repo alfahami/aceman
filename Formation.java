@@ -1,13 +1,13 @@
 public class Formation {
     private int idFormation;
-    private int facultyInstitute;
+    private int idFacultyInstitute;
     private String name;
+    private String fCertificate;
     private int duration;
     /* private droppedYear: coul be calculated */
 
-    public Formation(int idFormation, int facultyInstitute, String name, int duration) {
-        this.idFormation = idFormation;
-        this.facultyInstitute = facultyInstitute;
+    public Formation(String name, int duration, String fCertificate) {
+        this.fCertificate = fCertificate;
         this.name = name;
         this.duration = duration;
     }
@@ -21,12 +21,12 @@ public class Formation {
         this.idFormation = idFormation;
     }
 
-    public int getFacultyInstitute() {
-        return this.facultyInstitute;
+    public int getidFacultyInstitute() {
+        return this.idFacultyInstitute;
     }
 
-    public void setFacultyInstitute(int facultyInstitute) {
-        this.facultyInstitute = facultyInstitute;
+    public void setidFacultyInstitute(int idFacultyInstitute) {
+        this.idFacultyInstitute = idFacultyInstitute;
     }
 
     public String getName() {
@@ -36,6 +36,16 @@ public class Formation {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    public String getFCertificate() {
+        return this.fCertificate;
+    }
+
+    public void setFCertificate(String fCertificate) {
+        this.fCertificate = fCertificate;
+    }
+
 
     public int getDuration() {
         return this.duration;
@@ -48,10 +58,9 @@ public class Formation {
     public String toString() {
         return "{" +
             " idFormation='" + getIdFormation() + "'" +
-            ", facultyInstitute='" + getFacultyInstitute() + "'" +
+            ", idFacultyInstitute='" + getidFacultyInstitute() + "'" +
             ", name='" + getName() + "'" +
             ", duration='" + getDuration() + "'" +
             "}";
     }
-
 }

@@ -5,7 +5,6 @@ public class Acemanager {
     private FacultyInstitute[] facultyInstitutes;
 
 
-
     public Acemanager(User[] users) {
         this.users = new User[users.length];
         for (int i = 0; i < this.users.length; i++) {

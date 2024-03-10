@@ -4,19 +4,18 @@ public class StayCard {
     private int idUser;
     private int idVille;
     private String cardNum;
-    private int obtentionYear;
-    private int expirationYear;
+    private String pattern;
+    private String obtentionDate;
+    private String expirationDate;
     private int pin;
 
 
-    public StayCard(int idCard, int idUser, int idVille, String cardNum, int obtentionYear, int expirationYear, int pin) {
-        this.idCard = idCard;
-        this.idUser = idUser;
-        this.idVille = idVille;
+    public StayCard(String cardNum, String obtentionDate, String expirationDate, int pin, String pattern) {
         this.cardNum = cardNum;
-        this.obtentionYear = obtentionYear;
-        this.expirationYear = expirationYear;
+        this.obtentionDate = obtentionDate;
+        this.expirationDate = expirationDate;
         this.pin = pin;
+        this.pattern = pattern;
     }
 
     public int getIdCard() {
@@ -51,20 +50,20 @@ public class StayCard {
         this.cardNum = cardNum;
     }
 
-    public int getObtentionYear() {
-        return this.obtentionYear;
+    public String getobtentionDate() {
+        return this.obtentionDate;
     }
 
-    public void setObtentionYear(int obtentionYear) {
-        this.obtentionYear = obtentionYear;
+    public void setobtentionDate(String obtentionDate) {
+        this.obtentionDate = obtentionDate;
     }
 
-    public int getExpirationYear() {
-        return this.expirationYear;
+    public String getExpirationYear() {
+        return this.expirationDate;
     }
 
-    public void setExpirationYear(int expirationYear) {
-        this.expirationYear = expirationYear;
+    public void setExpirationYear(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public int getPin() {
@@ -81,8 +80,8 @@ public class StayCard {
             ", idUser='" + getIdUser() + "'" +
             ", idVille='" + getIdVille() + "'" +
             ", cardNum='" + getCardNum() + "'" +
-            ", obtentionYear='" + getObtentionYear() + "'" +
-            ", expirationYear='" + getExpirationYear() + "'" +
+            ", obtentionDate='" + getobtentionDate() + "'" +
+            ", expirationDate='" + getExpirationYear() + "'" +
             ", pin='" + getPin() + "'" +
             "}";
     }
