@@ -5,6 +5,13 @@ public class Role {
     private String session_end;
 
 
+    public Role(int idRole, String name, String session_start, String session_end) {
+        this.idRole = idRole;
+        this.name = name;
+        this.session_start = session_start;
+        this.session_end = session_end;
+    }
+
     public int getIdRole() {
         return this.idRole;
     }
@@ -37,8 +44,6 @@ public class Role {
         this.session_end = session_end;
     }
 
-
-    @Override
     public String toString() {
         return "{" +
             " idRole='" + getIdRole() + "'" +
@@ -47,6 +52,5 @@ public class Role {
             ", session_end='" + getSession_end() + "'" +
             "}";
     }
-
 
 }

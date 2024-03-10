@@ -5,10 +5,10 @@ public class User {
     private int id;
     private String passport;
 
-    private String idStayCard;
+    private int idStayCard;
     private int matriculeAmci;
     private int idCity;
-    private int idAdhesion;
+    private int idMembership;
     private int idFormation;
     private int role;
 
@@ -18,19 +18,15 @@ public class User {
     private String birthDate;
     private int age;
     private String email;
-    private boolean adherant;
+    private boolean isMember;
 
-    public User() {
-    }
-    
 
-    public User(int id, String passport, String idStayCard, int matriculeAmci, int idCity, int idAdhesion, int idFormation, int role, String firstName, String lastName, String birthDate, String email, boolean adherant) {
+    public User(int id, String passport, int idStayCard, int matriculeAmci, int idCity, int idFormation, int role, String firstName, String lastName, String birthDate, String email, boolean isMember) {
         this.id = id;
         this.passport = passport;
         this.idStayCard = idStayCard;
         this.matriculeAmci = matriculeAmci;
         this.idCity = idCity;
-        this.idAdhesion = idAdhesion;
         this.idFormation = idFormation;
         this.role = role;
         this.firstName = firstName;
@@ -38,7 +34,7 @@ public class User {
         this.birthDate = birthDate;
         this.age = toAge(this.birthDate);
         this.email = email;
-        this.adherant = adherant;
+        this.isMember = isMember;
     }
 
     public User(User source){
@@ -47,7 +43,7 @@ public class User {
         this.idStayCard = source.idStayCard;
         this.matriculeAmci = source.matriculeAmci;
         this.idCity = source.idCity;
-        this.idAdhesion = source.idAdhesion;
+        this.idMembership = source.idMembership;
         this.idFormation = source.idFormation;
         this.role = source.role;
         this.firstName = source.firstName;
@@ -55,7 +51,7 @@ public class User {
         this.birthDate = source.birthDate;
         this.age = source.age;
         this.email = source.email;
-        this.adherant = source.adherant;
+        this.isMember = source.isMember;
     }
 
     public int getId() {
@@ -74,11 +70,11 @@ public class User {
         this.passport = passport;
     }
 
-    public String getIdStayCard() {
+    public int getIdStayCard() {
         return this.idStayCard;
     }
 
-    public void setIdStayCard(String idStayCard) {
+    public void setIdStayCard(int idStayCard) {
         this.idStayCard = idStayCard;
     }
 
@@ -96,14 +92,6 @@ public class User {
 
     public void setIdCity(int idCity) {
         this.idCity = idCity;
-    }
-
-    public int getIdAdhesion() {
-        return this.idAdhesion;
-    }
-
-    public void setIdAdhesion(int idAdhesion) {
-        this.idAdhesion = idAdhesion;
     }
 
     public int getIdFormation() {
@@ -163,16 +151,16 @@ public class User {
         this.email = email;
     }
 
-    public boolean isAdherant() {
-        return this.adherant;
+    public boolean isMember() {
+        return this.isMember;
     }
 
-    public boolean getAdherant() {
-        return this.adherant;
+    public boolean getIsMember() {
+        return this.isMember;
     }
 
-    public void setAdherant(boolean adherant) {
-        this.adherant = adherant;
+    public void setisMember(boolean isMember) {
+        this.isMember = isMember;
     }
 
     public int toAge(String birthDate){
@@ -180,22 +168,13 @@ public class User {
     }
 
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", passport='" + getPassport() + "'" +
-            ", idStayCard='" + getIdStayCard() + "'" +
-            ", matriculeAmci='" + getMatriculeAmci() + "'" +
-            ", idCity='" + getIdCity() + "'" +
-            ", idAdhesion='" + getIdAdhesion() + "'" +
-            ", idFormation='" + getIdFormation() + "'" +
-            ", role='" + getRole() + "'" +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", birthDate='" + getBirthDate() + "'" +
-            ", age='" + getAge() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", adherant='" + isAdherant() + "'" +
-            "}";
+        return "FullName= " + getLastName() + " " + getFirstName()    + "\n" 
+            + "Birth Date= " + getBirthDate() + "\n"
+            + "Age= " + getAge() + "\n"
+            + "Passport= " + getPassport() + "\n"
+            + "Email= " + getEmail() + "\n"
+            + "Membership =" + getIsMember()
+            +"\n\n";
     }
 
 

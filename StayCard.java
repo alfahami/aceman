@@ -3,15 +3,17 @@ public class StayCard {
     private int idCard;
     private int idUser;
     private int idVille;
-    private String obtentionYear;
-    private String expirationYear;
-    private Long pin;
+    private String cardNum;
+    private int obtentionYear;
+    private int expirationYear;
+    private int pin;
 
 
-    public StayCard(int idCard, int idUser, int idVille, String obtentionYear, String expirationYear, Long pin) {
+    public StayCard(int idCard, int idUser, int idVille, String cardNum, int obtentionYear, int expirationYear, int pin) {
         this.idCard = idCard;
         this.idUser = idUser;
         this.idVille = idVille;
+        this.cardNum = cardNum;
         this.obtentionYear = obtentionYear;
         this.expirationYear = expirationYear;
         this.pin = pin;
@@ -41,27 +43,35 @@ public class StayCard {
         this.idVille = idVille;
     }
 
-    public String getObtentionYear() {
+    public String getCardNum() {
+        return this.cardNum;
+    }
+
+    public void setCardNum(String cardNum) {
+        this.cardNum = cardNum;
+    }
+
+    public int getObtentionYear() {
         return this.obtentionYear;
     }
 
-    public void setObtentionYear(String obtentionYear) {
+    public void setObtentionYear(int obtentionYear) {
         this.obtentionYear = obtentionYear;
     }
 
-    public String getExpirationYear() {
+    public int getExpirationYear() {
         return this.expirationYear;
     }
 
-    public void setExpirationYear(String expirationYear) {
+    public void setExpirationYear(int expirationYear) {
         this.expirationYear = expirationYear;
     }
 
-    public Long getPin() {
+    public int getPin() {
         return this.pin;
     }
 
-    public void setPin(Long pin) {
+    public void setPin(int pin) {
         this.pin = pin;
     }
 
@@ -70,11 +80,10 @@ public class StayCard {
             " idCard='" + getIdCard() + "'" +
             ", idUser='" + getIdUser() + "'" +
             ", idVille='" + getIdVille() + "'" +
+            ", cardNum='" + getCardNum() + "'" +
             ", obtentionYear='" + getObtentionYear() + "'" +
             ", expirationYear='" + getExpirationYear() + "'" +
             ", pin='" + getPin() + "'" +
             "}";
     }
-
-
 }
