@@ -4,8 +4,7 @@ public class City {
     private String region;
 
 
-    public City(int idCity, String name, String region) {
-        this.idCity = idCity;
+    public City(String name, String region) {
         this.name = name;
         this.region = region;
     }
