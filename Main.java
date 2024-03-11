@@ -9,7 +9,8 @@ public class Main {
         // Fill Cities
         City[] cities = fillCities();
         Formation[] formations = fillFormations();
-        
+        FacultyInstitute[] facs = fillFacsInsts(formations, null);
+
         System.out.println(Arrays.toString(cities));
 
         Acemanager admin = new Acemanager(cities);
@@ -38,11 +39,17 @@ public class Main {
         return new Member(passport, regNumber, fname, lname, birthDate, email, mAdmission);
     }  
 
-    public static FacultyInstitute createFacultyInstitute(){
+    public static FacultyInstitute createFacultyInstitute(Formation[] formations, City[] cities, String cityName){
+        int idCity = 0;
+        for (int i = 0; i < cities.length; i++) {
+            if(cities[i].getName().equals(cityName)) {
+                idCity = cities[i].getIdCity();
+            }
+        }
         System.out.print("Enter Faculty/Institue name? ");
         String facultyInstitute = scan.nextLine();
         
-        return new FacultyInstitute(facultyInstitute, null);  
+        return new FacultyInstitute(0, facultyInstitute, formations, idCity);  
     }
 
     public static StayCard createStayCard(){
@@ -83,19 +90,35 @@ public class Main {
         return new Formation(id, formationName, duration, certificate);
     }
 
+    public static FacultyInstitute[] fillFacsInsts(Formation[] formations, String cityName){
+        FacultyInstitute fsdm = new FacultyInstitute(1, "FACULTE DES SCIENCES DHAR MEHRAZ", formations, 1);
+        FacultyInstitute fsmy = new FacultyInstitute(2, "FACULTE DES SCIENCES MOULAY YACOUB", formations, 2);
+        FacultyInstitute fsk = new FacultyInstitute(2, "FACULTE DES SCIENCES KENITRA", formations, 5);
+        FacultyInstitute fso = new FacultyInstitute(3, "FACULTE DES SCIENCES OUJDA", formations, 3);
+        FacultyInstitute fsr = new FacultyInstitute(3, "FACULTE DES SCIENCES RABAT", formations, 4);
+
+        FacultyInstitute[] facs = {fso, fsdm, fsmy, fsk, fsr};
+        return facs;
+        
+
+
+
+
+    }
+
     public static Formation[] fillFormations(){
         Formation smi = new Formation(1, "SCIENCES MATHEMATIQUES ET INFORMATIQUE", 3, "LICENCE FONDAMENTALE");
         Formation smc = new Formation(2, "SCIENCES MATIERE ET CHIMIE", 3, "LICENCE FONDAMENTALE");
         Formation smp = new Formation(3, "SCIENCES MATHEMATIQUES ET PHYSIQUE", 4, "LICENCE PROFESSIONELLE");
         Formation sma = new Formation(4, "SCIENCES MATHEMATIQUES ET APPLIQUES", 3, "LICENCE FONDAMENTALE");
-        Formation ecogest = new Formation(5, "SCIENCES ECONOMIE ET GESTION", 3, "LICENCE FONDAMENTALE");
+        Formation mip = new Formation(5, "MATHEMATIQUES INFORMATIQUE ET PHYSIQUE", 3, "LICENCE FONDAMENTALE");
         Formation bigData = new Formation(6, "BIG DATA ET BUSINESS INTELLIGENCE", 2, "MASTER SPECIAISE");
         Formation mp = new Formation(7, "PHYSIQUE MATHEMATIQUES", 2, "MASTER DE RECHERHCE");
         Formation algebre = new Formation(8, "ALGEBRE APPLIQUEE", 2, "MASTER DE RECHERCHE");
         Formation dctrInfo = new Formation(9, "BLOCKCHAIN IN IOT", 2, "RECHERHCE DOCTORALE");
         Formation dctrBio = new Formation(10, "BIOLOGIE ET BIOLOGIE DES SYSTEMES", 3, "RECHERCHE DOCTORALE");
 
-        Formation[] formations = {smi, sma, smp, smc, ecogest, bigData, mp, algebre, dctrInfo, dctrBio};
+        Formation[] formations = {smi, sma, smp, smc, mip, bigData, mp, algebre, dctrInfo, dctrBio};
 
         return formations;
     }

@@ -5,9 +5,14 @@ public class FacultyInstitute {
     private Formation[] formations;
 
 
-    public FacultyInstitute(String nameFacInst, Formation[] formations) {
-        
+    public FacultyInstitute(int id, String nameFacInst, Formation[] formations, int idCity) {
+        this.idCity = idCity;
         this.nameFacInst = nameFacInst;
+        this.formations = new Formation[formations.length];
+        for (int i = 0; i < formations.length; i++) {
+            this.formations[i] = formations[i];
+            this.formations[i].setIdFormation(i+1);
+        }
     }
 
     public int getIdFacultyInstitute() {
