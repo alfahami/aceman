@@ -3,6 +3,7 @@ public class Acemanager {
     private Formation[] formations;
     private StayCard[] stayCards;
     private FacultyInstitute[] facultyInstitutes;
+    private City[] cities;
 
 
     public Acemanager(Member[] members) {
@@ -11,6 +12,14 @@ public class Acemanager {
             this.members[i] = members[i];
             this.members[i].setId(i+1);
         }        
+    }
+
+    public Acemanager(City[] cities){
+        this.cities = new City[cities.length];
+        for (int i = 0; i < cities.length; i++) {
+            this.cities[i] = cities[i];
+            this.cities[i].setIdCity(i+1);
+        }
     }
 
     public Member getUser(int index) {
@@ -45,6 +54,8 @@ public class Acemanager {
     public void setFacultyInstitutes(FacultyInstitute[] facultyInstitutes) {
         this.facultyInstitutes = facultyInstitutes;
     }
+
+    public void printCities()
 
     public String toString() {
         return "{" +

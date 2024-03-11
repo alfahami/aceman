@@ -1,9 +1,13 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
         
+        // Fill Cities
+        City[] cities = fillCities();
+        System.out.println(Arrays.toString(cities));
 
         
  
@@ -53,13 +57,13 @@ public class Main {
 
     }
 
-    public static City addCity() {
+    public static City addCity(int id) {
         System.out.print("What's the city called ?" );    
         String name = scan.nextLine();
         System.out.print("Which region is the city located?" );
         String region = scan.nextLine();
 
-        return new City(name, region);
+        return new City(id, name, region);
     }
 
     public static Formation addFormation(){
@@ -72,6 +76,24 @@ public class Main {
         String certificate = scan.nextLine();
         
         return new Formation(formationName, duration, certificate);
+    }
+
+    public static City[] fillCities(){
+        City fes = new City(1, "FES","FES-BOULEMANE");
+        City meknes = new City(2, "MEKNES", "FES-BOULEMANE");
+        City oujda = new City(3, "OUJDA", "FES-BOULEMANE");
+        City rabat = new City(4, "RABAT", "RABAT-SALE-KENITRA");
+        City kenitra = new City(5, "KENITRA", "RABAT-KENITRA, -SALE");
+        City sale = new City(6, "SALE", "RABAT-SALE-KENITRA");
+        City grandCasablanca = new City(7, "CASABLANCA", "CASABLANCA-SETTAT");
+        City casablanca = new City(8, "CASABLANCA", "CASABLANCA-SETTAT");
+        City tanger = new City(9, "TANGER", "TANGER-TETOUAN-AL HOCEIMA");
+        City tetouan = new City(10, "TETOUAN", "TANGER-TETOUAN-AL HOCEIMA");
+
+        City[] cities = {fes, meknes, oujda, rabat, kenitra, sale, grandCasablanca, casablanca, tanger, tetouan};
+
+        return cities;
+        
     }
 
 
