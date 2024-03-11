@@ -55,8 +55,6 @@ public class Acemanager {
         this.facultyInstitutes = facultyInstitutes;
     }
 
-    public void printCities()
-
     public String toString() {
         return "{" +
             " members='" + "'" +

@@ -6,7 +6,7 @@ public class Formation {
     private int duration;
     /* private droppedYear: coul be calculated */
 
-    public Formation(String name, int duration, String fCertificate) {
+    public Formation(int idCity, String name, int duration, String fCertificate) {
         this.fCertificate = fCertificate;
         this.name = name;
         this.duration = duration;

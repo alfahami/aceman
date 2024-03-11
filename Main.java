@@ -1,3 +1,4 @@
+import java.text.Normalizer.Form;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,13 +8,17 @@ public class Main {
         
         // Fill Cities
         City[] cities = fillCities();
+        Formation[] formations = fillFormations();
+        
         System.out.println(Arrays.toString(cities));
+
+        Acemanager admin = new Acemanager(cities);
 
         
  
     }
 
-    public static Member addMember(){
+    public static Member createMember(){
         System.out.print("Please, enter member first name? ");
         String fname = scan.nextLine();
         System.out.print("Please, enter member last name? ");
@@ -33,14 +38,14 @@ public class Main {
         return new Member(passport, regNumber, fname, lname, birthDate, email, mAdmission);
     }  
 
-    public static FacultyInstitute addFacultyInstitute(){
+    public static FacultyInstitute createFacultyInstitute(){
         System.out.print("Enter Faculty/Institue name? ");
         String facultyInstitute = scan.nextLine();
         
         return new FacultyInstitute(facultyInstitute, null);  
     }
 
-    public static StayCard addStayCard(){
+    public static StayCard createStayCard(){
         System.out.print("Please enter card ID number ? ");
         String cardNum = scan.nextLine();
         System.out.print("Please fill in the obtention date? ");
@@ -57,7 +62,7 @@ public class Main {
 
     }
 
-    public static City addCity(int id) {
+    public static City createCity(int id) {
         System.out.print("What's the city called ?" );    
         String name = scan.nextLine();
         System.out.print("Which region is the city located?" );
@@ -66,7 +71,7 @@ public class Main {
         return new City(id, name, region);
     }
 
-    public static Formation addFormation(){
+    public static Formation createFormation(int id){
         System.out.print("What's the name of the formation? ");
         String formationName = scan.nextLine();
         System.out.print("How many years does the formation have? ");
@@ -75,7 +80,24 @@ public class Main {
         System.out.print("Which certificate is provided by the program? ");
         String certificate = scan.nextLine();
         
-        return new Formation(formationName, duration, certificate);
+        return new Formation(id, formationName, duration, certificate);
+    }
+
+    public static Formation[] fillFormations(){
+        Formation smi = new Formation(1, "SCIENCES MATHEMATIQUES ET INFORMATIQUE", 3, "LICENCE FONDAMENTALE");
+        Formation smc = new Formation(2, "SCIENCES MATIERE ET CHIMIE", 3, "LICENCE FONDAMENTALE");
+        Formation smp = new Formation(3, "SCIENCES MATHEMATIQUES ET PHYSIQUE", 4, "LICENCE PROFESSIONELLE");
+        Formation sma = new Formation(4, "SCIENCES MATHEMATIQUES ET APPLIQUES", 3, "LICENCE FONDAMENTALE");
+        Formation ecogest = new Formation(5, "SCIENCES ECONOMIE ET GESTION", 3, "LICENCE FONDAMENTALE");
+        Formation bigData = new Formation(6, "BIG DATA ET BUSINESS INTELLIGENCE", 2, "MASTER SPECIAISE");
+        Formation mp = new Formation(7, "PHYSIQUE MATHEMATIQUES", 2, "MASTER DE RECHERHCE");
+        Formation algebre = new Formation(8, "ALGEBRE APPLIQUEE", 2, "MASTER DE RECHERCHE");
+        Formation dctrInfo = new Formation(9, "BLOCKCHAIN IN IOT", 2, "RECHERHCE DOCTORALE");
+        Formation dctrBio = new Formation(10, "BIOLOGIE ET BIOLOGIE DES SYSTEMES", 3, "RECHERCHE DOCTORALE");
+
+        Formation[] formations = {smi, sma, smp, smc, ecogest, bigData, mp, algebre, dctrInfo, dctrBio};
+
+        return formations;
     }
 
     public static City[] fillCities(){
