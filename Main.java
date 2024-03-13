@@ -1,4 +1,4 @@
-import java.text.Normalizer.Form;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -10,6 +10,7 @@ public class Main {
         City[] cities = fillCities();
         Formation[] formations = fillFormations();
         FacultyInstitute[] facs = fillFacsInsts(formations, null);
+
 
         System.out.println(Arrays.toString(cities));
 
