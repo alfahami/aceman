@@ -6,11 +6,16 @@ public class Acemanager {
     private City[] cities;
 
 
+    public Acemanager(City[] cities, Formation[] formations, FacultyInstitute[] facs, Member[] members, StayCard[] cards){
+
+
+    }
+
     public Acemanager(Member[] members) {
         this.members = new Member[members.length];
         for (int i = 0; i < this.members.length; i++) {
             this.members[i] = members[i];
-            this.members[i].setId(i+1);
+            this.members[i].setIdMember(i+1);
         }        
     }
 

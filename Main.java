@@ -11,13 +11,13 @@ public class Main {
         Formation[] formations = fillFormations();
         FacultyInstitute[] facs = fillFacsInsts(formations, null);
 
+        StayCard[] cards = fillStayCard();
+        Member[] members = fillMembers();
 
         System.out.println(Arrays.toString(cities));
 
-        Acemanager admin = new Acemanager(cities);
+        Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
 
-        
- 
     }
 
     public static Member createMember(){
@@ -37,7 +37,9 @@ public class Main {
         System.out.print("Is the member adhering? type \"true or false\" ");
         boolean mAdmission = scan.nextBoolean();
 
-        return new Member(passport, regNumber, fname, lname, birthDate, email, mAdmission);
+        int idMember = 0, idCard = 0, idCity = 0;
+
+        return new Member(idMember, idCard, idCity, fname, lname, passport, birthDate, regNumber, email, mAdmission);
     }  
 
     public static FacultyInstitute createFacultyInstitute(Formation[] formations, City[] cities, String cityName){
@@ -66,7 +68,12 @@ public class Main {
         System.out.print("Please enter the reason of the residence permit?  ");
         String reason = scan.nextLine();
 
-        return new StayCard(cardNum, obtentionYear, expirationYear, pin, reason);
+        // TO DO: ask for member name and pick the corresponding ID
+        int idMember = 0;
+        // Check the last ID and add new entry as new id
+        int idCard = 0;
+
+        return new StayCard(idCard, idMember, cardNum, obtentionYear, expirationYear, pin, reason);
 
     }
 
@@ -91,6 +98,44 @@ public class Main {
         return new Formation(id, formationName, duration, certificate);
     }
 
+
+    // FILL BASE ARRAYS
+
+    public static Member[] fillMembers(){
+        Member moderator = new Member(9, 8, 3, "ISSIHAKA", "MOHAMED",  "NBE789996B", "19/01/1995", 20174567, "ism@gmail.com", true);
+        Member admin = new Member(1, 1, 1, "TOIHIR", "AL-FAHAMI",  "NBE356897B", "21/05/1992", 20111473, "alf@gmail.com", true);
+        Member std1 = new Member(2, 3, 2, "ALLAOUI", "ZAKARIA",  "NBE356347m", "13/09/1998", 20209854, "alzak@gmail.com", true);
+        Member std2 = new Member(3, 2, 4, "ABOU", "BACAR",  "NBE456880P", "03/06/1998", 20193476, "abou@gmail.com", false);
+        Member std3 = new Member(4, 5, 3, "MCHINDA", "MAROUANE",  "NBE565897K", "13/06/2000", 20204356, "mch@gmail.com", false);
+        Member std4 = new Member(5, 6, 2, "ROUSHDAT", "YOUSSEF",  "NBE3348990h", "19/04/1998", 20223456, "roush@gmail.com", false);
+        Member std5 = new Member(6, 3, 2, "ANDJIB", "ADAM",  "NBE356980U", "17/02/1999", 20187643, "and@gmail.com", true);
+        Member std6 = new Member(7, 1, 1, "FAROUK", "HAIDAR",  "NBE678990F", "09/05/2002", 20166690, "far@gmail.com", false);
+        Member std7 = new Member(8, 3, 9, "ABJAD", "AJMAL",  "NBE3568999N", "06/09/1999", 20204599, "abj@gmail.com", true);
+        Member std8 = new Member(9, 5, 8, "AKMAL", "HAKIM",  "NBE556897G", "02/01/2004", 20216798, "akm@gmail.com", true);
+
+        Member[] members = {admin, moderator, std1, std2, std3, std4, std5, std6, std7, std8};
+
+        return members;
+    }
+
+    public static StayCard[] fillStayCard(){
+        StayCard card1 = new StayCard(1, 1, "C018507B", "23/09/203", "23/09:2024", 234565, "Regularisation Exceptionelle");
+        StayCard card2 = new StayCard();
+        StayCard card3 = new StayCard();
+        StayCard card4 = new StayCard();
+        StayCard card5 = new StayCard();
+        StayCard card6 = new StayCard();
+        StayCard card7 = new StayCard();
+        StayCard card8 = new StayCard();
+        StayCard card9 = new StayCard();
+        StayCard card10 = new StayCard();
+
+        StayCard[] cards = {card1, card2, card3, card4, card5, card6, card7, card8, card9, card10};
+
+        return cards;
+
+    }
+
     public static FacultyInstitute[] fillFacsInsts(Formation[] formations, String cityName){
         FacultyInstitute fsdm = new FacultyInstitute(1, "FACULTE DES SCIENCES DHAR MEHRAZ", formations, 1);
         FacultyInstitute fsmy = new FacultyInstitute(2, "FACULTE DES SCIENCES MOULAY YACOUB", formations, 2);
@@ -100,11 +145,6 @@ public class Main {
 
         FacultyInstitute[] facs = {fso, fsdm, fsmy, fsk, fsr};
         return facs;
-        
-
-
-
-
     }
 
     public static Formation[] fillFormations(){
