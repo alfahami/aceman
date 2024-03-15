@@ -1,5 +1,3 @@
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -14,9 +12,11 @@ public class Main {
         StayCard[] cards = fillStayCard();
         Member[] members = fillMembers();
 
-        System.out.println(Arrays.toString(cities));
+        //System.out.println(Arrays.toString());
 
+        // The dude that manages ACEM
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
+        admin.printAnyArrays(members);
 
     }
 
@@ -72,8 +72,10 @@ public class Main {
         int idMember = 0;
         // Check the last ID and add new entry as new id
         int idCard = 0;
+        // Get the city of the input city name
+        int idCity = 0;
 
-        return new StayCard(idCard, idMember, cardNum, obtentionYear, expirationYear, pin, reason);
+        return new StayCard(idCard, idMember, idCity, cardNum, obtentionYear, expirationYear, pin, reason);
 
     }
 
@@ -103,8 +105,8 @@ public class Main {
 
     public static Member[] fillMembers(){
         Member moderator = new Member(9, 8, 3, "ISSIHAKA", "MOHAMED",  "NBE789996B", "19/01/1995", 20174567, "ism@gmail.com", true);
-        Member admin = new Member(1, 1, 1, "TOIHIR", "AL-FAHAMI",  "NBE356897B", "21/05/1992", 20111473, "alf@gmail.com", true);
-        Member std1 = new Member(2, 3, 2, "ALLAOUI", "ZAKARIA",  "NBE356347m", "13/09/1998", 20209854, "alzak@gmail.com", true);
+        Member admin = new Member(1, 1, 1, "TOIHIR", "AL-FAHAMI",  "NBE356854O", "21/05/1992", 20111473, "alf@gmail.com", true);
+        Member std1 = new Member(2, 3, 2, "ALLAOUI", "ZAKARIA",  "NBE356347M", "13/09/1998", 20209854, "alzak@gmail.com", true);
         Member std2 = new Member(3, 2, 4, "ABOU", "BACAR",  "NBE456880P", "03/06/1998", 20193476, "abou@gmail.com", false);
         Member std3 = new Member(4, 5, 3, "MCHINDA", "MAROUANE",  "NBE565897K", "13/06/2000", 20204356, "mch@gmail.com", false);
         Member std4 = new Member(5, 6, 2, "ROUSHDAT", "YOUSSEF",  "NBE3348990h", "19/04/1998", 20223456, "roush@gmail.com", false);
@@ -119,16 +121,16 @@ public class Main {
     }
 
     public static StayCard[] fillStayCard(){
-        StayCard card1 = new StayCard(1, 1, "C018507B", "23/09/203", "23/09:2024", 234565, "Regularisation Exceptionelle");
-        StayCard card2 = new StayCard();
-        StayCard card3 = new StayCard();
-        StayCard card4 = new StayCard();
-        StayCard card5 = new StayCard();
-        StayCard card6 = new StayCard();
-        StayCard card7 = new StayCard();
-        StayCard card8 = new StayCard();
-        StayCard card9 = new StayCard();
-        StayCard card10 = new StayCard();
+        StayCard card1 = new StayCard(1, 1, 1, "C018507B", "23/09/2023", "23/09/2026", 234361, "Regularisation Exceptionelle");
+        StayCard card2 = new StayCard(2, 3, 2, "C019879H", "21/05/2022", "21/05/2025", 234565, "Regularisation Exceptionelle");
+        StayCard card3 = new StayCard(3, 2, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Etudiant");
+        StayCard card4 = new StayCard(4, 5, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Regularisation Exceptionelle");
+        StayCard card5 = new StayCard(5, 4, 3, "C019561L", "10/02/2021", "10/02/2024", 202565, "Travail");
+        StayCard card6 = new StayCard(6, 7, 3, "C019561L", "10/02/2021", "10/02/2024", 202565, "Travail");
+        StayCard card7 = new StayCard(7, 6, 1, "C019563M", "02/01/2023", "02/01/2026", 203565, "Travail");
+        StayCard card8 = new StayCard(8, 9, 8, "C019523N", "01/01/2024", "01/01/2027", 103465, "Etudiant");
+        StayCard card9 = new StayCard(9, 10, 7, "C023456C", "02/01/2023", "02/01/2026", 123565, "Etudiant");
+        StayCard card10 = new StayCard(10, 8, 5, "C0345678P", "14/09/2020", "14/09/2023", 203565, "Travail");
 
         StayCard[] cards = {card1, card2, card3, card4, card5, card6, card7, card8, card9, card10};
 

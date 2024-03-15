@@ -2,7 +2,7 @@ public class StayCard {
 
     private int idCard;
     private int idMember;
-    private int idVille;
+    private int idCity;
     private String cardNum;
     private String pattern;
     private String obtentionDate;
@@ -14,7 +14,7 @@ public class StayCard {
     }
 
 
-    public StayCard(int idCard, int idMember, String cardNum, String obtentionDate, String expirationDate, int pin, String pattern) {
+    public StayCard(int idCard, int idMember, int idCity, String cardNum, String obtentionDate, String expirationDate, int pin, String pattern) {
         this.idCard = idCard;
         this.idMember = idMember;
         this.cardNum = cardNum;
@@ -40,12 +40,12 @@ public class StayCard {
         this.idMember = idMember;
     }
 
-    public int getIdVille() {
-        return this.idVille;
+    public int getIdCity() {
+        return this.idCity;
     }
 
-    public void setIdVille(int idVille) {
-        this.idVille = idVille;
+    public void setIdCity(int idCity) {
+        this.idCity = idCity;
     }
 
     public String getCardNum() {
@@ -84,7 +84,7 @@ public class StayCard {
         return "{" +
             " idCard='" + getIdCard() + "'" +
             ", idMember='" + getidMember() + "'" +
-            ", idVille='" + getIdVille() + "'" +
+            ", idCity='" + getIdCity() + "'" +
             ", cardNum='" + getCardNum() + "'" +
             ", obtentionDate='" + getobtentionDate() + "'" +
             ", expirationDate='" + getExpirationYear() + "'" +

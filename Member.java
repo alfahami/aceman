@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class Member {
     private int idMember;
@@ -50,7 +51,7 @@ public class Member {
         this.isMember = source.isMember;
     }
 
-    public int getidMember() {
+    public int getIdMember() {
         return this.idMember;
     }
 
@@ -155,22 +156,18 @@ public class Member {
         return this.isMember;
     }
 
-    public void setisMember(boolean isMember) {
+    public void setisMember(boolean isMember) { 
         this.isMember = isMember;
     }
 
     public int toAge(String birthDate){
-        return Period.between(LocalDate.parse(birthDate), LocalDate.now()).getYears();
+        // DateTimeFormatter is specifying the format of the date that will be used in setting memebrr birthdate
+
+        return Period.between(LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.now()).getYears();
     }
 
     public String toString() {
-        return "FullName= " + getLastName() + " " + getFirstName()    + "\n" 
-            + "Birth Date= " + getBirthDate() + "\n"
-            + "Age= " + getAge() + "\n"
-            + "Passport= " + getPassport() + "\n"
-            + "Email= " + getEmail() + "\n"
-            + "Membership =" + getIsMember()
-            +"\n\n";
+        return getLastName() + " " + getFirstName() + " ┆ " + getAge() + " ans ┆ " + getPassport() + " ┆ " + getMatriculeAmci() + " ┆ " + getEmail();
     }
 
 
