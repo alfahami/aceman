@@ -117,7 +117,7 @@ public class Acemanager {
                     case "Member":
                         // Get the stay card of the member
                         
-                        System.out.println( printId + ". | " + formatString(fullName, 17) + "| " + member.getAge() + " ys. old | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCard(member.getIdStayCard()).getCardNum() + " | " + formatString(getCard(member.getIdStayCard()).getPattern(), 10) + " | " + formatString(getCityName(member.getIdCity()), 9)  + " | " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + " | " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 15));
+                        System.out.println( printId + ". | " + formatString(fullName, 17) + "| " + member.getAge() + " | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCard(member.getIdStayCard()).getCardNum() + " | " + formatString(getCard(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + (member.isMember() == true ? (formatString("OUI", 6)) : (formatString("NON", 6))) + "| " + formatString(getMember(i).getEmail(), 16) + "|");
                         System.out.print("\n\n");
                         break;
                     case "City":

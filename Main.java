@@ -133,10 +133,10 @@ public class Main {
     }
 
     public static StayCard[] fillStayCard(){
-        StayCard card1 = new StayCard(1, 1, 1, "C018507B", "23/09/2023", "23/09/2026", 234361, "Reg. Except");
-        StayCard card2 = new StayCard(2, 3, 2, "C019879H", "21/05/2022", "21/05/2025", 234565, "Reg. Except");
+        StayCard card1 = new StayCard(1, 1, 1, "C018507B", "23/09/2023", "23/09/2026", 234361, "Reg. Exc.");
+        StayCard card2 = new StayCard(2, 3, 2, "C019879H", "21/05/2022", "21/05/2025", 234565, "Reg. Exc.");
         StayCard card3 = new StayCard(3, 2, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Etudiant");
-        StayCard card4 = new StayCard(4, 5, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Reg. Except");
+        StayCard card4 = new StayCard(4, 5, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Reg. Exc.");
         StayCard card5 = new StayCard(5, 4, 3, "C019561L", "10/02/2021", "10/02/2024", 202565, "Travail");
         StayCard card6 = new StayCard(6, 7, 3, "C012361L", "10/02/2021", "10/02/2024", 202565, "Travail");
         StayCard card7 = new StayCard(7, 6, 1, "C019563M", "02/01/2023", "02/01/2026", 203565, "Travail");

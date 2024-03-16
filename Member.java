@@ -9,7 +9,6 @@ public class Member {
     private int idStayCard;
     private int matriculeAmci;
     private int idCity;
-    private int idMembership;
     private int idFormation;
     private int role;
 
@@ -45,7 +44,6 @@ public class Member {
         this.passport = source.passport;
         this.idStayCard = source.idStayCard;
         this.matriculeAmci = source.matriculeAmci;
-        this.idMembership = source.idMembership;
         this.idFormation = source.idFormation;
         this.firstName = source.firstName;
         this.lastName = source.lastName;
