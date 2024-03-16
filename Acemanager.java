@@ -11,7 +11,13 @@ public class Acemanager {
         for (int i = 0; i < this.members.length; i++) {
             this.members[i] = members[i];
             this.members[i].setIdMember(i+1);
-        }        
+        }     
+        
+        this.stayCards = new StayCard[cards.length];
+        for (int i = 0; i < this.stayCards.length; i++) {
+            this.stayCards[i] = cards[i];
+            this.stayCards[i].setIdCard(i+1);
+        }     
 
     }
 
@@ -66,16 +72,38 @@ public class Acemanager {
 
     public void printAnyArrays(Object[] arrays){
         if(arrays != null){
+            System.out.print("\n");
             for (int i = 0; i < arrays.length; i++) {
+
+                Member member = getMember(i);
+
+            /* HACK TO HAVE AN AWESOME DISPLAY OF THE ARRAY IN THE CONSOLE */
+
+                // we used ternary for displayind id in the same column no matter how many digits it holds
+                String printId = ( i < 9 ?  ("  " + String.valueOf(member.getIdMember())) : (" " + String.valueOf(member.getIdMember())));
+                String fullName = member.getFirstName() + " " + member.getLastName();
+
+                String space = " ";
+                if(fullName.length() < 17){
+                    for (int j = 0; j <= 20 - fullName.length(); j++) {
+                       space.repeat(j); 
+                    }
+                }
+                String displayFullName = fullName + space;
                 
-                System.out.println("\n─ ─ ─ ─ ─ ─ ─ ─  ─ ─ ─ ─ ─ ─ ─ ─  ─ ─ ─ ─ ─ ─ ─ ─  ─ ─ ─ ─ ─ ─ ─ ─ ");
+            /* HACK ENDS  */
+                
                 // switch array instance
                 String className = arrays[i].getClass().getName();
                 switch(className){
                     case "Member":
-                        System.out.println( "\n " + this.members[i].getIdMember() + " ┆ " + this.members[i].toString()+" ┆");
+                        // Get the stay card of the member
+                        String cardNum = getCard(member.getIdStayCard());
+
+                        System.out.println( printId + ". | " + displayFullName + "| " + member.getAge() + " ys. old | " + member.getPassport() + "   |" + cardNum);
+                        System.out.print("\n\n");
                         break;
-                    case "City": 
+                    case "City":
                         System.out.println("Display Cities");
                         break;
                     case "Formation":
@@ -93,6 +121,17 @@ public class Acemanager {
             }
             System.out.print("\n");
         } else System.exit(0);
+    }
+
+    public String getCard(int idStayCard){
+        for (int i = 0; i < this.stayCards.length; i++) {
+            if(idStayCard == stayCards[i].getIdCard()){
+                return stayCards[i].getCardNum();
+            } else {
+                return "No Card";
+            }
+        }
+        return "This should never be executed";
     }
 
     public String toString() {

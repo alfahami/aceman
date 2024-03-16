@@ -27,6 +27,9 @@ public class Member {
     }
     public Member(int idMember, int idStayCard, int idCity, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
         this.idMember = idMember;
+        this.idStayCard = idStayCard;
+        this.idCity = idCity;
+        //this.idFormation = idFormation;
         this.passport = passport;
         this.matriculeAmci = matriculeAmci;
         this.firstName = firstName;
@@ -167,7 +170,7 @@ public class Member {
     }
 
     public String toString() {
-        return getLastName() + " " + getFirstName() + " ┆ " + getAge() + " ans ┆ " + getPassport() + " ┆ " + getMatriculeAmci() + " ┆ " + getEmail();
+        return getLastName() + " " + getFirstName() + " | " + getAge() + " ans | " + getPassport() + " | " + getMatriculeAmci() + " | " + getEmail();
     }
 
 

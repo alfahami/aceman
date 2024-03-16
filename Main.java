@@ -18,7 +18,22 @@ public class Main {
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
         admin.printAnyArrays(members);
 
+    
     }
+
+
+        /* int[] array = new int[]{1,2,3,4,5};
+        System.out.println("--------------");
+        System.out.print("|");
+        for(int element : array){
+            | name | legsCount | lazy  | topSpeed |
+|------|-----------|-------|----------|
+| John | 4         | true  | 35.24    |
+| Bob  | 5         | false | 75.0     |
+        }
+        System.out.println("--------------");
+
+     */
 
     public static Member createMember(){
         System.out.print("Please, enter member first name? ");
@@ -126,7 +141,7 @@ public class Main {
         StayCard card3 = new StayCard(3, 2, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Etudiant");
         StayCard card4 = new StayCard(4, 5, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Regularisation Exceptionelle");
         StayCard card5 = new StayCard(5, 4, 3, "C019561L", "10/02/2021", "10/02/2024", 202565, "Travail");
-        StayCard card6 = new StayCard(6, 7, 3, "C019561L", "10/02/2021", "10/02/2024", 202565, "Travail");
+        StayCard card6 = new StayCard(6, 7, 3, "C012361L", "10/02/2021", "10/02/2024", 202565, "Travail");
         StayCard card7 = new StayCard(7, 6, 1, "C019563M", "02/01/2023", "02/01/2026", 203565, "Travail");
         StayCard card8 = new StayCard(8, 9, 8, "C019523N", "01/01/2024", "01/01/2027", 103465, "Etudiant");
         StayCard card9 = new StayCard(9, 10, 7, "C023456C", "02/01/2023", "02/01/2026", 123565, "Etudiant");
