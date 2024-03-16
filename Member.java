@@ -9,6 +9,7 @@ public class Member {
     private int idStayCard;
     private int matriculeAmci;
     private int idCity;
+    private int idFacultyInstitute;
     private int idFormation;
     private int role;
 
@@ -24,11 +25,12 @@ public class Member {
     public Member(){
 
     }
-    public Member(int idMember, int idStayCard, int idCity, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
+    public Member(int idMember, int idStayCard, int idCity, int idFacultyInstitute, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
         this.idMember = idMember;
         this.idStayCard = idStayCard;
         this.idCity = idCity;
         this.idFormation = idFormation;
+        this.idFacultyInstitute = idFacultyInstitute;
         this.passport = new StringBuilder(passport);;
         this.passport.setLength(9);
         this.matriculeAmci = matriculeAmci;
@@ -92,6 +94,23 @@ public class Member {
     public void setIdCity(int idCity) {
         this.idCity = idCity;
     }
+
+
+    public int getIdFacultyInstitute() {
+        return this.idFacultyInstitute;
+    }
+
+    public void setIdFacultyInstitute(int idFacultyInstitute) {
+        this.idFacultyInstitute = idFacultyInstitute;
+    }
+
+    public boolean isIsMember() {
+        return this.isMember;
+    }
+    public void setIsMember(boolean isMember) {
+        this.isMember = isMember;
+    }
+
 
     public int getIdFormation() {
         return this.idFormation;

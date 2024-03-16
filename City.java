@@ -1,12 +1,21 @@
 public class City {
     private int idCity;
+    private int idFaculty;
     private String name;
     private String region;
 
+    private FacultyInstitute[] facs;
 
-    public City(int idCity, String name, String region) {
+
+    public City(int idCity, String name, String region, FacultyInstitute[] facs) {
         this.name = name;
         this.region = region;
+        this.facs = new FacultyInstitute[facs.length];
+        for (int i = 0; i < facs.length; i++) {
+            this.facs[i] = facs[i];
+            this.facs[i].setIdCity(i+1);
+            
+        }
     }
     
     public int getIdCity() {
@@ -15,6 +24,23 @@ public class City {
 
     public void setIdCity(int idCity) {
         this.idCity = idCity;
+    }
+
+    public int getIdFaculty() {
+        return this.idFaculty;
+    }
+
+    public void setIdFaculty(int idFaculty) {
+        this.idFaculty = idFaculty;
+    }
+
+    public FacultyInstitute getFac(int i) {
+        return this.facs[i];
+    }
+
+    public void setFac(int i, FacultyInstitute fac) {
+        FacultyInstitute copy = new FacultyInstitute(fac);
+        this.facs[i] = copy;
     }
 
     public String getName() {

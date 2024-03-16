@@ -69,7 +69,7 @@ public class Acemanager {
 
     public void setFormation(int i, Formation formation) {
         Formation copy = new Formation(formation);
-        this.formations[i] = formation;
+        this.formations[i] = copy;
     }
 
     public StayCard getStayCard(int i) {
@@ -95,30 +95,30 @@ public class Acemanager {
 
     public void printAnyArrays(Object[] arrays){
         if(arrays != null){
-            System.out.print("\n");
-            for (int i = 0; i < arrays.length; i++) {
-
-                Member member = getMember(i);
-
-            /* HACK TO HAVE AN AWESOME DISPLAY OF THE ARRAY IN THE CONSOLE */
-
-                // we used ternary for displayind id in the same column no matter how many digits it holds
-                String printId = ( i < 9 ?  ("  " + String.valueOf(member.getIdMember())) : (" " + String.valueOf(member.getIdMember())));
-                String fullName = member.getFirstName() + " " + member.getLastName();
-
-
-                // THINK ABOUT USING STRINGBUILDER as it offers a set length, the idea would be to print all the Stringbuilder object and when no value found print space
-                
-            /* HACK ENDS  */
+            String className = arrays.getClass().getCanonicalName();           
                 
                 // switch array instance
-                String className = arrays[i].getClass().getName();
+                //String className = arrays[i].getClass().getName();
                 switch(className){
-                    case "Member":
-                        // Get the stay card of the member
-                        
-                        System.out.println( printId + ". | " + formatString(fullName, 17) + "| " + member.getAge() + " | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCard(member.getIdStayCard()).getCardNum() + " | " + formatString(getCard(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + (member.isMember() == true ? (formatString("OUI", 6)) : (formatString("NON", 6))) + "| " + formatString(getMember(i).getEmail(), 16) + "|");
-                        System.out.print("\n\n");
+                    case "Member[]":
+                        System.out.print("\n  ID | \t   FULL NAME  \t  | AGE | PASSPORT  | MAT AMCI |  CIN N°  |   PATTERN   |    CITY    |      FORMATION       |   DIPLOMA   | FACULTY | ADHESION |       EMAIL       |\n ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n");
+                        for (int i = 0; i < arrays.length; i++) {
+
+                            Member member = getMember(i);
+            
+                    /*#### HACK TO HAVE AN AWESOME DISPLAY OF THE ARRAY IN THE CONSOLE */
+            
+                            // we used ternary for displayind id in the same column no matter how many digits it holds
+                            String printId = ( i < 9 ?  ("  " + String.valueOf(member.getIdMember())) : (" " + String.valueOf(member.getIdMember())));
+                            String fullName = member.getFirstName() + " " + member.getLastName();
+            
+                            // THINK ABOUT USING STRINGBUILDER as it offers a set length, the idea would be to print all the Stringbuilder object and when no value found print space
+                            
+                    /*### HACK ENDS  */
+                        System.out.println( printId + ". | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCard(member.getIdStayCard()).getCardNum() + " | " + formatString(getCard(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
+                        System.out.print(i < arrays.length - 1 ? " ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n" : "");
+                        }
+                        System.out.print("\n");
                         break;
                     case "City":
                         System.out.println("Display Cities");
@@ -133,8 +133,8 @@ public class Acemanager {
 
                         break;
                 }
-            }
-            System.out.print("\n");
+            
+            //System.out.print("\n");
         } else System.exit(0);
     }
 
@@ -166,14 +166,13 @@ public class Acemanager {
             return null; 
     }
 
-    public String getFacultyInstituteName(int idFacultyInstitute){
-        String facInstitute = "";
+    public FacultyInstitute getFaculty(int idFacultyInstitute){
             for (int j = 0; j < this.facultyInstitutes.length; j++) {
                 if(idFacultyInstitute == getFacultyInstitute(j).getIdFacultyInstitute()){
-                    facInstitute = getFacultyInstitute(j).getNameFacInst();
+                    return facultyInstitutes[j];
                 } 
             }
-            return facInstitute; 
+            return null; 
     }
 
     public String getCertificateName(int idFormation){

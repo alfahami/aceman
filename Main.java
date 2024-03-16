@@ -40,8 +40,9 @@ public class Main {
 
         int idMember = 0, idCard = 0, idCity = 0;
         int idFormation = 0;
+        int idFacultyInstitute = 0;
 
-        return new Member(idMember, idCard, idCity, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
+        return new Member(idMember, idCard, idCity, idFacultyInstitute, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
     }  
 
     public static FacultyInstitute createFacultyInstitute(Formation[] formations, City[] cities, String cityName){
@@ -87,7 +88,7 @@ public class Main {
         System.out.print("Which region is the city located?" );
         String region = scan.nextLine();
 
-        return new City(id, name, region);
+        return new City(id, name, region, null);
     }
 
     public static Formation createFormation(int id){
@@ -107,25 +108,25 @@ public class Main {
 
     public static Member[] fillMembers(){
         
-        Member admin = new Member(1, 1, 1, 9, "TOIHIR", "AL-FAHAMI",  "NBE388507", "21/05/1992", 20111473, "alf@gmail.com", true);
+        Member admin = new Member(1, 1, 1, 2, 9, "TOIHIR", "AL-FAHAMI",  "NBE388507", "21/05/1992", 20111473, "alf@gmail.com", true);
 
-        Member std1 = new Member(2, 3, 2, 10, "ALLAOUI", "ZAKARIA",  "NBE356347M", "13/09/1998", 20209854, "alzak@gmail.com", true);
+        Member std1 = new Member(2, 3, 2, 1, 10, "ALLAOUI", "ZAKARIA",  "NBE356347M", "13/09/1998", 20209854, "alzak@gmail.com", true);
 
-        Member std2 = new Member(3, 2, 4, 3,"ABOU", "BACAR",  "NBE456880P", "03/06/1998", 20193476, "abou@gmail.com", false);
+        Member std2 = new Member(3, 2, 4, 2, 3,"ABOU", "BACAR",  "NBE456880P", "03/06/1998", 20193476, "abou@gmail.com", false);
 
-        Member std3 = new Member(4, 5, 3, 5, "MCHINDA", "MAROUANE",  "NBE565897K", "13/06/2000", 20204356, "mch@gmail.com", false);
+        Member std3 = new Member(4, 5, 3, 1, 5, "MCHINDA", "MAROUANE",  "NBE565897K", "13/06/2000", 20204356, "mch@gmail.com", false);
 
-        Member std4 = new Member(5, 8, 2, 6, "ROUSHDAT", "YOUSSEF",  "NBE3348990h", "19/04/1998", 20223456, "roush@gmail.com", false);
+        Member std4 = new Member(5, 8, 2, 3, 6, "ROUSHDAT", "YOUSSEF",  "NBE3348990h", "19/04/1998", 20223456, "roush@gmail.com", false);
 
-        Member std5 = new Member(6, 4, 2, 1, "ANDJIB", "ADAM",  "NBE356980U", "17/02/1999", 20187643, "and@gmail.com", true);
+        Member std5 = new Member(6, 4, 2, 5, 1, "ANDJIB", "ADAM",  "NBE356980U", "17/02/1999", 20187643, "and@gmail.com", true);
 
-        Member std6 = new Member(7, 9, 1, 2, "FAROUK", "HAIDAR",  "NBE678990F", "09/05/2002", 20166690, "far@gmail.com", false);
+        Member std6 = new Member(7, 9, 1, 6, 2, "FAROUK", "HAIDAR",  "NBE678990F", "09/05/2002", 20166690, "far@gmail.com", false);
 
-        Member std7 = new Member(8, 7, 9, 4,"ABJAD", "AJMAL",  "NBE3568999N", "06/09/1999", 20204599, "abj@gmail.com", true);
+        Member std7 = new Member(8, 7, 9, 1, 4,"ABJAD", "AJMAL",  "NBE3568999N", "06/09/1999", 20204599, "abj@gmail.com", true);
         
-        Member std8 = new Member(9, 3, 6, 8, "AKMAL", "HAKIM",  "NBE556897G", "02/01/2004", 20216798, "akm@gmail.com", true);
+        Member std8 = new Member(9, 3, 6, 2, 8, "AKMAL", "HAKIM",  "NBE556897G", "02/01/2004", 20216798, "akm@gmail.com", true);
 
-        Member moderator = new Member(10, 4, 8, 3, "ISSIHAKA", "MOHAMED",  "NBE789996B", "19/01/1995", 20174567, "ism@gmail.com", true);
+        Member moderator = new Member(10, 4, 8, 4, 3, "ISSIHAKA", "MOHAMED",  "NBE789996B", "19/01/1995", 20174567, "ism@gmail.com", true);
 
         Member[] members = {admin, std1, std2, std3, std4, std5, std6, std7, std8, moderator};
 
@@ -151,27 +152,28 @@ public class Main {
     }
 
     public static FacultyInstitute[] fillFacsInsts(Formation[] formations, String cityName){
-        FacultyInstitute fsdm = new FacultyInstitute(1, "FACULTE DES SCIENCES DHAR MEHRAZ", formations, 1);
-        FacultyInstitute fsmy = new FacultyInstitute(2, "FACULTE DES SCIENCES MOULAY YACOUB", formations, 2);
-        FacultyInstitute fsk = new FacultyInstitute(3, "FACULTE DES SCIENCES KENITRA", formations, 5);
-        FacultyInstitute fso = new FacultyInstitute(4, "FACULTE DES SCIENCES OUJDA", formations, 3);
-        FacultyInstitute fsr = new FacultyInstitute(5, "FACULTE DES SCIENCES RABAT", formations, 4);
+        FacultyInstitute fs = new FacultyInstitute(1, "FS", formations, 1);
+        FacultyInstitute fsjes = new FacultyInstitute(2, "FSJES", formations, 2);
+        FacultyInstitute ensa = new FacultyInstitute(3, "ENSA", formations, 5);
+        FacultyInstitute encg = new FacultyInstitute(4, "ENCG", formations, 3);
+        FacultyInstitute est = new FacultyInstitute(5, "EST", formations, 4);
+        FacultyInstitute facMed = new FacultyInstitute(5, "F. MD", formations, 4);
 
-        FacultyInstitute[] facs = {fso, fsdm, fsmy, fsk, fsr};
+        FacultyInstitute[] facs = {fs, fsjes, ensa, encg, est, facMed};
         return facs;
     }
 
     public static Formation[] fillFormations(){
         Formation smi = new Formation(1, "SMI", 3, "LF");
-        Formation smc = new Formation(2, "SMC", 3, "LF");
-        Formation smp = new Formation(3, "SMP", 4, "LP");
-        Formation sma = new Formation(4, "SMA", 3, "LF");
-        Formation mip = new Formation(5, "SMP", 3, "LF");
-        Formation bigData = new Formation(6, "BIG DATA & BI", 2, "M. SPEC.");
-        Formation mp = new Formation(7, "MATH PHYSIQUE", 2, "M. RECH.");
-        Formation algebre = new Formation(8, "ALGEBRE APPLIQUEE", 2, "M. RECH.");
-        Formation dctrInfo = new Formation(9, "BLOCKCHAIN IN IOT", 2, "E. DOCT.");
-        Formation dctrBio = new Formation(10, "BIO DES SYSTEMES", 3, "E. DOCT.");
+        Formation smc = new Formation(2, "SMC", 3, "LICENCE F");
+        Formation smp = new Formation(3, "SMP", 4, "LICENCE P");
+        Formation sma = new Formation(4, "SMA", 3, "LICENCE F");
+        Formation mip = new Formation(5, "SMP", 3, "LICENCE F");
+        Formation bigData = new Formation(6, "BIG DATA & BI", 2, "MASTER SP");
+        Formation mp = new Formation(7, "MATH PHYSIQUE", 2, "MASTER RE");
+        Formation algebre = new Formation(8, "ALGEBRE APPLIQUEE", 2, "MASTER RE");
+        Formation dctrInfo = new Formation(9, "BLOCKCHAIN IN IOT", 2, "DOCTORAT");
+        Formation dctrBio = new Formation(10, "BIO DES SYSTEMES", 3, "DOCTORAT");
 
         Formation[] formations = {smi, sma, smp, smc, mip, bigData, mp, algebre, dctrInfo, dctrBio};
 
@@ -179,16 +181,16 @@ public class Main {
     }
 
     public static City[] fillCities(){
-        City fes = new City(1, "FES","FES-BOULEMANE");
-        City meknes = new City(2, "MEKNES", "FES-BOULEMANE");
-        City oujda = new City(3, "OUJDA", "FES-BOULEMANE");
-        City rabat = new City(4, "RABAT", "RABAT-SALE-KENITRA");
-        City kenitra = new City(5, "KENITRA", "RABAT-KENITRA, -SALE");
-        City sale = new City(6, "SALE", "RABAT-SALE-KENITRA");
-        City grandCasablanca = new City(7, "CASABLANCA", "CASABLANCA-SETTAT");
-        City casablanca = new City(8, "CASABLANCA", "CASABLANCA-SETTAT");
-        City tanger = new City(9, "TANGER", "TANGER-TETOUAN-AL HOCEIMA");
-        City tetouan = new City(10, "TETOUAN", "TANGER-TETOUAN-AL HOCEIMA");
+        City fes = new City(1, "FES","FES-BOULEMANE", fillFacsInsts(fillFormations(), null));
+        City meknes = new City(2, "MEKNES", "FES-BOULEMANE", fillFacsInsts(fillFormations(), null));
+        City oujda = new City(3, "OUJDA", "FES-BOULEMANE", fillFacsInsts(fillFormations(), null));
+        City rabat = new City(4, "RABAT", "RABAT-SALE-KENITRA", fillFacsInsts(fillFormations(), null));
+        City kenitra = new City(5, "KENITRA", "RABAT-KENITRA, -SALE", fillFacsInsts(fillFormations(), null));
+        City sale = new City(6, "SALE", "RABAT-SALE-KENITRA", fillFacsInsts(fillFormations(), null));
+        City grandCasablanca = new City(7, "CASABLANCA", "CASABLANCA-SETTAT", fillFacsInsts(fillFormations(), null));
+        City casablanca = new City(8, "CASABLANCA", "CASABLANCA-SETTAT", fillFacsInsts(fillFormations(), null));
+        City tanger = new City(9, "TANGER", "TANGER-TETOUAN-AL HOCEIMA", fillFacsInsts(fillFormations(), null));
+        City tetouan = new City(10, "TETOUAN", "TANGER-TETOUAN-AL HOCEIMA", fillFacsInsts(fillFormations(), null));
 
         City[] cities = {fes, meknes, oujda, rabat, kenitra, sale, grandCasablanca, casablanca, tanger, tetouan};
 
