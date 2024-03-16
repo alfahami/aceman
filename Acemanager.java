@@ -17,8 +17,25 @@ public class Acemanager {
         for (int i = 0; i < this.stayCards.length; i++) {
             this.stayCards[i] = cards[i];
             this.stayCards[i].setIdCard(i+1);
-        }     
+        }   
+        
+        this.cities = new City[cities.length];
+        for (int i = 0; i < this.cities.length; i++) {
+            this.cities[i] = cities[i];
+            this.cities[i].setIdCity(i+1);
+        }  
+        
+        this.formations = new Formation[formations.length];
+        for (int i = 0; i < this.formations.length; i++) {
+            this.formations[i] = formations[i];
+            this.formations[i].setIdFormation(i+1);
+        }  
 
+        this.facultyInstitutes = new FacultyInstitute[facs.length];
+        for (int i = 0; i < this.facultyInstitutes.length; i++) {
+            this.facultyInstitutes[i] = facs[i];
+            this.facultyInstitutes[i].setIdFacultyInstitute(i+1);
+        }  
     }
 
     public Acemanager(Member[] members) {
@@ -41,29 +58,35 @@ public class Acemanager {
         return this.members[index];
     }
 
-    public void setmembers(Member Member, int index) {
+    public void setmember(Member Member, int index) {
        Member copy = new Member(Member);
        this.members[index] = copy;
     }
 
-    public Formation[] getFormations() {
-        return this.formations;
+    public Formation getFormation(int i) {
+        return this.formations[i];
     }
 
-    public void setFormations(Formation[] formations) {
-        this.formations = formations;
+    public void setFormation(int i, Formation formation) {
+        Formation copy = new Formation(formation);
+        this.formations[i] = formation;
     }
 
-    public StayCard[] getStayCards() {
-        return this.stayCards;
+    public StayCard getStayCard(int i) {
+        return this.stayCards[i];
     }
 
-    public void setStayCards(StayCard[] stayCards) {
-        this.stayCards = stayCards;
+    public void setStayCard(int i, StayCard stayCard) {
+        StayCard copy = new StayCard(stayCard);
+        this.stayCards[i] = copy;
     }
 
-    public FacultyInstitute[] getFacultyInstitutes() {
-        return this.facultyInstitutes;
+    public City getCity(int i){
+        return this.cities[i];
+    }
+
+    public FacultyInstitute getFacultyInstitute(int i) {
+        return this.facultyInstitutes[i];
     }
 
     public void setFacultyInstitutes(FacultyInstitute[] facultyInstitutes) {
@@ -83,13 +106,8 @@ public class Acemanager {
                 String printId = ( i < 9 ?  ("  " + String.valueOf(member.getIdMember())) : (" " + String.valueOf(member.getIdMember())));
                 String fullName = member.getFirstName() + " " + member.getLastName();
 
-                String space = " ";
-                if(fullName.length() < 17){
-                    for (int j = 0; j <= 20 - fullName.length(); j++) {
-                       space.repeat(j); 
-                    }
-                }
-                String displayFullName = fullName + space;
+
+                // THINK ABOUT USING STRINGBUILDER as it offers a set length, the idea would be to print all the Stringbuilder object and when no value found print space
                 
             /* HACK ENDS  */
                 
@@ -98,9 +116,8 @@ public class Acemanager {
                 switch(className){
                     case "Member":
                         // Get the stay card of the member
-                        String cardNum = getCard(member.getIdStayCard());
-
-                        System.out.println( printId + ". | " + displayFullName + "| " + member.getAge() + " ys. old | " + member.getPassport() + "   |" + cardNum);
+                        
+                        System.out.println( printId + ". | " + formatString(fullName, 17) + "| " + member.getAge() + " ys. old | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCard(member.getIdStayCard()).getCardNum() + " | " + formatString(getCard(member.getIdStayCard()).getPattern(), 10) + " | " + formatString(getCityName(member.getIdCity()), 9)  + " | " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + " | " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 15));
                         System.out.print("\n\n");
                         break;
                     case "City":
@@ -115,32 +132,69 @@ public class Acemanager {
                     case "StayCard":
 
                         break;
-
                 }
-        
             }
             System.out.print("\n");
         } else System.exit(0);
     }
 
-    public String getCard(int idStayCard){
-        for (int i = 0; i < this.stayCards.length; i++) {
-            if(idStayCard == stayCards[i].getIdCard()){
-                return stayCards[i].getCardNum();
-            } else {
-                return "No Card";
+    public StayCard getCard(int idStayCard){
+            for (int j = 0; j < this.stayCards.length; j++) {
+                if(idStayCard == getStayCard(j).getIdCard()){
+                    return getStayCard(j);
+                } 
             }
-        }
-        return "This should never be executed";
+            return null;   
     }
 
-    public String toString() {
-        return "{" +
-            " members='" + "'" +
-            ", formations='" + getFormations() + "'" +
-            ", stayCards='" + getStayCards() + "'" +
-            ", facultyInstitutes='" + getFacultyInstitutes() + "'" +
-            "}";
+    public String getCityName(int idCity){
+        String cityName = "";
+            for (int j = 0; j < this.cities.length; j++) {
+                if(idCity == getCity(j).getIdCity()){
+                    cityName = getCity(j).getName();
+                } 
+            }
+        return cityName; 
     }
+
+    public Formation getFormationMember(int idFormation){
+            for (int j = 0; j < this.formations.length; j++) {
+                if(idFormation == getFormation(j).getIdFormation()){
+                   return getFormation(j);
+                } 
+            }
+            return null; 
+    }
+
+    public String getFacultyInstituteName(int idFacultyInstitute){
+        String facInstitute = "";
+            for (int j = 0; j < this.facultyInstitutes.length; j++) {
+                if(idFacultyInstitute == getFacultyInstitute(j).getIdFacultyInstitute()){
+                    facInstitute = getFacultyInstitute(j).getNameFacInst();
+                } 
+            }
+            return facInstitute; 
+    }
+
+    public String getCertificateName(int idFormation){
+        String certifName = "";
+            for (int j = 0; j < this.formations.length; j++) {
+                if(idFormation == getFormation(j).getIdFormation()){
+                    certifName = getFormation(j).getFCertificate();
+                } 
+            }
+            return certifName; 
+    }
+
+    public String formatString(String s, int i){
+        String space = " ";
+        if(s.length() < i){
+            for (int j = 0; j <= i- s.length(); j++) {
+                space += " "; 
+            }
+        }
+        return s + space;
+    }
+
  
 }

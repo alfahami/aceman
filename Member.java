@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Member {
     private int idMember;
-    private String passport;
+    private StringBuilder passport;
 
     private int idStayCard;
     private int matriculeAmci;
@@ -25,12 +25,13 @@ public class Member {
     public Member(){
 
     }
-    public Member(int idMember, int idStayCard, int idCity, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
+    public Member(int idMember, int idStayCard, int idCity, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
         this.idMember = idMember;
         this.idStayCard = idStayCard;
         this.idCity = idCity;
-        //this.idFormation = idFormation;
-        this.passport = passport;
+        this.idFormation = idFormation;
+        this.passport = new StringBuilder(passport);;
+        this.passport.setLength(9);
         this.matriculeAmci = matriculeAmci;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,12 +63,12 @@ public class Member {
         this.idMember = id;
     }
 
-    public String getPassport() {
+    public StringBuilder getPassport() {
         return this.passport;
     }
 
     public void setPassport(String passport) {
-        this.passport = passport;
+        this.passport = new StringBuilder(passport);
     }
 
     public int getIdStayCard() {

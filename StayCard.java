@@ -24,6 +24,16 @@ public class StayCard {
         this.pattern = pattern;
     }
 
+    public StayCard(StayCard source){
+        this.idCard = source.idCard;
+        this.idMember = source.idMember;
+        this.cardNum = source.cardNum;
+        this.obtentionDate = source.obtentionDate;
+        this.expirationDate = source.expirationDate;
+        this.pin = source.pin;
+        this.pattern = source.pattern;
+    }
+
     public int getIdCard() {
         return this.idCard;
     }
@@ -71,6 +81,40 @@ public class StayCard {
     public void setExpirationYear(String expirationDate) {
         this.expirationDate = expirationDate;
     }
+
+
+    public int getIdMember() {
+        return this.idMember;
+    }
+
+    public void setIdMember(int idMember) {
+        this.idMember = idMember;
+    }
+
+    public String getPattern() {
+        return this.pattern;
+    }
+
+    public void setPattern(String pattern) {
+        this.pattern = pattern;
+    }
+
+    public String getObtentionDate() {
+        return this.obtentionDate;
+    }
+
+    public void setObtentionDate(String obtentionDate) {
+        this.obtentionDate = obtentionDate;
+    }
+
+    public String getExpirationDate() {
+        return this.expirationDate;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+    
 
     public int getPin() {
         return this.pin;
