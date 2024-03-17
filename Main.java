@@ -27,7 +27,13 @@ public class Main {
             case 2:
                 admin.printAnyArrays(members);
             case 3:
-                
+                break;
+            case 10:
+                bye();
+                break;
+            default:   
+                bye();
+                break;
         }
         
         
@@ -219,6 +225,12 @@ public class Main {
 
         int option = scan.nextInt();
         return option;
+    }
+
+    public static void bye(){
+        System.out.println("\n\t\t\t\t\t\t\t\t\t===========================\n\n" +
+        "\t\t\t\t\t\t\t\t\t\s   BYE BYE!!! CHEERS!!!\n" + "\t\t\t\t\t\t\t\t\s\s\s\s\s   Thanks for using ACEMANAGER\n\n"+
+        "\t\t\t\t\t\t\t\t\t===========================\n");
     }
 
 
