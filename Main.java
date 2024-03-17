@@ -15,11 +15,21 @@ public class Main {
 
         // The dude that manages ACEM
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
-        admin.printAnyArrays(members);
-        admin.printAnyArrays(cards);
-        admin.printAnyArrays(cities);
-        admin.printAnyArrays(facs);
-        admin.printAnyArrays(formations);
+        int option = menu();
+        switch(option){
+            case 1:
+                admin.printAnyArrays(members);
+                admin.printAnyArrays(cards);
+                admin.printAnyArrays(cities);
+                admin.printAnyArrays(facs);
+                admin.printAnyArrays(formations);
+                break;
+            case 2:
+                admin.printAnyArrays(members);
+            case 3:
+                
+        }
+        
         
 
     
@@ -198,8 +208,17 @@ public class Main {
 
         City[] cities = {fes, meknes, oujda, rabat, kenitra, sale, grandCasablanca, casablanca, tanger, tetouan};
 
-        return cities;
-        
+        return cities;  
+    }
+
+    public static int menu(){
+        System.out.println("\n\t\t\t\t\t\t\t\t\t===========================\n\n" +
+        "\t\t\t\t\t\t\t\t\t\s  Welcome to ACEMANAGER\n" + "\t\t\t\t\t\t\t\t\s  An association membership management\n\n"+
+        "\t\t\t\t\t\t\t\t\t===========================\n");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tWhat would you like to do?\n\n\t\t\t\t\t\t\t\t\t1. List all tables\n\t\t\t\t\t\t\t\t\t2. List all Members\n\t\t\t\t\t\t\t\t\t3. Add Member\n\t\t\t\t\t\t\t\t\t4. Delete a member\n\t\t\t\t\t\t\t\t\t5. Update a member\n\t\t\t\t\t\t\t\t\t6. Manage Stay cards\n\t\t\t\t\t\t\t\t\t7. Manage Cities\n\t\t\t\t\t\t\t\t\t8. Manage Formations\n\t\t\t\t\t\t\t\t\t8. Manage Faculties\n\t\t\t\t\t\t\t\t\t9. Generate different reports\n\t\t\t\t\t\t\t\t\t10. Exit\n\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+
+        int option = scan.nextInt();
+        return option;
     }
 
 

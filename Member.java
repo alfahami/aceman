@@ -147,9 +147,10 @@ public class Member {
     public String getBirthDate() {
         return this.birthDate;
     }
-
+    
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+        setAge(toAge(birthDate)); // update automatically member's age
     }
 
     public int getAge() {
@@ -157,11 +158,9 @@ public class Member {
         return age;
     }
 
-    /*
-    public void setAge(String birthDate) {
-        this.age = toAge(birthDate);
+    private void setAge(int age) {
+        this.age = age;
     }
-    */
 
     public String getEmail() {
         return this.email;
@@ -183,7 +182,8 @@ public class Member {
         this.isMember = isMember;
     }
 
-    public int toAge(String birthDate){
+    // this shouldn't be accessed out of this class
+    private int toAge(String birthDate){
         // DateTimeFormatter is specifying the format of the date that will be used in setting memebrr birthdate
 
         return Period.between(LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.now()).getYears();
