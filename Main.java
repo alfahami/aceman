@@ -16,11 +16,14 @@ public class Main {
 
         // The dude that manages ACEM
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
-        admin.printAnyArrays(members);
+        System.out.println("\n\n\t\t\tACEM Members\n\n");
+        //admin.printAnyArrays(members);
         System.out.println();
-        System.out.println();
-        admin.printAnyArrays(cities);
+        //System.out.println("\t\t\tACEM CITIES");
+        //admin.printAnyArrays(cities);
        // admin.getMember(0).setBirthDate("21/09/1988");
+       System.out.println("\n\n");
+       admin.printAnyArrays(formations);
 
     
     }
@@ -168,7 +171,7 @@ public class Main {
     }
 
     public static Formation[] fillFormations(){
-        Formation smi = new Formation(1, "SMI", 3, "LF");
+        Formation smi = new Formation(1, "SMI", 3, "LICENCE F");
         Formation smc = new Formation(2, "SMC", 3, "LICENCE F");
         Formation smp = new Formation(3, "SMP", 4, "LICENCE P");
         Formation sma = new Formation(4, "SMA", 3, "LICENCE F");
