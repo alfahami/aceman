@@ -132,13 +132,11 @@ public class Acemanager {
                             System.out.print((i < arrays.length - 1) ? " ----|------------------|------------------------------|------------------------------------------\n" : "");
                         }
                         System.out.print("\n");
-
                         break;
                     case "Formation":
                         System.out.println("Display formation");
                         break;
                     case "FacultyInstitute":
-
                         break;
                     case "StayCard":
 
