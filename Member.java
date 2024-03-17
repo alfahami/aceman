@@ -157,9 +157,11 @@ public class Member {
         return age;
     }
 
+    /*
     public void setAge(String birthDate) {
         this.age = toAge(birthDate);
     }
+    */
 
     public String getEmail() {
         return this.email;
@@ -190,8 +192,4 @@ public class Member {
     public String toString() {
         return getLastName() + " " + getFirstName() + " | " + getAge() + " ans | " + getPassport() + " | " + getMatriculeAmci() + " | " + getEmail();
     }
-
-
-    
-
 }

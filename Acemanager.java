@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Acemanager {
     private Member[] members;
     private Formation[] formations;
@@ -96,7 +98,6 @@ public class Acemanager {
     public void printAnyArrays(Object[] arrays){
         if(arrays != null){
             String className = arrays.getClass().getCanonicalName();           
-                
                 // switch array instance
                 //String className = arrays[i].getClass().getName();
                 switch(className){
@@ -120,8 +121,18 @@ public class Acemanager {
                         }
                         System.out.print("\n");
                         break;
-                    case "City":
-                        System.out.println("Display Cities");
+                    case "City[]":
+                        
+                        System.out.println("");
+                        System.out.print("\n  ID | \t  CITY  \t|\tREGION\t\t       |   \t\tFACULTIES\t\t\t\t\n ----|------------------|------------------------------|------------------------------------------\n");
+                        for (int i = 0; i < arrays.length; i++) {
+                            City city = this.getCity(i);
+                           String printId = ( i < 9 ?  ("  " + String.valueOf(city.getIdCity())) : (" " + String.valueOf(city.getIdCity())));
+                            System.out.println( printId + "  | " + formatString(city.getName(), 14) + " | " + formatString(city.getRegion(), 26) + " | "  + Arrays.toString(city.getFacs()));
+                            System.out.print((i < arrays.length - 1) ? " ----|------------------|------------------------------|------------------------------------------\n" : "");
+                        }
+                        System.out.print("\n");
+
                         break;
                     case "Formation":
                         System.out.println("Display formation");

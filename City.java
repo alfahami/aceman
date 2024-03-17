@@ -1,6 +1,5 @@
 public class City {
     private int idCity;
-    private int idFaculty;
     private String name;
     private String region;
 
@@ -24,14 +23,6 @@ public class City {
 
     public void setIdCity(int idCity) {
         this.idCity = idCity;
-    }
-
-    public int getIdFaculty() {
-        return this.idFaculty;
-    }
-
-    public void setIdFaculty(int idFaculty) {
-        this.idFaculty = idFaculty;
     }
 
     public FacultyInstitute getFac(int i) {
@@ -59,6 +50,14 @@ public class City {
         this.region = region;
     }
 
+    public String[] getFacs(){
+        String[] listFacs = new String[this.facs.length] ;
+        for (int i = 0; i < this.facs.length; i++) {
+            listFacs[i] = facs[i].getNameFacInst() ; 
+        }  
+        
+        return listFacs;
+    }
     public String toString() {
         return "{" +
             " idCity='" + getIdCity() + "'" +

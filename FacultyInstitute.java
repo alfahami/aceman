@@ -4,7 +4,7 @@ public class FacultyInstitute {
     private String nameFacInst;
     private Formation[] formations;
 
-    
+
     public FacultyInstitute(int id, String nameFacInst, Formation[] formations, int idCity) {
         this.idCity = idCity;
         this.nameFacInst = nameFacInst;
@@ -47,5 +47,16 @@ public class FacultyInstitute {
 
     public void setNameFacInst(String nameFacInst) {
         this.nameFacInst = nameFacInst;
-    }    
+    }
+    
+
+    @Override
+    public String toString() {
+        return "{" +
+            " idFacultyInstitute='" + getIdFacultyInstitute() + "'" +
+            ", idCity='" + getIdCity() + "'" +
+            ", nameFacInst='" + getNameFacInst() + "'" +
+            "}";
+    }
+    
 }

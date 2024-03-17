@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -5,18 +6,21 @@ public class Main {
     public static void main(String[] args) {
         
         // Fill Cities
-        City[] cities = fillCities();
         Formation[] formations = fillFormations();
         FacultyInstitute[] facs = fillFacsInsts(formations, null);
+        City[] cities = fillCities();
 
         StayCard[] cards = fillStayCard();
         Member[] members = fillMembers();
 
-        //System.out.println(Arrays.toString());
 
         // The dude that manages ACEM
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
         admin.printAnyArrays(members);
+        System.out.println();
+        System.out.println();
+        admin.printAnyArrays(cities);
+       // admin.getMember(0).setBirthDate("21/09/1988");
 
     
     }
@@ -108,7 +112,7 @@ public class Main {
 
     public static Member[] fillMembers(){
         
-        Member admin = new Member(1, 1, 1, 2, 9, "TOIHIR", "AL-FAHAMI",  "NBE388507", "21/05/1992", 20111473, "alf@gmail.com", true);
+        Member admin = new Member(1, 1, 1, 2, 9, "TOIHIR", "AL-FAHAMI",  "NBE388507", "19/03/1985", 20111473, "alf@gmail.com", true);
 
         Member std1 = new Member(2, 3, 2, 1, 10, "ALLAOUI", "ZAKARIA",  "NBE356347M", "13/09/1998", 20209854, "alzak@gmail.com", true);
 
@@ -185,10 +189,10 @@ public class Main {
         City meknes = new City(2, "MEKNES", "FES-BOULEMANE", fillFacsInsts(fillFormations(), null));
         City oujda = new City(3, "OUJDA", "FES-BOULEMANE", fillFacsInsts(fillFormations(), null));
         City rabat = new City(4, "RABAT", "RABAT-SALE-KENITRA", fillFacsInsts(fillFormations(), null));
-        City kenitra = new City(5, "KENITRA", "RABAT-KENITRA, -SALE", fillFacsInsts(fillFormations(), null));
+        City kenitra = new City(5, "KENITRA", "RABAT-KENITRA-SALE", fillFacsInsts(fillFormations(), null));
         City sale = new City(6, "SALE", "RABAT-SALE-KENITRA", fillFacsInsts(fillFormations(), null));
         City grandCasablanca = new City(7, "CASABLANCA", "CASABLANCA-SETTAT", fillFacsInsts(fillFormations(), null));
-        City casablanca = new City(8, "CASABLANCA", "CASABLANCA-SETTAT", fillFacsInsts(fillFormations(), null));
+        City casablanca = new City(8, "Gd CASA", "CASABLANCA-SETTAT", fillFacsInsts(fillFormations(), null));
         City tanger = new City(9, "TANGER", "TANGER-TETOUAN-AL HOCEIMA", fillFacsInsts(fillFormations(), null));
         City tetouan = new City(10, "TETOUAN", "TANGER-TETOUAN-AL HOCEIMA", fillFacsInsts(fillFormations(), null));
 
