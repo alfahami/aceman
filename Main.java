@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -16,8 +15,11 @@ public class Main {
 
         // The dude that manages ACEM
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
-        
-       admin.printAnyArrays(facs);
+        admin.printAnyArrays(members);
+        admin.printAnyArrays(cards);
+        admin.printAnyArrays(cities);
+        admin.printAnyArrays(facs);
+        admin.printAnyArrays(formations);
 
     
     }
@@ -144,7 +146,7 @@ public class Main {
         StayCard card7 = new StayCard(7, 6, 1, "C019563M", "02/01/2023", "02/01/2026", 203565, "Travail");
         StayCard card8 = new StayCard(8, 9, 8, "C019523N", "01/01/2024", "01/01/2027", 103465, "Etudiant");
         StayCard card9 = new StayCard(9, 10, 7, "C023456C", "02/01/2023", "02/01/2026", 123565, "Etudiant");
-        StayCard card10 = new StayCard(10, 8, 5, "C0345678P", "14/09/2020", "14/09/2023", 203565, "Travail");
+        StayCard card10 = new StayCard(10, 8, 5, "C034567P", "14/09/2020", "14/09/2023", 203565, "Travail");
 
         StayCard[] cards = {card1, card2, card3, card4, card5, card6, card7, card8, card9, card10};
 

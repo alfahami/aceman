@@ -95,6 +95,48 @@ public class Acemanager {
         this.facultyInstitutes = facultyInstitutes;
     }
 
+
+    public Member[] getMembers() {
+        return this.members;
+    }
+
+    public void setMembers(Member[] members) {
+        this.members = members;
+    }
+
+    public Formation[] getFormations() {
+        return this.formations;
+    }
+
+    public void setFormations(Formation[] formations) {
+        this.formations = formations;
+    }
+
+    public StayCard[] getStayCards() {
+        return this.stayCards;
+    }
+
+    public void setStayCards(StayCard[] stayCards) {
+        this.stayCards = stayCards;
+    }
+
+    public FacultyInstitute[] getFacultyInstitutes() {
+        return this.facultyInstitutes;
+    }
+
+    public City[] getCities() {
+        return this.cities;
+    }
+
+    public void setCities(City[] cities) {
+        this.cities = cities;
+    }
+
+    public StayCard getCard(int i){
+        return this.stayCards[i];
+    }
+
+    
     public void printAnyArrays(Object[] arrays){
         if(arrays != null){
             String className = arrays.getClass().getCanonicalName();           
@@ -115,29 +157,26 @@ public class Acemanager {
                             // THINK ABOUT USING STRINGBUILDER as it offers a set length, the idea would be to print all the Stringbuilder object and when no value found print space
                             
                     /*### HACK ENDS  */
-                        System.out.println( printId(i, member.getIdMember())+ ". | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCard(member.getIdStayCard()).getCardNum() + " | " + formatString(getCard(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
-                        System.out.print(i < arrays.length - 1 ? " ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n" : "");
+                        System.out.println( printId(i, member.getIdMember())+ " | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCardById(member.getIdStayCard()).getCardNum() + " | " + formatString(getCardById(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
+                        System.out.print(i < arrays.length - 1 ? " ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n" : "\n\n");
                         }
-                        System.out.print("\n");
                         break;
                     case "City[]":
                         System.out.println("");
                         System.out.print("\n\t  ID | \t  CITY  \t|\tREGION\t\t       |   \t\tFACULTIES\t\t\t\t\n\t ----|------------------|------------------------------|------------------------------------------\n");
                         for (int i = 0; i < arrays.length; i++) {
                             City city = this.getCity(i);
-                            System.out.println("\t" + printId(i, city.getIdCity()) + "  | " + formatString(city.getName(), 14) + " | " + formatString(city.getRegion(), 26) + " | "  + Arrays.toString(city.getFacs()));
-                            System.out.print((i < arrays.length - 1) ? "\t ----|------------------|------------------------------|------------------------------------------\n" : "");
+                            System.out.println("\t" + printId(i, city.getIdCity()) + " | " + formatString(city.getName(), 14) + " | " + formatString(city.getRegion(), 26) + " | "  + Arrays.toString(city.getFacs()));
+                            System.out.print((i < arrays.length - 1) ? "\t ----|------------------|------------------------------|------------------------------------------\n" : "\n\n");
                         }
-                        System.out.print("\n");
                         break;
                     case "Formation[]":
                         System.out.print("\n\t  ID |    FORMATION NAME    | CERTIFICATE    |  DURATION\n\t ----|----------------------|----------------|--------------------\n");
                         for (int i = 0; i < arrays.length; i++) {
                             Formation formation = getFormation(i);
-                            System.out.println("\t" + printId(i, formation.getIdFormation()) + "  | " + formatString(formation.getName(), 18) + " | " + formatString(formation.getFCertificate(), 12) + " | " + formation.getDuration());
-                            System.out.print((i < arrays.length - 1) ? "\t ----|----------------------|----------------|--------------------\n" : "");
+                            System.out.println("\t" + printId(i, formation.getIdFormation()) + " | " + formatString(formation.getName(), 18) + " | " + formatString(formation.getFCertificate(), 12) + " | " + formation.getDuration());
+                            System.out.print((i < arrays.length - 1) ? "\t ----|----------------------|----------------|--------------------\n" : "\n\n");
                         }
-                        System.out.println("\n");
                         break;
                     case "FacultyInstitute[]":
                         System.out.print("\n\t  ID |    FACULTY    | FORMATIONS\n\t ----|---------------|------------------------------------------------------------------------------------------------------------------\n");
@@ -145,20 +184,26 @@ public class Acemanager {
                             FacultyInstitute fac = getFacultyInstitute(i);
                             System.out.println("\t" + printId(i, fac.getIdFacultyInstitute()) + " | " + formatString(fac.getNameFacInst(), 11) + " | " + Arrays.toString(fac.getFormationNames()) );
                             //System.out.println("\t ----|---------------|------------------------------------------------------------------------------------------------------------------");
-                            System.out.print((i < arrays.length - 1) ? "\t ----|---------------|------------------------------------------------------------------------------------------------------------------\n" : "");
+                            System.out.print((i < arrays.length - 1) ? "\t ----|---------------|------------------------------------------------------------------------------------------------------------------\n" : "\n\n");
                         }
-                        System.out.print("\n\n");
                         break;
-                    case "StayCard":
-
+                    case "StayCard[]":
+                        System.out.print("\n\t   ID | FULL NAME\t\t| BIRTH DATE |  CIN N°  |  STAY REASON | OBTENTION DATE | EXPIRATION DATE | PIN N° |\n\t  ----|-------------------------|------------|----------|--------------|----------------|-----------------|--------|\n");
+                        for (int i = 0; i < arrays.length; i++) {
+                            StayCard card = getCard(i);
+                            System.out.println("\t " + printId(i, card.getIdCard()) + " | " + formatString(getMemberCard(card.getIdMember()).getFirstName() + " " + getMemberCard(card.getIdMember()).getLastName(), 21) + " | " + getMemberCard(card.getIdMember()).getBirthDate() + " | " + card.getCardNum() + " | "+ formatString(card.getPattern(), 10) + " | " + formatString(card.getObtentionDate(), 12) + " | " + formatString(card.getExpirationDate(), 13) + " | " + card.getPin() + " |");
+                            System.out.print((i < arrays.length - 1) ? "\t  ----|-------------------------|------------|----------|--------------|----------------|-----------------|--------|\n" : "\n\n");
+                        }
                         break;
+                        default:
+                            System.out.println("The fuck you trying to do though");
                 }
             
             //System.out.print("\n");
         } else System.exit(0);
     }
 
-    public StayCard getCard(int idStayCard){
+    public StayCard getCardById(int idStayCard){
             for (int j = 0; j < this.stayCards.length; j++) {
                 if(idStayCard == getStayCard(j).getIdCard()){
                     return getStayCard(j);
@@ -205,6 +250,17 @@ public class Acemanager {
             return certifName; 
     }
 
+    public Member getMemberCard(int idMember){
+        Member member = new Member();
+        for (int i = 0; i < this.members.length; i++) {
+            if(idMember == getMember(i).getIdMember()){
+                member = getMember(i);
+                return member;
+            }
+        }
+        return null;
+    }
+
     public String formatString(String s, int i){
         String space = " ";
         if(s.length() < i){
@@ -216,7 +272,7 @@ public class Acemanager {
     }
 
     public String printId(int i, int id){
-        return ( i < 9 ?  ("  " + String.valueOf(id)) + "." : (" " + String.valueOf(id)));
+        return ( i < 9 ?  ("  " + String.valueOf(id)) + " " : (" " + String.valueOf(id)) + " ");
     }
 
  
