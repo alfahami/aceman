@@ -5,8 +5,9 @@ public class FacultyInstitute {
     private Formation[] formations;
 
 
-    public FacultyInstitute(int id, String nameFacInst, Formation[] formations, int idCity) {
+    public FacultyInstitute(int idFacultyInstitute, String nameFacInst, Formation[] formations, int idCity) {
         this.idCity = idCity;
+        this.idFacultyInstitute = idFacultyInstitute;
         this.nameFacInst = nameFacInst;
         this.formations = new Formation[formations.length];
         for (int i = 0; i < formations.length; i++) {
@@ -49,8 +50,15 @@ public class FacultyInstitute {
         this.nameFacInst = nameFacInst;
     }
     
+    public String[] getFormationNames(){
+        String[] names = new String[this.formations.length];
+        for (int i = 0; i < names.length; i++) {
+            names[i] = formations[i].getName();
+        }
+        return names;
+    }
 
-    @Override
+    
     public String toString() {
         return "{" +
             " idFacultyInstitute='" + getIdFacultyInstitute() + "'" +
