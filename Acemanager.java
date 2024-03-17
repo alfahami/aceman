@@ -144,6 +144,7 @@ public class Acemanager {
                 //String className = arrays[i].getClass().getName();
                 switch(className){
                     case "Member[]":
+                        System.out.println(printTableTitle("LIST OF ACEM MEMBERS"));
                         System.out.print("\n  ID | \t   FULL NAME  \t  | AGE | PASSPORT  | MAT AMCI |  CIN N°  |   PATTERN   |    CITY    |      FORMATION       |   DIPLOMA   | FACULTY | ADHESION |       EMAIL       |\n ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
 
@@ -162,6 +163,7 @@ public class Acemanager {
                         }
                         break;
                     case "City[]":
+                    System.out.println(printTableTitle("LIST OF CITIES"));
                         System.out.println("");
                         System.out.print("\n\t\t\t\t     ID | \t  CITY     |\tREGION\t\t          |   \t\tFACULTIES\t\t |\n\t\t\t\t    ----|------------------|------------------------------|--------------------------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
@@ -171,6 +173,7 @@ public class Acemanager {
                         }
                         break;
                     case "Formation[]":
+                        System.out.println(printTableTitle("LIST OF FORMATIONS"));
                         System.out.print("\n\t\t\t\t\t\t  ID |    FORMATION NAME    | CERTIFICATE    |  DURATION \t  |\n\t\t\t\t\t\t ----|----------------------|----------------|--------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
                             Formation formation = getFormation(i);
@@ -179,6 +182,7 @@ public class Acemanager {
                         }
                         break;
                     case "FacultyInstitute[]":
+                        System.out.println(printTableTitle("LIST OF FACULTIES"));
                         System.out.print("\n\t\t     ID |    FACULTY    | FORMATIONS\t\t\t\t\t\t\t\t\t\t\t\t\t  |\n\t\t    ----|---------------|-----------------------------------------------------------------------------------------------------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
                             FacultyInstitute fac = getFacultyInstitute(i);
@@ -188,6 +192,7 @@ public class Acemanager {
                         }
                         break;
                     case "StayCard[]":
+                        System.out.println(printTableTitle("LIST OF STAY CARDS"));
                         System.out.print("\n\t\t\t     ID | FULL NAME\t\t  | BIRTH DATE |  CIN N°  |  STAY REASON | OBTENTION DATE | EXPIRATION DATE | PIN N° |\n\t\t\t    ----|-------------------------|------------|----------|--------------|----------------|-----------------|--------|\n");
                         for (int i = 0; i < arrays.length; i++) {
                             StayCard card = getCard(i);
@@ -273,6 +278,10 @@ public class Acemanager {
 
     public String printId(int i, int id){
         return ( i < 9 ?  ("  " + String.valueOf(id)) + " " : (" " + String.valueOf(id)) + " ");
+    }
+
+    public String printTableTitle(String tTitle){
+        return "\n\t\t\t\t\t\t\t\t\t==========================\n\t\t\t\t\t\t\t\t\t\s\s\s" + tTitle + "\n\t\t\t\t\t\t\t\t\t==========================\n";
     }
 
  

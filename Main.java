@@ -20,6 +20,7 @@ public class Main {
         admin.printAnyArrays(cities);
         admin.printAnyArrays(facs);
         admin.printAnyArrays(formations);
+        
 
     
     }
