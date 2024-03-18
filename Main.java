@@ -30,7 +30,7 @@ public class Main {
             case 3:
                 break;
             case 6:
-                String choice = xMenu("Card");
+                String choice = xMenu(6, "Card");
                 switch(choice){
                     case "6.1":
                         admin.printAnyArrays(cards);
@@ -43,7 +43,7 @@ public class Main {
                 }
                 break;
             case 7:
-                String choice1 = xMenu("City");
+                String choice1 = xMenu(7, "City");
                 switch(choice1){
                     case "7.1":
                         admin.printAnyArrays(cities);
@@ -52,9 +52,24 @@ public class Main {
                 }
                 break;
             case 8: 
-                String choice2 = xMenu("Formation");
-
+                String choice2 = xMenu(8, "Formation");
+                switch (choice2) {
+                    case "8.1":
+                        admin.printAnyArrays(formations);
+                        break;
+                }
+                break;
+            case 9:
+                String choice3 = xMenu(9, "Faculty");
+                switch (choice3) {
+                    case "9.1":
+                        admin.printAnyArrays(facs);
+                        break;
+                }
+                break;
             case 10:
+                break;
+            case 11:
                 bye();
                 break;
             default:   
@@ -241,8 +256,8 @@ public class Main {
         return cities;  
     }
 
-    public static String xMenu(String arrayName){
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\t7.1 " + arrayName + " List\n\t\t\t\t\t\t\t\t\t\t7.2 Add a " + arrayName + "\n\t\t\t\t\t\t\t\t\t\t7.3 Delete a " + arrayName +"\n\t\t\t\t\t\t\t\t\t\t7.4 Update a " + arrayName + "\n\t\t\t\t\t\t\t\t\t\t7.5 Back to principal menu\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+    public static String xMenu(int x, String arrayName){
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t" + String.valueOf(x) + ".1 " + arrayName + " List\n\t\t\t\t\t\t\t\t\t\t" + String.valueOf(x) + ".2 Add a " + arrayName + "\n\t\t\t\t\t\t\t\t\t\t" + String.valueOf(x) + ".3 Delete a " + arrayName +"\n\t\t\t\t\t\t\t\t\t\t" + String.valueOf(x) + ".4 Update a " + arrayName + "\n\t\t\t\t\t\t\t\t\t\t" + String.valueOf(x) + ".5 Back to principal menu\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
         scan.nextLine();
         String choice = scan.nextLine();
         return choice;
@@ -252,7 +267,7 @@ public class Main {
         System.out.println("\n\t\t\t\t\t\t\t\t\t===========================\n\n" +
         "\t\t\t\t\t\t\t\t\t\s  Welcome to ACEMANAGER\n" + "\t\t\t\t\t\t\t\t\s  An association membership management\n\n"+
         "\t\t\t\t\t\t\t\t\t===========================\n");
-        System.out.print("\n\t\t\t\t\t\t\t\t\tWhat would you like to do?\n\n\t\t\t\t\t\t\t\t\t1. List all tables\n\t\t\t\t\t\t\t\t\t2. List all Members\n\t\t\t\t\t\t\t\t\t3. Add Member\n\t\t\t\t\t\t\t\t\t4. Delete a member\n\t\t\t\t\t\t\t\t\t5. Update a member\n\t\t\t\t\t\t\t\t\t6. Manage Stay cards\n\t\t\t\t\t\t\t\t\t7. Manage Cities\n\t\t\t\t\t\t\t\t\t8. Manage Formations\n\t\t\t\t\t\t\t\t\t8. Manage Faculties\n\t\t\t\t\t\t\t\t\t9. Generate different reports\n\t\t\t\t\t\t\t\t\t10. Exit\n\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tWhat would you like to do?\n\n\t\t\t\t\t\t\t\t\t1. List all tables\n\t\t\t\t\t\t\t\t\t2. List all Members\n\t\t\t\t\t\t\t\t\t3. Add Member\n\t\t\t\t\t\t\t\t\t4. Delete a member\n\t\t\t\t\t\t\t\t\t5. Update a member\n\t\t\t\t\t\t\t\t\t6. Manage Stay cards\n\t\t\t\t\t\t\t\t\t7. Manage Cities\n\t\t\t\t\t\t\t\t\t8. Manage Formations\n\t\t\t\t\t\t\t\t\t9. Manage Faculties\n\t\t\t\t\t\t\t\t\t10. Generate different reports\n\t\t\t\t\t\t\t\t\t11. Exit\n\t\t\t\t\t\t\t\t\tPlease choose an option: ");
 
         int option = scan.nextInt();
         return option;
