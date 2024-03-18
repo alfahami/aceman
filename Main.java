@@ -28,6 +28,18 @@ public class Main {
                 admin.printAnyArrays(members);
             case 3:
                 break;
+            case 6:
+                int choice = cardMenu();
+                switch(choice){
+                    case 1:
+                        admin.printAnyArrays(cards);
+                        break;
+                    case 6:
+                        menu();
+                        break;
+                    default:
+                        bye();
+                }
             case 10:
                 bye();
                 break;
@@ -213,6 +225,13 @@ public class Main {
         City[] cities = {fes, meknes, oujda, rabat, kenitra, sale, grandCasablanca, casablanca, tanger, tetouan};
 
         return cities;  
+    }
+
+    public static int cardMenu(){
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t6.1 List members' cards\n\t\t\t\t\t\t\t\t\t\t6.2 Add a Card\n\t\t\t\t\t\t\t\t\t\t6.3. Delete a Card\n\t\t\t\t\t\t\t\t\t\t6.4 Update a Card\n\t\t\t\t\t\t\t\t\t\t6.5 Exit\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+
+        int choice = scan.nextInt();
+        return choice;
     }
 
     public static int menu(){
