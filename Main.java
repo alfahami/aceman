@@ -26,20 +26,31 @@ public class Main {
                 break;
             case 2:
                 admin.printAnyArrays(members);
+                break;
             case 3:
                 break;
             case 6:
-                int choice = cardMenu();
+                String choice = cardMenu();
                 switch(choice){
-                    case 1:
+                    case "6.1":
                         admin.printAnyArrays(cards);
                         break;
-                    case 6:
-                        menu();
+                    case "6.2":
+                        
                         break;
                     default:
                         bye();
                 }
+                break;
+            case 7:
+                String choice1 = cityMenu();
+                switch(choice1){
+                    case "7.1":
+                        admin.printAnyArrays(cities);
+                    case "7.2":
+
+                }
+                break;
             case 10:
                 bye();
                 break;
@@ -227,10 +238,17 @@ public class Main {
         return cities;  
     }
 
-    public static int cardMenu(){
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\t6.1 List members' cards\n\t\t\t\t\t\t\t\t\t\t6.2 Add a Card\n\t\t\t\t\t\t\t\t\t\t6.3. Delete a Card\n\t\t\t\t\t\t\t\t\t\t6.4 Update a Card\n\t\t\t\t\t\t\t\t\t\t6.5 Exit\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+    public static String cardMenu(){
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t6.1 List members' cards\n\t\t\t\t\t\t\t\t\t\t6.2 Add a Card\n\t\t\t\t\t\t\t\t\t\t6.3 Delete a Card\n\t\t\t\t\t\t\t\t\t\t6.4 Update a Card\n\t\t\t\t\t\t\t\t\t\t6.5 Back to principal menu\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+        scan.nextLine();
+        String choice = scan.nextLine();
+        return choice;
+    }
 
-        int choice = scan.nextInt();
+    public static String cityMenu(){
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t7.1 List cities\n\t\t\t\t\t\t\t\t\t\t7.2 Add a City\n\t\t\t\t\t\t\t\t\t\t7.3 Delete a City\n\t\t\t\t\t\t\t\t\t\t7.4 Update a City\n\t\t\t\t\t\t\t\t\t\t7.5 Back to principal menu\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+        scan.nextLine();
+        String choice = scan.nextLine();
         return choice;
     }
 
