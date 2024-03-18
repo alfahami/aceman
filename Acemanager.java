@@ -11,31 +11,31 @@ public class Acemanager {
     public Acemanager(City[] cities, Formation[] formations, FacultyInstitute[] facs, Member[] members, StayCard[] cards){
         this.members = new Member[members.length];
         for (int i = 0; i < this.members.length; i++) {
-            this.members[i] = members[i];
+            this.members[i] = new Member(members[i]);
             this.members[i].setIdMember(i+1);
         }     
         
         this.stayCards = new StayCard[cards.length];
         for (int i = 0; i < this.stayCards.length; i++) {
-            this.stayCards[i] = cards[i];
+            this.stayCards[i] = new StayCard(cards[i]);
             this.stayCards[i].setIdCard(i+1);
         }   
         
         this.cities = new City[cities.length];
         for (int i = 0; i < this.cities.length; i++) {
-            this.cities[i] = cities[i];
+            this.cities[i] = new City(cities[i]);
             this.cities[i].setIdCity(i+1);
         }  
         
         this.formations = new Formation[formations.length];
         for (int i = 0; i < this.formations.length; i++) {
-            this.formations[i] = formations[i];
+            this.formations[i] = new Formation(formations[i]);
             this.formations[i].setIdFormation(i+1);
         }  
 
         this.facultyInstitutes = new FacultyInstitute[facs.length];
         for (int i = 0; i < this.facultyInstitutes.length; i++) {
-            this.facultyInstitutes[i] = facs[i];
+            this.facultyInstitutes[i] = new FacultyInstitute(facs[i]);
             this.facultyInstitutes[i].setIdFacultyInstitute(i+1);
         }  
     }
@@ -43,7 +43,7 @@ public class Acemanager {
     public Acemanager(Member[] members) {
         this.members = new Member[members.length];
         for (int i = 0; i < this.members.length; i++) {
-            this.members[i] = members[i];
+            this.members[i] = new Member(members[i]);
             this.members[i].setIdMember(i+1);
         }        
     }
@@ -51,7 +51,7 @@ public class Acemanager {
     public Acemanager(City[] cities){
         this.cities = new City[cities.length];
         for (int i = 0; i < cities.length; i++) {
-            this.cities[i] = cities[i];
+            this.cities[i] = new City(cities[i]);
             this.cities[i].setIdCity(i+1);
         }
     }
@@ -60,8 +60,8 @@ public class Acemanager {
         return this.members[index];
     }
 
-    public void setmember(Member Member, int index) {
-       Member copy = new Member(Member);
+    public void setmember(Member member, int index) {
+       Member copy = new Member(member);
        this.members[index] = copy;
     }
 

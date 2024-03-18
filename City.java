@@ -11,10 +11,16 @@ public class City {
         this.region = region;
         this.facs = new FacultyInstitute[facs.length];
         for (int i = 0; i < facs.length; i++) {
-            this.facs[i] = facs[i];
+            this.facs[i] = new FacultyInstitute(facs[i]);
             this.facs[i].setIdCity(i+1);
             
         }
+    }
+
+    public City(City source){
+        this.idCity = source.idCity;
+        this.name = source.name;
+        this.region = source.region;
     }
     
     public int getIdCity() {
