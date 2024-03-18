@@ -30,7 +30,7 @@ public class Main {
             case 3:
                 break;
             case 6:
-                String choice = cardMenu();
+                String choice = xMenu("Card");
                 switch(choice){
                     case "6.1":
                         admin.printAnyArrays(cards);
@@ -43,7 +43,7 @@ public class Main {
                 }
                 break;
             case 7:
-                String choice1 = cityMenu();
+                String choice1 = xMenu("City");
                 switch(choice1){
                     case "7.1":
                         admin.printAnyArrays(cities);
@@ -51,6 +51,9 @@ public class Main {
 
                 }
                 break;
+            case 8: 
+                String choice2 = xMenu("Formation");
+
             case 10:
                 bye();
                 break;
@@ -238,15 +241,8 @@ public class Main {
         return cities;  
     }
 
-    public static String cardMenu(){
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\t6.1 List members' cards\n\t\t\t\t\t\t\t\t\t\t6.2 Add a Card\n\t\t\t\t\t\t\t\t\t\t6.3 Delete a Card\n\t\t\t\t\t\t\t\t\t\t6.4 Update a Card\n\t\t\t\t\t\t\t\t\t\t6.5 Back to principal menu\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
-        scan.nextLine();
-        String choice = scan.nextLine();
-        return choice;
-    }
-
-    public static String cityMenu(){
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\t7.1 List cities\n\t\t\t\t\t\t\t\t\t\t7.2 Add a City\n\t\t\t\t\t\t\t\t\t\t7.3 Delete a City\n\t\t\t\t\t\t\t\t\t\t7.4 Update a City\n\t\t\t\t\t\t\t\t\t\t7.5 Back to principal menu\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+    public static String xMenu(String arrayName){
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\t7.1 " + arrayName + " List\n\t\t\t\t\t\t\t\t\t\t7.2 Add a " + arrayName + "\n\t\t\t\t\t\t\t\t\t\t7.3 Delete a " + arrayName +"\n\t\t\t\t\t\t\t\t\t\t7.4 Update a " + arrayName + "\n\t\t\t\t\t\t\t\t\t\t7.5 Back to principal menu\n\t\t\t\t\t\t\t\t\t\tPlease choose an option: ");
         scan.nextLine();
         String choice = scan.nextLine();
         return choice;
