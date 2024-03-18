@@ -47,7 +47,6 @@ public class Formation {
         this.name = name;
     }
 
-
     public String getFCertificate() {
         return this.fCertificate;
     }
@@ -55,7 +54,6 @@ public class Formation {
     public void setFCertificate(String fCertificate) {
         this.fCertificate = fCertificate;
     }
-
 
     public int getDuration() {
         return this.duration;

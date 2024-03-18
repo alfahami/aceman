@@ -71,6 +71,4 @@ public class City {
             ", region='" + getRegion() + "'" +
             "}";
     }
-
-
 }

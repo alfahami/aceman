@@ -57,7 +57,7 @@ public class Acemanager {
     }
 
     public Member getMember(int index) {
-        return this.members[index];
+        return new Member(this.members[index]);
     }
 
     public void setmember(Member member, int index) {
@@ -66,7 +66,7 @@ public class Acemanager {
     }
 
     public Formation getFormation(int i) {
-        return this.formations[i];
+        return new Formation(this.formations[i]);
     }
 
     public void setFormation(int i, Formation formation) {
@@ -75,7 +75,7 @@ public class Acemanager {
     }
 
     public StayCard getStayCard(int i) {
-        return this.stayCards[i];
+        return new StayCard(this.stayCards[i]);
     }
 
     public void setStayCard(int i, StayCard stayCard) {
@@ -84,54 +84,13 @@ public class Acemanager {
     }
 
     public City getCity(int i){
-        return this.cities[i];
+        return new City(this.cities[i]);
     }
 
     public FacultyInstitute getFacultyInstitute(int i) {
-        return this.facultyInstitutes[i];
+        return new FacultyInstitute(this.facultyInstitutes[i]);
     }
-
-    public void setFacultyInstitutes(FacultyInstitute[] facultyInstitutes) {
-        this.facultyInstitutes = facultyInstitutes;
-    }
-
-
-    public Member[] getMembers() {
-        return this.members;
-    }
-
-    public void setMembers(Member[] members) {
-        this.members = members;
-    }
-
-    public Formation[] getFormations() {
-        return this.formations;
-    }
-
-    public void setFormations(Formation[] formations) {
-        this.formations = formations;
-    }
-
-    public StayCard[] getStayCards() {
-        return this.stayCards;
-    }
-
-    public void setStayCards(StayCard[] stayCards) {
-        this.stayCards = stayCards;
-    }
-
-    public FacultyInstitute[] getFacultyInstitutes() {
-        return this.facultyInstitutes;
-    }
-
-    public City[] getCities() {
-        return this.cities;
-    }
-
-    public void setCities(City[] cities) {
-        this.cities = cities;
-    }
-
+   
     public StayCard getCard(int i){
         return this.stayCards[i];
     }
@@ -203,8 +162,6 @@ public class Acemanager {
                         default:
                             System.out.println("The fuck you trying to do though");
                 }
-            
-            //System.out.print("\n");
         } else System.exit(0);
     }
 
