@@ -10,18 +10,19 @@ public class Formation {
         
     }
 
-    public Formation(int idCity, String name, int duration, String fCertificate) {
+    public Formation(int idFormation, int idCity, String name, int duration, String fCertificate) {
+        this.idFormation = idFormation;
         this.fCertificate = fCertificate;
         this.name = name;
         this.duration = duration;
     }
 
     public Formation(Formation source){
+        this.idFormation = source.idFormation;
         this.fCertificate = source.fCertificate;
         this.name = source.name;
         this.duration = source.duration;
     }
-
 
     public int getIdFormation() {
         return this.idFormation;

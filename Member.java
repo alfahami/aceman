@@ -43,14 +43,18 @@ public class Member {
     }
 
     public Member(Member source){
-        this.passport = source.passport;
+        this.idMember = source.idMember;
         this.idStayCard = source.idStayCard;
-        this.matriculeAmci = source.matriculeAmci;
+        this.idCity = source.idCity;
         this.idFormation = source.idFormation;
+        this.idFacultyInstitute = source.idFacultyInstitute;
+        this.passport = new StringBuilder(source.passport);
+        this.passport.setLength(9);
+        this.matriculeAmci = source.matriculeAmci;
         this.firstName = source.firstName;
         this.lastName = source.lastName;
         this.birthDate = source.birthDate;
-        this.age = source.age;
+        this.age = source.toAge(this.birthDate);
         this.email = source.email;
         this.isMember = source.isMember;
     }

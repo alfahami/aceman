@@ -17,6 +17,7 @@ public class FacultyInstitute {
     }
 
     public FacultyInstitute(FacultyInstitute source) {
+        this.idFacultyInstitute = source.idFacultyInstitute;
         this.idCity = source.idCity;
         this.nameFacInst = source.nameFacInst;
         this.formations = new Formation[source.formations.length];

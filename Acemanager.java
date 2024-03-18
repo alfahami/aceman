@@ -196,7 +196,7 @@ public class Acemanager {
     public FacultyInstitute getMemberFaculty(int idFacultyInstitute){
             for (int j = 0; j < this.facultyInstitutes.length; j++) {
                 if(idFacultyInstitute == getFacultyInstitute(j).getIdFacultyInstitute()){
-                    return facultyInstitutes[j];
+                    return new FacultyInstitute(facultyInstitutes[j]);
                 } 
             }
             return null; 

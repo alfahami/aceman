@@ -116,8 +116,9 @@ public class Main {
         scan.nextLine(); // next line trap
         System.out.print("Which certificate is provided by the program? ");
         String certificate = scan.nextLine();
+        int idCity = 0;
         
-        return new Formation(id, formationName, duration, certificate);
+        return new Formation(id, idCity, formationName, duration, certificate);
     }
 
 
@@ -181,16 +182,16 @@ public class Main {
     }
 
     public static Formation[] fillFormations(){
-        Formation smi = new Formation(1, "SMI", 3, "LICENCE F");
-        Formation smc = new Formation(2, "SMC", 3, "LICENCE F");
-        Formation smp = new Formation(3, "SMP", 4, "LICENCE P");
-        Formation sma = new Formation(4, "SMA", 4, "BACHELOR");
-        Formation mip = new Formation(5, "MIP", 3, "LICENCE F");
-        Formation bigData = new Formation(6, "BIG DATA & BI", 2, "MASTER SP");
-        Formation mp = new Formation(7, "MATH PHYSIQUE", 2, "MASTER RE");
-        Formation algebre = new Formation(8, "ALGEBRE APPLIQUEE", 2, "MASTER RE");
-        Formation dctrInfo = new Formation(9, "BLOCKCHAIN IN IOT", 2, "DOCTORAT");
-        Formation dctrBio = new Formation(10, "BIO DES SYSTEMES", 3, "DOCTORAT");
+        Formation smi = new Formation(1, 3, "SMI", 3, "LICENCE F");
+        Formation smc = new Formation(2, 4,"SMC", 3, "LICENCE F");
+        Formation smp = new Formation(3, 3, "SMP", 4, "LICENCE P");
+        Formation sma = new Formation(4, 8, "SMA", 4, "BACHELOR");
+        Formation mip = new Formation(5, 9, "MIP", 3, "LICENCE F");
+        Formation bigData = new Formation(6, 1, "BIG DATA & BI", 2, "MASTER SP");
+        Formation mp = new Formation(7, 5, "MATH PHYSIQUE", 2, "MASTER RE");
+        Formation algebre = new Formation(8, 6, "ALGEBRE APPLIQUEE", 2, "MASTER RE");
+        Formation dctrInfo = new Formation(9, 7, "BLOCKCHAIN IN IOT", 2, "DOCTORAT");
+        Formation dctrBio = new Formation(10, 3, "BIO DES SYSTEMES", 3, "DOCTORAT");
 
         Formation[] formations = {smi, sma, smp, smc, mip, bigData, mp, algebre, dctrInfo, dctrBio};
 
