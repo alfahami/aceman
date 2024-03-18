@@ -145,7 +145,7 @@ public class Acemanager {
                 switch(className){
                     case "Member[]":
                         System.out.println(printTableTitle("LIST OF ACEM MEMBERS"));
-                        System.out.print("\n  ID | \t   FULL NAME  \t  | AGE | PASSPORT  | MAT AMCI |  CIN     |   PATTERN   |    CITY    |      FORMATION       |   DIPLOMA   | FACULTY | ADHESION |       EMAIL       |\n ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n");
+                        System.out.print("\n  ID | \t   FULL NAME  \t  | AGE | PASSPORT  | MAT AMCI |   CIN    |   PATTERN   |    CITY    |      FORMATION       |   DIPLOMA   | FACULTY | ADHESION |       EMAIL       |\n ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
 
                             Member member = getMember(i);
@@ -165,7 +165,7 @@ public class Acemanager {
                     case "City[]":
                     System.out.println(printTableTitle("LIST OF CITIES"));
                         System.out.println("");
-                        System.out.print("\n\t\t\t\t     ID | \t  CITY     |\tREGION\t\t          |   \t\tFACULTIES\t\t |\n\t\t\t\t    ----|------------------|------------------------------|--------------------------------------|\n");
+                        System.out.print("\n\t\t\t\t     ID |\tCITY       |\t\tREGION\t          |   \t\tFACULTIES\t\t |\n\t\t\t\t    ----|------------------|------------------------------|--------------------------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
                             City city = this.getCity(i);
                             System.out.println("\t\t\t\t   " + printId(i, city.getIdCity()) + " | " + formatString(city.getName(), 14) + " | " + formatString(city.getRegion(), 26) + " | "  + Arrays.toString(city.getFacs()) + "  |");
@@ -183,7 +183,7 @@ public class Acemanager {
                         break;
                     case "FacultyInstitute[]":
                         System.out.println(printTableTitle("LIST OF FACULTIES"));
-                        System.out.print("\n\t\t     ID |    FACULTY    | FORMATIONS\t\t\t\t\t\t\t\t\t\t\t\t\t  |\n\t\t    ----|---------------|-----------------------------------------------------------------------------------------------------------------|\n");
+                        System.out.print("\n\t\t     ID |    FACULTY    | \t\t\t\t\t\t\tFORMATIONS\t\t\t\t\t\t  |\n\t\t    ----|---------------|-----------------------------------------------------------------------------------------------------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
                             FacultyInstitute fac = getFacultyInstitute(i);
                             System.out.println("\t\t   " + printId(i, fac.getIdFacultyInstitute()) + " | " + formatString(fac.getNameFacInst(), 11) + " | " + Arrays.toString(fac.getFormationNames()) + " |" );
@@ -193,7 +193,7 @@ public class Acemanager {
                         break;
                     case "StayCard[]":
                         System.out.println(printTableTitle("LIST OF STAY CARDS"));
-                        System.out.print("\n\t\t\t     ID | FULL NAME\t\t  | BIRTH DATE |   CIN    |  STAY REASON | OBTENTION DATE | EXPIRATION DATE |  PIN   |\n\t\t\t    ----|-------------------------|------------|----------|--------------|----------------|-----------------|--------|\n");
+                        System.out.print("\n\t\t\t     ID | \tFULL NAME\t  | BIRTH DATE |   CIN    |  STAY REASON | OBTENTION DATE | EXPIRATION DATE |  PIN   |\n\t\t\t    ----|-------------------------|------------|----------|--------------|----------------|-----------------|--------|\n");
                         for (int i = 0; i < arrays.length; i++) {
                             StayCard card = getCard(i);
                             System.out.println("\t\t\t   " + printId(i, card.getIdCard()) + " | " + formatString(getMemberCard(card.getIdMember()).getFirstName() + " " + getMemberCard(card.getIdMember()).getLastName(), 21) + " | " + getMemberCard(card.getIdMember()).getBirthDate() + " | " + card.getCardNum() + " | "+ formatString(card.getPattern(), 10) + " | " + formatString(card.getObtentionDate(), 12) + " | " + formatString(card.getExpirationDate(), 13) + " | " + card.getPin() + " |");
