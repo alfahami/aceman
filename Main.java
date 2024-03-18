@@ -36,9 +36,6 @@ public class Main {
                 break;
         }
         
-        
-
-    
     }
 
     public static Member createMember(){
