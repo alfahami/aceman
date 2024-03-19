@@ -240,6 +240,4 @@ public class Acemanager {
     public String printTableTitle(String tTitle){
         return "\n\t\t\t\t\t\t\t\t\t==========================\n\t\t\t\t\t\t\t\t\t\s\s\s" + tTitle + "\n\t\t\t\t\t\t\t\t\t==========================\n";
     }
-
- 
 }

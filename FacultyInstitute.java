@@ -59,7 +59,6 @@ public class FacultyInstitute {
         return names;
     }
 
-    
     public String toString() {
         return "{" +
             " idFacultyInstitute='" + getIdFacultyInstitute() + "'" +

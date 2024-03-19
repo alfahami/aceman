@@ -86,7 +86,7 @@ public class Main {
         String lname = scan.nextLine();
         System.out.print("Please, enter member's passport? ");
         String passport = scan.nextLine();
-        System.out.print("Please, enter member birthdate in the format \"yyyy-mm-dd\"? ");
+        System.out.print("Please, enter member birthdate in the format \"dd/mm/yyyy\"");
         String birthDate = scan.nextLine();
         System.out.print("Enter AMCI's registration number ");
         int regNumber = scan.nextInt();
