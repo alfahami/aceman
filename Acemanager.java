@@ -99,23 +99,46 @@ public class Acemanager {
         return new City(this.cities[i]);
     }
 
+    public void setCity(City city, int i){
+        City copy = new City(city);
+        this.cities[i] = copy;
+    }
+
+    public City[] getCities(){
+        return this.cities;
+    }
+
     public FacultyInstitute getFacultyInstitute(int i) {
         return new FacultyInstitute(this.facultyInstitutes[i]);
+    }
+
+    public FacultyInstitute[] getFaculties(){
+        return this.facultyInstitutes;
     }
    
     public StayCard getCard(int i){
         return this.stayCards[i];
     }
 
-    public void grow(Member[] arrays){
+    public void grow(Object[] arrays){
+        
         String className = arrays.getClass().getCanonicalName(); 
-        if(className.equals("Member[]")){
 
-            this.members = new Member[arrays.length + 1];
+        switch(className){
+            case "Member[]":
+                this.members = new Member[arrays.length + 1];
+                for (int i = 0; i < arrays.length; i++) {
+                    this.members[i] = new Member((Member)arrays[i]);
+                    this.members[i].setIdMember(i+1);
+                } 
+                break;
+            case "City[]":
+            this.cities = new City[arrays.length + 1];
             for (int i = 0; i < arrays.length; i++) {
-                this.members[i] = new Member(arrays[i]);
-                this.members[i].setIdMember(i+1);
+                this.cities[i] = new City((City)arrays[i]);
+                this.cities[i].setIdCity(i+1);
             } 
+            break;
         }
     } 
 
@@ -140,6 +163,13 @@ public class Acemanager {
        }
        return false;
         
+    }
+
+    public boolean checkCity(String city){
+        for (int i = 0; i < this.cities.length; i++) {
+            if(city.equals(cities[i].getName())) return true;
+        }
+        return false;
     }
     
     public void printAnyArrays(Object[] arrays){

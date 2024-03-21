@@ -32,7 +32,7 @@ public class Main {
                         break;
                     case "2.2":
                         Member newMember = inputMemberDetails(admin);
-                        newMember.setIdMember(members.length+1);
+                        newMember.setIdMember(admin.getMembers().length+1);
                         admin.grow(members);
                         admin.setMember(newMember, members.length); 
                         admin.printAnyArrays(admin.getMembers());
@@ -56,6 +56,7 @@ public class Main {
                         break;
                     case "3.2":
                         //TO-DO ADD CARDS
+                        StayCard newCard = inputStayCard(admin);
                         break;
                     case "3.3":
                         //TO-DO UPDATE A CARD
@@ -75,6 +76,19 @@ public class Main {
                         break;
                     case "4.2":
                         // TO-DO ADD A CITY
+                        City newCity = inputCity(admin, admin.getFaculties());
+                        if(newCity != null){
+                            newCity.setIdCity(admin.getCities().length + 1);
+                            admin.grow(cities);
+                            admin.setCity(newCity, cities.length); 
+                            admin.printAnyArrays(admin.getCities());
+                        } else {
+                            System.out.print("\n\t\t\t\t\t\t\t\t\t\tCity already added. Type any touch to continue.. ");
+                            scan.nextLine();
+                            System.out.print("\033\143");
+                            menu();
+                        }
+                        
                         break;
                     case "4.3": 
                         //TO-DO UPDATE A CITY
@@ -219,13 +233,16 @@ public class Main {
 
     }
 
-    public static City inputCity(int id) {
-        System.out.print("What's the city called ?" );    
+    public static City inputCity(Acemanager admin, FacultyInstitute[] facs) {
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhat's the city called ? " );    
         String name = scan.nextLine();
-        System.out.print("Which region is the city located?" );
-        String region = scan.nextLine();
-
-        return new City(id, name, region, null);
+        while(!admin.checkCity(name)){
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich region is the city located? " );
+            String region = scan.nextLine();
+    
+            return new City(0, name, region, facs);
+        }
+        return null;
     }
 
     public static Formation inputFormation(int id){
