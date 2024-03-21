@@ -81,6 +81,10 @@ public class Acemanager {
         return new Formation(this.formations[i]);
     }
 
+    public Formation[] getFormations(){
+        return this.formations;
+    }
+
     public void setFormation(int i, Formation formation) {
         Formation copy = new Formation(formation);
         this.formations[i] = copy;
@@ -114,6 +118,11 @@ public class Acemanager {
 
     public FacultyInstitute[] getFaculties(){
         return this.facultyInstitutes;
+    }
+
+    public void setFaculty(FacultyInstitute fac, int i){
+        FacultyInstitute copy = new FacultyInstitute(fac);
+        this.facultyInstitutes[i] = copy;
     }
    
     public StayCard getCard(int i){

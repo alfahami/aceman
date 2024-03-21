@@ -32,9 +32,9 @@ public class Main {
                         break;
                     case "2.2":
                         Member newMember = inputMemberDetails(admin);
-                        newMember.setIdMember(admin.getMembers().length+1);
+                        newMember.setIdMember(admin.getMembers().length + 1);
                         admin.grow(members);
-                        admin.setMember(newMember, members.length); 
+                        admin.setMember(newMember, admin.getMembers().length - 1); 
                         admin.printAnyArrays(admin.getMembers());
                         break;
                     case "2.3":
@@ -80,7 +80,7 @@ public class Main {
                         if(newCity != null){
                             newCity.setIdCity(admin.getCities().length + 1);
                             admin.grow(cities);
-                            admin.setCity(newCity, cities.length); 
+                            admin.setCity(newCity, admin.getCities().length - 1); 
                             admin.printAnyArrays(admin.getCities());
                         } else {
                             System.out.print("\n\t\t\t\t\t\t\t\t\t\tCity already added.");
@@ -105,13 +105,20 @@ public class Main {
                         admin.printAnyArrays(formations);
                         break;
                     case "5.2":
-                        // TO-DO ADD A CITY
+                        // TO-DO ADD A FORMATION
+                        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich city is the faculty/institue located ? ");
+                        String city = scan.nextLine();
+                        FacultyInstitute newFac = inputFacultyInstitute(admin, admin.getFormations(), admin.getCities(), city);
+                        newFac.setIdFacultyInstitute((admin.getFaculties().length));
+                        admin.grow(facs);
+                        admin.setFaculty(newFac, admin.getFaculties().length - 1);
+                        admin.printAnyArrays(admin.getFaculties());
                         break;
                     case "5.3": 
-                        //TO-DO UPDATE A CITY
+                        //TO-DO UPDATE A FORMATION
                         break;
                     case "5.4":
-                        // TO-DO DELETE A CITY
+                        // TO-DO DELETE A FORMATION
                         break;
                     default:
                     break;
@@ -125,6 +132,7 @@ public class Main {
                         break;
                     case "6.2":
                         // TO-DO ADD A FAC
+
                         break;
                     case "6.3": 
                         //TO-DO UPDATE A FAC
@@ -194,17 +202,29 @@ public class Main {
         return new Member(idCard, idCity, idFacultyInstitute, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
     }  
 
-    public static FacultyInstitute inputFacultyInstitute(Formation[] formations, City[] cities, String cityName){
+    public static FacultyInstitute inputFacultyInstitute(Acemanager admin, Formation[] formations, City[] cities, String cityName){
         int idCity = 0;
+        if(admin.checkCity(cityName)){
+            for (int i = 0; i < admin.getCities().length; i++) {
+                if(cityName.equals(admin.getCities()[i].getName())) idCity = admin.getCities()[i].getIdCity();
+            }
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
+            String facultyInstitute = scan.nextLine();
+            return new FacultyInstitute(0, facultyInstitute, formations, idCity);
+        
+            // If the city is not found, it should be added
+        } else {
+            inputCity(admin, admin.getFaculties());
+            return null;
+        }
+       
+        /* int idCity = 0;
         for (int i = 0; i < cities.length; i++) {
             if(cities[i].getName().equals(cityName)) {
                 idCity = cities[i].getIdCity();
             }
-        }
-        System.out.print("Enter Faculty/Institue name? ");
-        String facultyInstitute = scan.nextLine();
-        
-        return new FacultyInstitute(0, facultyInstitute, formations, idCity);  
+        } */
+          
     }
 
     public static StayCard inputStayCard(Acemanager admin){
