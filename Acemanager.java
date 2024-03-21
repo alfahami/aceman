@@ -1,11 +1,11 @@
 import java.util.Arrays;
 
 public class Acemanager {
-    private Member[] members;
-    private Formation[] formations;
-    private StayCard[] stayCards;
-    private FacultyInstitute[] facultyInstitutes;
-    private City[] cities;
+    private Member[] members = new Member[20];
+    private Formation[] formations = new Formation[20];
+    private StayCard[] stayCards = new StayCard[20];
+    private FacultyInstitute[] facultyInstitutes = new FacultyInstitute[20];
+    private City[] cities = new City[20];
 
 
     public Acemanager(City[] cities, Formation[] formations, FacultyInstitute[] facs, Member[] members, StayCard[] cards){
@@ -60,9 +60,21 @@ public class Acemanager {
         return new Member(this.members[index]);
     }
 
-    public void setmember(Member member, int index) {
+    public void setMembers(Member[] members){
+        Member[] copy = new Member[members.length];
+        for (int i = 0; i < copy.length; i++) {
+            this.members[i] = new Member(members[i]);
+            this.members[i].setIdMember(i+1);        
+        }
+    }
+
+    public void setMember(Member member, int index) {
        Member copy = new Member(member);
        this.members[index] = copy;
+    }
+
+    public Member[] getMembers(){
+        return this.members;
     }
 
     public Formation getFormation(int i) {
@@ -95,6 +107,17 @@ public class Acemanager {
         return this.stayCards[i];
     }
 
+    public void grow(Member[] arrays){
+        String className = arrays.getClass().getCanonicalName(); 
+        if(className.equals("Member[]")){
+
+            this.members = new Member[arrays.length + 1];
+            for (int i = 0; i < arrays.length; i++) {
+                this.members[i] = new Member(arrays[i]);
+                this.members[i].setIdMember(i+1);
+            } 
+        }
+    }    
     
     public void printAnyArrays(Object[] arrays){
         if(arrays != null){
@@ -106,7 +129,7 @@ public class Acemanager {
                         System.out.println(printTableTitle("LIST OF ACEM MEMBERS"));
                         System.out.print("\n  ID | \t   FULL NAME  \t  | AGE | PASSPORT  | MAT AMCI |   CIN    |   PATTERN   |    CITY    |      FORMATION       |   DIPLOMA   | FACULTY | ADHESION |       EMAIL       |\n ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
-
+                            
                             Member member = getMember(i);
             
                     /*#### HACK TO HAVE AN AWESOME DISPLAY OF THE ARRAY IN THE CONSOLE */

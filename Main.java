@@ -28,6 +28,11 @@ public class Main {
                 admin.printAnyArrays(members);
                 break;
             case 3:
+                Member newMember = createMember();
+                newMember.setIdMember(members.length+1);
+                admin.grow(members);
+                admin.setMember(newMember, members.length); 
+                admin.printAnyArrays(admin.getMembers());
                 break;
             case 6:
                 String choice = xMenu(6, "Card");
@@ -80,27 +85,28 @@ public class Main {
     }
 
     public static Member createMember(){
-        System.out.print("Please, enter member first name? ");
+        scan.nextLine();
+        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member first name? ");
         String fname = scan.nextLine();
-        System.out.print("Please, enter member last name? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member last name? ");
         String lname = scan.nextLine();
-        System.out.print("Please, enter member's passport? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member's passport? ");
         String passport = scan.nextLine();
-        System.out.print("Please, enter member birthdate in the format \"dd/mm/yyyy\"");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member birthdate in the format \"dd/mm/yyyy\" ");
         String birthDate = scan.nextLine();
-        System.out.print("Enter AMCI's registration number ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tEnter AMCI's registration number ");
         int regNumber = scan.nextInt();
         scan.nextLine();
-        System.out.print("Enter member's email? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tEnter member's email? ");
         String email = scan.nextLine();
-        System.out.print("Is the member adhering? type \"true or false\" ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tIs the member adhering? type \"true or false\" ");
         boolean mAdmission = scan.nextBoolean();
 
-        int idMember = 0, idCard = 0, idCity = 0;
-        int idFormation = 0;
-        int idFacultyInstitute = 0;
+        int idMember = 10, idCard = 2, idCity = 4;
+        int idFormation = 3;
+        int idFacultyInstitute = 5;
 
-        return new Member(idMember, idCard, idCity, idFacultyInstitute, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
+        return new Member(idCard, idCity, idFacultyInstitute, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
     }  
 
     public static FacultyInstitute createFacultyInstitute(Formation[] formations, City[] cities, String cityName){

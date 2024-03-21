@@ -42,6 +42,23 @@ public class Member {
         this.isMember = isMember;
     }
 
+    public Member(int idStayCard, int idCity, int idFacultyInstitute, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
+       // this.idMember = idMember;
+        this.idStayCard = idStayCard;
+        this.idCity = idCity;
+        this.idFormation = idFormation;
+        this.idFacultyInstitute = idFacultyInstitute;
+        this.passport = new StringBuilder(passport);;
+        this.passport.setLength(9);
+        this.matriculeAmci = matriculeAmci;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.age = toAge(this.birthDate);
+        this.email = email;
+        this.isMember = isMember;
+    }
+
     public Member(Member source){
         this.idMember = source.idMember;
         this.idStayCard = source.idStayCard;
