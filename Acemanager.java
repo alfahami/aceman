@@ -85,7 +85,7 @@ public class Acemanager {
         return this.formations;
     }
 
-    public void setFormation(int i, Formation formation) {
+    public void setFormation(Formation formation, int i) {
         Formation copy = new Formation(formation);
         this.formations[i] = copy;
     }
@@ -129,6 +129,38 @@ public class Acemanager {
         return this.stayCards[i];
     }
 
+    public void addMember(Member newMember){
+        newMember.setIdMember(this.getMembers().length + 1);
+        this.grow(members);
+        this.setMember(newMember, this.getMembers().length - 1); 
+        this.printAnyArrays(this.getMembers());
+    }
+
+    public boolean addCity(City newCity){
+        if(newCity != null){
+            newCity.setIdCity(this.getCities().length + 1);
+            this.grow(cities);
+            this.setCity(newCity, this.getCities().length - 1); 
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void addFaculty(FacultyInstitute newFac){
+        newFac.setIdFacultyInstitute((this.getFaculties().length));
+        this.grow(this.getFaculties());
+        this.setFaculty(newFac, this.getFaculties().length - 1);
+        this.printAnyArrays(this.getFaculties());
+    }
+
+    public void addFormation(Formation newFormation){
+        newFormation.setIdFormation(this.getFormations().length);
+        this.grow(this.getFaculties());
+        this.setFormation(newFormation, this.getFormations().length - 1);
+        this.printAnyArrays(this.getFormations());
+    }
+
     public void grow(Object[] arrays){
         
         String className = arrays.getClass().getCanonicalName(); 
@@ -148,6 +180,31 @@ public class Acemanager {
                 this.cities[i].setIdCity(i+1);
             } 
             break;
+            case "Faculty[]":
+                this.facultyInstitutes = new FacultyInstitute[arrays.length + 1];
+                for (int i = 0; i < arrays.length; i++) {
+                    this.facultyInstitutes[i] = new FacultyInstitute((FacultyInstitute) arrays[i]);
+                    this.facultyInstitutes[i].setIdFacultyInstitute(i+1);
+                }
+                break;
+            case "Formation[]":
+                this.formations = new Formation[arrays.length + 1];
+                for (int i = 0; i < arrays.length; i++) {
+                    this.formations[i] = new Formation((Formation) arrays[i]);
+                    this.formations[i].setIdFormation(i+1);
+                }
+                break;
+            case "StayCard[]":
+                this.stayCards = new StayCard[arrays.length];
+                for (int i = 0; i < arrays.length; i++) {
+                    this.stayCards[i] = new StayCard((StayCard) arrays[i]);
+                    this.stayCards[i].setIdCard(i+1);
+                }
+                break;
+            case "Role[]":
+                break;
+            default:
+                break;
         }
     } 
 

@@ -32,10 +32,8 @@ public class Main {
                         break;
                     case "2.2":
                         Member newMember = inputMemberDetails(admin);
-                        newMember.setIdMember(admin.getMembers().length + 1);
-                        admin.grow(members);
-                        admin.setMember(newMember, admin.getMembers().length - 1); 
-                        admin.printAnyArrays(admin.getMembers());
+                        admin.addMember(newMember);
+                        // PRESS ANY KEY TO CONTINUE
                         break;
                     case "2.3":
                         // TO DO: UPDATE A MEMBER
@@ -77,11 +75,8 @@ public class Main {
                     case "4.2":
                         // TO-DO ADD A CITY
                         City newCity = inputCity(admin, admin.getFaculties());
-                        if(newCity != null){
-                            newCity.setIdCity(admin.getCities().length + 1);
-                            admin.grow(cities);
-                            admin.setCity(newCity, admin.getCities().length - 1); 
-                            admin.printAnyArrays(admin.getCities());
+                        if(admin.addCity(newCity)){
+                            // PRESS ANY KEY TO CONTINUE
                         } else {
                             System.out.print("\n\t\t\t\t\t\t\t\t\t\tCity already added.");
                             cls();
@@ -105,14 +100,10 @@ public class Main {
                         admin.printAnyArrays(formations);
                         break;
                     case "5.2":
-                        // TO-DO ADD A FORMATION
-                        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich city is the faculty/institue located ? ");
-                        String city = scan.nextLine();
-                        FacultyInstitute newFac = inputFacultyInstitute(admin, admin.getFormations(), admin.getCities(), city);
-                        newFac.setIdFacultyInstitute((admin.getFaculties().length));
-                        admin.grow(facs);
-                        admin.setFaculty(newFac, admin.getFaculties().length - 1);
-                        admin.printAnyArrays(admin.getFaculties());
+                        //TO-DO ADD A FORMATION
+                        Formation newFormation = inputFormation(option);
+                        admin.addFormation(newFormation);
+                        // PRESS ANY KEY TO CONTINUE
                         break;
                     case "5.3": 
                         //TO-DO UPDATE A FORMATION
@@ -132,7 +123,11 @@ public class Main {
                         break;
                     case "6.2":
                         // TO-DO ADD A FAC
-
+                        // TO-DO ADD A FORMATION
+                        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich city is the faculty/institue located ? ");
+                        String city = scan.nextLine();
+                        FacultyInstitute newFac = inputFacultyInstitute(admin, admin.getFormations(), admin.getCities(), city);
+                        admin.addFaculty(newFac);
                         break;
                     case "6.3": 
                         //TO-DO UPDATE A FAC
@@ -167,7 +162,7 @@ public class Main {
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member's passport? ");
         String passport = scan.nextLine();
         while(admin.checkPassport(passport)) {
-            System.out.print("\n\t\t\t\t\t\t\t\t\t\tPassport number already in use\n\t\t\t\t\t\t\t\t\tPlease enter the correct passport number: ");
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\tPassport number already in use\n\t\t\t\t\t\t\t\t\t\tPlease enter the correct passport number: ");
             passport = scan.nextLine();
         }
 
@@ -264,12 +259,12 @@ public class Main {
     }
 
     public static Formation inputFormation(int id){
-        System.out.print("What's the name of the formation? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhat's the name of the formation? ");
         String formationName = scan.nextLine();
-        System.out.print("How many years does the formation have? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tHow many years does the formation have? ");
         int duration = scan.nextInt();
         scan.nextLine(); // next line trap
-        System.out.print("Which certificate is provided by the program? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich certificate is provided by the program? ");
         String certificate = scan.nextLine();
         int idCity = 0;
         
