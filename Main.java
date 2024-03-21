@@ -214,16 +214,16 @@ public class Main {
         
             // If the city is not found, it should be added
         } else {
-            inputCity(admin, admin.getFaculties());
-            return null;
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\t" + cityName + " is not added yet! Let's add it now\n\n");
+            City newCity = inputCity(admin, admin.getFaculties());
+            newCity.setIdCity(admin.getCities().length+1);
+            admin.grow(cities);
+            admin.setCity(newCity, admin.getCities().length - 1);
+            admin.printAnyArrays(admin.getCities());
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
+            String facultyInstitute = scan.nextLine();
+            return new FacultyInstitute(0, facultyInstitute, formations, idCity);
         }
-       
-        /* int idCity = 0;
-        for (int i = 0; i < cities.length; i++) {
-            if(cities[i].getName().equals(cityName)) {
-                idCity = cities[i].getIdCity();
-            }
-        } */
           
     }
 
