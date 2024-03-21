@@ -49,55 +49,85 @@ public class Main {
                 
                 break;
             case 3:
-                
-                break;
-            case 6:
-                String choice = xMenu(6, "Card");
-                switch(choice){
-                    case "6.1":
+                String choice1 = xMenu(3, "Card");
+                switch(choice1){
+                    case "3.1":
                         admin.printAnyArrays(cards);
                         break;
-                    case "6.2":
-                        
+                    case "3.2":
+                        //TO-DO ADD CARDS
+                        break;
+                    case "3.3":
+                        //TO-DO UPDATE A CARD
+                        break;
+                    case "3.4":
+                        //TO-DO DELETE A CARD
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 4:
+                String choice2 = xMenu(4, "City");
+                switch(choice2){
+                    case "4.1":
+                        admin.printAnyArrays(cities);
+                        break;
+                    case "4.2":
+                        // TO-DO ADD A CITY
+                        break;
+                    case "4.3": 
+                        //TO-DO UPDATE A CITY
+                        break;
+                    case "4.4":
+                        // TO-DO DELETE A CITY
                         break;
                     default:
                         bye();
                 }
                 break;
-            case 7:
-                String choice1 = xMenu(7, "City");
-                switch(choice1){
-                    case "7.1":
+            case 5:
+                String choice3 = xMenu(5, "Formations");
+                switch(choice3){
+                    case "5.1":
                         admin.printAnyArrays(cities);
-                    case "7.2":
-                    break;
-                    default:
-                    break;
-                }
-                break;
-            case 8: 
-                String choice2 = xMenu(8, "Formation");
-                switch (choice2) {
-                    case "8.1":
-                        admin.printAnyArrays(formations);
+                        break;
+                    case "5.2":
+                        // TO-DO ADD A CITY
+                        break;
+                    case "5.3": 
+                        //TO-DO UPDATE A CITY
+                        break;
+                    case "5.4":
+                        // TO-DO DELETE A CITY
                         break;
                     default:
                     break;
                 }
                 break;
-            case 9:
-                String choice3 = xMenu(9, "Faculty");
-                switch (choice3) {
-                    case "9.1":
+            case 6: 
+                String choice4 = xMenu(6, "Faculty");
+                switch(choice4){
+                    case "6.1":
                         admin.printAnyArrays(facs);
                         break;
-                    default:
+                    case "6.2":
+                        // TO-DO ADD A FAC
                         break;
+                    case "6.3": 
+                        //TO-DO UPDATE A FAC
+                        break;
+                    case "6.4":
+                        // TO-DO DELETE A FAC
+                        break;
+                    default:
+                    break;
                 }
                 break;
-            case 10:
+            case 7:
+                // TO-DO : implements reports generation
                 break;
-            case 11:
+            case 8: 
                 bye();
                 break;
             default:   
