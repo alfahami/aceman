@@ -25,14 +25,31 @@ public class Main {
                 admin.printAnyArrays(formations);
                 break;
             case 2:
-                admin.printAnyArrays(members);
+                String choice0 = xMenu(2, "Member");
+                switch (choice0) {
+                    case "2.1":
+                        admin.printAnyArrays(members);
+                        break;
+                    case "2.2":
+                        Member newMember = inputMemberDetails(admin);
+                        newMember.setIdMember(members.length+1);
+                        admin.grow(members);
+                        admin.setMember(newMember, members.length); 
+                        admin.printAnyArrays(admin.getMembers());
+                        break;
+                    case "2.3":
+                        // TO DO: UPDATE A MEMBER
+                        break;
+                    case "2.4":
+                    // TO DO: DELETE A MEMBER
+                    break;
+                    default:
+                        break;
+                }
+                
                 break;
             case 3:
-                Member newMember = createMember();
-                newMember.setIdMember(members.length+1);
-                admin.grow(members);
-                admin.setMember(newMember, members.length); 
-                admin.printAnyArrays(admin.getMembers());
+                
                 break;
             case 6:
                 String choice = xMenu(6, "Card");
@@ -53,7 +70,9 @@ public class Main {
                     case "7.1":
                         admin.printAnyArrays(cities);
                     case "7.2":
-
+                    break;
+                    default:
+                    break;
                 }
                 break;
             case 8: 
@@ -62,6 +81,8 @@ public class Main {
                     case "8.1":
                         admin.printAnyArrays(formations);
                         break;
+                    default:
+                    break;
                 }
                 break;
             case 9:
@@ -69,6 +90,8 @@ public class Main {
                 switch (choice3) {
                     case "9.1":
                         admin.printAnyArrays(facs);
+                        break;
+                    default:
                         break;
                 }
                 break;
@@ -84,32 +107,52 @@ public class Main {
         
     }
 
-    public static Member createMember(){
-        scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member first name? ");
+    public static Member inputMemberDetails(Acemanager admin){
+        //scan.nextLine();
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member first name? ");
         String fname = scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member last name? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member last name? ");
         String lname = scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member's passport? ");
+
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member's passport? ");
         String passport = scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\tPlease, enter member birthdate in the format \"dd/mm/yyyy\" ");
+        while(admin.checkPassport(passport)) {
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\tPassport number already in use\n\t\t\t\t\t\t\t\t\tPlease enter the correct passport number: ");
+            passport = scan.nextLine();
+        }
+
+       System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member's cin? ");
+        String cin = scan.nextLine();
+        while(admin.checkCin(cin)) {
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\tCIN number already in use\n\t\t\t\t\t\t\t\t\tPlease enter the correct cin number: ");
+            cin = scan.nextLine();
+        }
+        //System.out.println("\n\t\t\t\t\t\t\t\t\t\t\tPlease, enter full CIN info");
+        // TO-DO
+        //inputStayCard(admin);
+
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member birthdate in the format \"dd/mm/yyyy\" ");
         String birthDate = scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\tEnter AMCI's registration number ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter AMCI's registration number ");
         int regNumber = scan.nextInt();
+        while(admin.checkMatAMCI(regNumber)) {
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\tMatricule already in use\n\t\t\t\t\t\t\t\t\t\tPlease enter the correct AMCI mat: ");
+            regNumber = scan.nextInt();
+        }
         scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\tEnter member's email? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter member's email? ");
         String email = scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\tIs the member adhering? type \"true or false\" ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tIs the member adhering? type \"true or false\" ");
         boolean mAdmission = scan.nextBoolean();
 
-        int idMember = 10, idCard = 2, idCity = 4;
+        int idCard = 2, idCity = 4;
         int idFormation = 3;
         int idFacultyInstitute = 5;
 
         return new Member(idCard, idCity, idFacultyInstitute, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
     }  
 
-    public static FacultyInstitute createFacultyInstitute(Formation[] formations, City[] cities, String cityName){
+    public static FacultyInstitute inputFacultyInstitute(Formation[] formations, City[] cities, String cityName){
         int idCity = 0;
         for (int i = 0; i < cities.length; i++) {
             if(cities[i].getName().equals(cityName)) {
@@ -122,7 +165,7 @@ public class Main {
         return new FacultyInstitute(0, facultyInstitute, formations, idCity);  
     }
 
-    public static StayCard createStayCard(){
+    public static StayCard inputStayCard(Acemanager admin){
         System.out.print("Please enter card ID number ? ");
         String cardNum = scan.nextLine();
         System.out.print("Please fill in the obtention date? ");
@@ -146,7 +189,7 @@ public class Main {
 
     }
 
-    public static City createCity(int id) {
+    public static City inputCity(int id) {
         System.out.print("What's the city called ?" );    
         String name = scan.nextLine();
         System.out.print("Which region is the city located?" );
@@ -155,7 +198,7 @@ public class Main {
         return new City(id, name, region, null);
     }
 
-    public static Formation createFormation(int id){
+    public static Formation inputFormation(int id){
         System.out.print("What's the name of the formation? ");
         String formationName = scan.nextLine();
         System.out.print("How many years does the formation have? ");
@@ -273,7 +316,7 @@ public class Main {
         System.out.println("\n\t\t\t\t\t\t\t\t\t===========================\n\n" +
         "\t\t\t\t\t\t\t\t\t\s  Welcome to ACEMANAGER\n" + "\t\t\t\t\t\t\t\t\s  An association membership management\n\n"+
         "\t\t\t\t\t\t\t\t\t===========================\n");
-        System.out.print("\n\t\t\t\t\t\t\t\t\tWhat would you like to do?\n\n\t\t\t\t\t\t\t\t\t1. List all tables\n\t\t\t\t\t\t\t\t\t2. List all Members\n\t\t\t\t\t\t\t\t\t3. Add Member\n\t\t\t\t\t\t\t\t\t4. Delete a member\n\t\t\t\t\t\t\t\t\t5. Update a member\n\t\t\t\t\t\t\t\t\t6. Manage Stay cards\n\t\t\t\t\t\t\t\t\t7. Manage Cities\n\t\t\t\t\t\t\t\t\t8. Manage Formations\n\t\t\t\t\t\t\t\t\t9. Manage Faculties\n\t\t\t\t\t\t\t\t\t10. Generate different reports\n\t\t\t\t\t\t\t\t\t11. Exit\n\t\t\t\t\t\t\t\t\tPlease choose an option: ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\tWhat would you like to do?\n\n\t\t\t\t\t\t\t\t\t1. List all tables\n\t\t\t\t\t\t\t\t\t2. Manage Members\n\t\t\t\t\t\t\t\t\t3. Manage Stay cards\n\t\t\t\t\t\t\t\t\t4. Manage Cities\n\t\t\t\t\t\t\t\t\t5. Manage Formations\n\t\t\t\t\t\t\t\t\t6. Manage Faculties\n\t\t\t\t\t\t\t\t\t7. Generate different reports\n\t\t\t\t\t\t\t\t\t8. Exit\n\t\t\t\t\t\t\t\t\tPlease choose an option: ");
 
         int option = scan.nextInt();
         return option;

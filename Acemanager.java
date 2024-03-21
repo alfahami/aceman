@@ -117,7 +117,30 @@ public class Acemanager {
                 this.members[i].setIdMember(i+1);
             } 
         }
-    }    
+    } 
+
+    public boolean checkPassport(String passport){
+        for (int i = 0; i < this.members.length; i++) {
+            String storedPassport = members[i].getPassport().toString();
+            if(passport.equals(storedPassport)) return true;
+        }
+        return false;
+    }
+    
+    public boolean checkCin(String cin){
+        for (int i = 0; i < this.stayCards.length; i++) {
+            if(cin.equals(stayCards[i].getCardNum())) return true;
+        }
+        return false;
+    }
+
+    public boolean checkMatAMCI(int mat){
+       for (int i = 0; i < this.members.length; i++) {
+            if(mat == members[i].getMatriculeAmci()) return true;
+       }
+       return false;
+        
+    }
     
     public void printAnyArrays(Object[] arrays){
         if(arrays != null){
