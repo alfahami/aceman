@@ -83,10 +83,8 @@ public class Main {
                             admin.setCity(newCity, cities.length); 
                             admin.printAnyArrays(admin.getCities());
                         } else {
-                            System.out.print("\n\t\t\t\t\t\t\t\t\t\tCity already added. Type any touch to continue.. ");
-                            scan.nextLine();
-                            System.out.print("\033\143");
-                            menu();
+                            System.out.print("\n\t\t\t\t\t\t\t\t\t\tCity already added.");
+                            cls();
                         }
                         
                         break;
@@ -104,7 +102,7 @@ public class Main {
                 String choice3 = xMenu(5, "Formations");
                 switch(choice3){
                     case "5.1":
-                        admin.printAnyArrays(cities);
+                        admin.printAnyArrays(formations);
                         break;
                     case "5.2":
                         // TO-DO ADD A CITY
@@ -258,7 +256,6 @@ public class Main {
         return new Formation(id, idCity, formationName, duration, certificate);
     }
 
-
     // FILL BASE ARRAYS
 
     public static Member[] fillMembers(){
@@ -357,6 +354,13 @@ public class Main {
         scan.nextLine();
         String choice = scan.nextLine();
         return choice;
+    }
+
+    public static void cls(){
+        System.out.print("\n\n\t\t\t\t\t\t\t\t\t\tType ENTER to continue.. ");
+        scan.nextLine();
+        System.out.print("\033\143");
+        menu();
     }
 
     public static int menu(){
