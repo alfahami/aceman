@@ -99,6 +99,10 @@ public class Acemanager {
         this.stayCards[i] = copy;
     }
 
+    public StayCard[] getCards(){
+        return this.stayCards;
+    }
+
     public City getCity(int i){
         return new City(this.cities[i]);
     }
@@ -130,6 +134,7 @@ public class Acemanager {
     }
 
     public void addMember(Member newMember){
+
         newMember.setIdMember(this.getMembers().length + 1);
         this.grow(members);
         this.setMember(newMember, this.getMembers().length - 1); 
@@ -259,7 +264,7 @@ public class Acemanager {
                             // THINK ABOUT USING STRINGBUILDER as it offers a set length, the idea would be to print all the Stringbuilder object and when no value found print space
                             
                     /*### HACK ENDS  */
-                        System.out.println( printId(i, member.getIdMember())+ " | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCardById(member.getIdStayCard()).getCardNum() + " | " + formatString(getCardById(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
+                        System.out.println( printId(i, member.getIdMember())+ " | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + formatString(String.valueOf(member.getMatriculeAmci()), 7) + " | " + getCardById(member.getIdStayCard()).getCardNum() + " | " + formatString(getCardById(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
                         System.out.print(i < arrays.length - 1 ? " ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n" : "\n\n");
                         }
                         break;

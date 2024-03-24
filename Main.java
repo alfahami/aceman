@@ -16,24 +16,41 @@ public class Main {
         // The dude that manages ACEM
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
         int option = menu();
+        inputProcess(option, admin);
+        
+    }
+
+    public static void inputProcess(int option, Acemanager admin){
         switch(option){
             case 1:
-                admin.printAnyArrays(members);
-                admin.printAnyArrays(cards);
-                admin.printAnyArrays(cities);
-                admin.printAnyArrays(facs);
-                admin.printAnyArrays(formations);
+                scan.nextLine(); // next Line trap
+                admin.printAnyArrays(admin.getMembers());
+                admin.printAnyArrays(admin.getCards());
+                admin.printAnyArrays(admin.getCities());
+                admin.printAnyArrays(admin.getFaculties());
+                admin.printAnyArrays(admin.getFormations());
+                cls(admin);
                 break;
             case 2:
                 String choice0 = xMenu(2, "Member");
                 switch (choice0) {
                     case "2.1":
-                        admin.printAnyArrays(members);
+                        admin.printAnyArrays(admin.getMembers());
+                        cls(admin);
                         break;
                     case "2.2":
                         Member newMember = inputMemberDetails(admin);
                         admin.addMember(newMember);
-                        // PRESS ANY KEY TO CONTINUE
+                        String answer = "yes";
+                        System.out.print("Would you like to add another member? -Type \"Yes\" or \"No\"- ");
+                            answer = scan.nextLine();
+                        while(answer.equalsIgnoreCase("yes")) { 
+                            Member anotherMember = inputMemberDetails(admin);
+                            admin.addMember(anotherMember);
+                            System.out.print("Would you like to add another member? -Type \"Yes\" or \"No\"- ");
+                            answer = scan.nextLine();
+                        }
+                        cls(admin);
                         break;
                     case "2.3":
                         // TO DO: UPDATE A MEMBER
@@ -50,17 +67,20 @@ public class Main {
                 String choice1 = xMenu(3, "Card");
                 switch(choice1){
                     case "3.1":
-                        admin.printAnyArrays(cards);
+                        admin.printAnyArrays(admin.getCards());
+                        cls(admin);
                         break;
                     case "3.2":
-                        //TO-DO ADD CARDS
+                        //TODO ADD CARDS
                         StayCard newCard = inputStayCard(admin);
+                        admin.printAnyArrays(admin.getCards());
+                        cls(admin);
                         break;
                     case "3.3":
-                        //TO-DO UPDATE A CARD
+                        //TODO UPDATE A CARD
                         break;
                     case "3.4":
-                        //TO-DO DELETE A CARD
+                        //TODO DELETE A CARD
                         break;
                     default:
                         break;
@@ -70,24 +90,26 @@ public class Main {
                 String choice2 = xMenu(4, "City");
                 switch(choice2){
                     case "4.1":
-                        admin.printAnyArrays(cities);
+                        admin.printAnyArrays(admin.getCities());
+                        cls(admin);
                         break;
                     case "4.2":
-                        // TO-DO ADD A CITY
+                        
                         City newCity = inputCity(admin, admin.getFaculties());
                         if(admin.addCity(newCity)){
-                            // PRESS ANY KEY TO CONTINUE
+                            admin.printAnyArrays(admin.getCities());
+                            cls(admin);
                         } else {
                             System.out.print("\n\t\t\t\t\t\t\t\t\t\tCity already added.");
-                            cls();
+                            cls(admin);
                         }
                         
                         break;
                     case "4.3": 
-                        //TO-DO UPDATE A CITY
+                        //TODO UPDATE A CITY
                         break;
                     case "4.4":
-                        // TO-DO DELETE A CITY
+                        // TODO DELETE A CITY
                         break;
                     default:
                         bye();
@@ -97,19 +119,20 @@ public class Main {
                 String choice3 = xMenu(5, "Formations");
                 switch(choice3){
                     case "5.1":
-                        admin.printAnyArrays(formations);
+                        admin.printAnyArrays(admin.getFormations());
+                        cls(admin);
                         break;
                     case "5.2":
-                        //TO-DO ADD A FORMATION
                         Formation newFormation = inputFormation(option);
                         admin.addFormation(newFormation);
                         // PRESS ANY KEY TO CONTINUE
+                        cls(admin);
                         break;
                     case "5.3": 
-                        //TO-DO UPDATE A FORMATION
+                        //TODO UPDATE A FORMATION
                         break;
                     case "5.4":
-                        // TO-DO DELETE A FORMATION
+                        // TODO DELETE A FORMATION
                         break;
                     default:
                     break;
@@ -119,28 +142,28 @@ public class Main {
                 String choice4 = xMenu(6, "Faculty");
                 switch(choice4){
                     case "6.1":
-                        admin.printAnyArrays(facs);
+                        admin.printAnyArrays(admin.getFaculties());
+                        cls(admin);
                         break;
                     case "6.2":
-                        // TO-DO ADD A FAC
-                        // TO-DO ADD A FORMATION
                         System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich city is the faculty/institue located ? ");
                         String city = scan.nextLine();
                         FacultyInstitute newFac = inputFacultyInstitute(admin, admin.getFormations(), admin.getCities(), city);
                         admin.addFaculty(newFac);
+                        cls(admin);
                         break;
                     case "6.3": 
-                        //TO-DO UPDATE A FAC
+                        //TODO UPDATE A FAC
                         break;
                     case "6.4":
-                        // TO-DO DELETE A FAC
+                        // TODO DELETE A FAC
                         break;
                     default:
                     break;
                 }
                 break;
             case 7:
-                // TO-DO : implements reports generation
+                // TODO : implements reports generation
                 break;
             case 8: 
                 bye();
@@ -151,29 +174,30 @@ public class Main {
         }
         
     }
+    
 
     public static Member inputMemberDetails(Acemanager admin){
         //scan.nextLine();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member first name? ");
-        String fname = scan.nextLine();
+        String fname = scan.nextLine().toUpperCase();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member last name? ");
-        String lname = scan.nextLine();
+        String lname = scan.nextLine().toUpperCase();
 
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member's passport? ");
-        String passport = scan.nextLine();
+        String passport = scan.nextLine().toUpperCase();
         while(admin.checkPassport(passport)) {
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tPassport number already in use\n\t\t\t\t\t\t\t\t\t\tPlease enter the correct passport number: ");
             passport = scan.nextLine();
         }
 
        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member's cin? ");
-        String cin = scan.nextLine();
+        String cin = scan.nextLine().toUpperCase();
         while(admin.checkCin(cin)) {
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tCIN number already in use\n\t\t\t\t\t\t\t\t\tPlease enter the correct cin number: ");
             cin = scan.nextLine();
         }
         //System.out.println("\n\t\t\t\t\t\t\t\t\t\t\tPlease, enter full CIN info");
-        // TO-DO
+        // TODO
         //inputStayCard(admin);
 
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member birthdate in the format \"dd/mm/yyyy\" ");
@@ -186,10 +210,11 @@ public class Main {
         }
         scan.nextLine();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter member's email? ");
-        String email = scan.nextLine();
+        String email = scan.nextLine().toLowerCase();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tIs the member adhering? type \"true or false\" ");
         boolean mAdmission = scan.nextBoolean();
-
+        // TODO: Understand nextBoolean 
+        scan.nextLine();
         int idCard = 2, idCity = 4;
         int idFormation = 3;
         int idFacultyInstitute = 5;
@@ -204,7 +229,7 @@ public class Main {
                 if(cityName.equals(admin.getCities()[i].getName())) idCity = admin.getCities()[i].getIdCity();
             }
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
-            String facultyInstitute = scan.nextLine();
+            String facultyInstitute = scan.nextLine().toUpperCase();
             return new FacultyInstitute(0, facultyInstitute, formations, idCity);
         
             // If the city is not found, it should be added
@@ -216,7 +241,7 @@ public class Main {
             admin.setCity(newCity, admin.getCities().length - 1);
             admin.printAnyArrays(admin.getCities());
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
-            String facultyInstitute = scan.nextLine();
+            String facultyInstitute = scan.nextLine().toUpperCase();
             return new FacultyInstitute(0, facultyInstitute, formations, idCity);
         }
           
@@ -224,11 +249,11 @@ public class Main {
 
     public static StayCard inputStayCard(Acemanager admin){
         System.out.print("Please enter card ID number ? ");
-        String cardNum = scan.nextLine();
+        String cardNum = scan.nextLine().toUpperCase();
         System.out.print("Please fill in the obtention date? ");
-        String obtentionYear = scan.nextLine();
+        String obtentionDate = scan.nextLine();
         System.out.print("Enter the expiration date ? ");
-        String expirationYear = scan.nextLine();
+        String expirationDate = scan.nextLine();
         System.out.print("Enter the pin ? ");
         int pin = scan.nextInt();
         scan.nextLine(); //next Line trap
@@ -242,16 +267,16 @@ public class Main {
         // Get the city of the input city name
         int idCity = 0;
 
-        return new StayCard(idCard, idMember, idCity, cardNum, obtentionYear, expirationYear, pin, reason);
+        return new StayCard(idCard, idMember, idCity, cardNum, obtentionDate, expirationDate, pin, reason);
 
     }
 
     public static City inputCity(Acemanager admin, FacultyInstitute[] facs) {
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhat's the city called ? " );    
-        String name = scan.nextLine();
+        String name = scan.nextLine().toUpperCase();
         while(!admin.checkCity(name)){
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich region is the city located? " );
-            String region = scan.nextLine();
+            String region = scan.nextLine().toUpperCase();
     
             return new City(0, name, region, facs);
         }
@@ -260,12 +285,12 @@ public class Main {
 
     public static Formation inputFormation(int id){
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhat's the name of the formation? ");
-        String formationName = scan.nextLine();
+        String formationName = scan.nextLine().toUpperCase();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tHow many years does the formation have? ");
         int duration = scan.nextInt();
         scan.nextLine(); // next line trap
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich certificate is provided by the program? ");
-        String certificate = scan.nextLine();
+        String certificate = scan.nextLine().toUpperCase();
         int idCity = 0;
         
         return new Formation(id, idCity, formationName, duration, certificate);
@@ -371,11 +396,13 @@ public class Main {
         return choice;
     }
 
-    public static void cls(){
+    public static void cls(Acemanager admin){
         System.out.print("\n\n\t\t\t\t\t\t\t\t\t\tType ENTER to continue.. ");
         scan.nextLine();
         System.out.print("\033\143");
-        menu();
+        int choice = menu();
+        inputProcess(choice, admin);
+        
     }
 
     public static int menu(){
