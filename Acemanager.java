@@ -1,12 +1,12 @@
 import java.util.Arrays;
 
 public class Acemanager {
-    private Member[] members = new Member[20];
-    private Formation[] formations = new Formation[20];
-    private StayCard[] stayCards = new StayCard[20];
-    private FacultyInstitute[] facultyInstitutes = new FacultyInstitute[20];
-    private City[] cities = new City[20];
-
+    static final int INITIAL_SIZE = 10;
+    private Member[] members = new Member[INITIAL_SIZE];
+    private Formation[] formations = new Formation[INITIAL_SIZE];
+    private StayCard[] stayCards = new StayCard[INITIAL_SIZE];
+    private FacultyInstitute[] facultyInstitutes = new FacultyInstitute[INITIAL_SIZE];
+    private City[] cities = new City[INITIAL_SIZE];
 
     public Acemanager(City[] cities, Formation[] formations, FacultyInstitute[] facs, Member[] members, StayCard[] cards){
         this.members = new Member[members.length];
@@ -264,7 +264,7 @@ public class Acemanager {
                             // THINK ABOUT USING STRINGBUILDER as it offers a set length, the idea would be to print all the Stringbuilder object and when no value found print space
                             
                     /*### HACK ENDS  */
-                        System.out.println( printId(i, member.getIdMember())+ " | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + formatString(String.valueOf(member.getMatriculeAmci()), 7) + " | " + getCardById(member.getIdStayCard()).getCardNum() + " | " + formatString(getCardById(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
+                        System.out.println( printId(i, member.getIdMember())+ " | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCardById(member.getIdStayCard()).getCardNum() + " | " + formatString(getCardById(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
                         System.out.print(i < arrays.length - 1 ? " ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n" : "\n\n");
                         }
                         break;

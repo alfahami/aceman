@@ -16,6 +16,7 @@ public class Main {
         // The dude that manages ACEM
         Acemanager admin = new Acemanager(cities, formations, facs, members,cards);
         int option = menu();
+        
         inputProcess(option, admin);
         
     }
@@ -410,8 +411,21 @@ public class Main {
         "\t\t\t\t\t\t\t\t\t\s  Welcome to ACEMANAGER\n" + "\t\t\t\t\t\t\t\t\s  An association membership management\n\n"+
         "\t\t\t\t\t\t\t\t\t===========================\n");
         System.out.print("\n\t\t\t\t\t\t\t\t\tWhat would you like to do?\n\n\t\t\t\t\t\t\t\t\t1. List all tables\n\t\t\t\t\t\t\t\t\t2. Manage Members\n\t\t\t\t\t\t\t\t\t3. Manage Stay cards\n\t\t\t\t\t\t\t\t\t4. Manage Cities\n\t\t\t\t\t\t\t\t\t5. Manage Formations\n\t\t\t\t\t\t\t\t\t6. Manage Faculties\n\t\t\t\t\t\t\t\t\t7. Generate different reports\n\t\t\t\t\t\t\t\t\t8. Exit\n\t\t\t\t\t\t\t\t\tPlease choose an option: ");
-
-        int option = scan.nextInt();
+        int option = 0;
+        while (scan.hasNext()) {
+            if (scan.hasNextInt()) {
+                option = scan.nextInt();
+                if (option >= 1 && option <= 8) {
+                    break;
+                } else {
+                    System.out.print("\n\t\t\t\t\t\t\t\t\tPlease enter a digit between 1 - 8: ");
+                    // No need for another scan.next() as the scan will alway wait, scan tricks ;)
+                }
+            } else {
+                System.out.print("\n\t\t\t\t\t\t\t\t\tPlease enter a digit between 1 - 8: ");
+                scan.next();
+            }
+        }
         return option;
     }
 
