@@ -9,7 +9,7 @@ public class Main {
         FacultyInstitute[] facs = fillFacsInsts(formations, null);
         City[] cities = fillCities();
 
-        StayCard[] cards = fillStayCard();
+        Card[] cards = fillStayCard();
         Member[] members = fillMembers();
 
 
@@ -73,9 +73,14 @@ public class Main {
                         break;
                     case "3.2":
                         //TODO ADD CARDS
-                        StayCard newCard = inputStayCard(admin);
-                        admin.printAnyArrays(admin.getCards());
-                        cls(admin);
+                        /* Card newCard = inputCard(admin);
+                        if(newCard == null) {
+                            System.out.println("There was an error when adding the card! Please try again!");
+                            cls(admin);
+                        } else {
+                            admin.addCard(newCard);
+                            cls(admin);
+                        } */
                         break;
                     case "3.3":
                         //TODO UPDATE A CARD
@@ -95,7 +100,6 @@ public class Main {
                         cls(admin);
                         break;
                     case "4.2":
-                        
                         City newCity = inputCity(admin, admin.getFaculties());
                         if(admin.addCity(newCity)){
                             admin.printAnyArrays(admin.getCities());
@@ -104,7 +108,6 @@ public class Main {
                             System.out.print("\n\t\t\t\t\t\t\t\t\t\tCity already added.");
                             cls(admin);
                         }
-                        
                         break;
                     case "4.3": 
                         //TODO UPDATE A CITY
@@ -176,7 +179,6 @@ public class Main {
         
     }
     
-
     public static Member inputMemberDetails(Acemanager admin){
         //scan.nextLine();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member first name? ");
@@ -191,15 +193,30 @@ public class Main {
             passport = scan.nextLine();
         }
 
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhere does the member live ? ");
+        String cityName = scan.nextLine();
+        City cityMember = admin.checkCity(cityName);
+        int idCity = 0;
+        if(cityMember != null){
+            idCity = cityMember.getIdCity();
+        } else {
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\tCity not found! let's add it");
+            City city = inputCity(admin, admin.getFaculties());
+            admin.addCity(city);
+            idCity = city.getIdCity();
+        }
+
        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member's cin? ");
         String cin = scan.nextLine().toUpperCase();
         while(admin.checkCin(cin)) {
-            System.out.print("\n\t\t\t\t\t\t\t\t\t\tCIN number already in use\n\t\t\t\t\t\t\t\t\tPlease enter the correct cin number: ");
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\t\tCIN number already in use\n\t\t\t\t\t\t\t\t\tPlease enter the correct cin number: ");
             cin = scan.nextLine();
         }
-        //System.out.println("\n\t\t\t\t\t\t\t\t\t\t\tPlease, enter full CIN info");
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t\tCIN doesn't exist yet, let's add it ");
         // TODO
-        //inputStayCard(admin);
+        Card newCard = inputCard(admin, idCity);
+        admin.addCard(newCard);
+        int idCard = newCard.getIdCard();
 
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member birthdate in the format \"dd/mm/yyyy\" ");
         String birthDate = scan.nextLine();
@@ -210,13 +227,12 @@ public class Main {
             regNumber = scan.nextInt();
         }
         scan.nextLine();
-        System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter member's email? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter member's email ");
         String email = scan.nextLine().toLowerCase();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tIs the member adhering? type \"true or false\" ");
         boolean mAdmission = scan.nextBoolean();
-        // TODO: Understand nextBoolean 
         scan.nextLine();
-        int idCard = 2, idCity = 4;
+        
         int idFormation = 3;
         int idFacultyInstitute = 5;
 
@@ -225,10 +241,8 @@ public class Main {
 
     public static FacultyInstitute inputFacultyInstitute(Acemanager admin, Formation[] formations, City[] cities, String cityName){
         int idCity = 0;
-        if(admin.checkCity(cityName)){
-            for (int i = 0; i < admin.getCities().length; i++) {
-                if(cityName.equals(admin.getCities()[i].getName())) idCity = admin.getCities()[i].getIdCity();
-            }
+        if(admin.checkCity(cityName) != null){
+            idCity = admin.checkCity(cityName).getIdCity();
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
             String facultyInstitute = scan.nextLine().toUpperCase();
             return new FacultyInstitute(0, facultyInstitute, formations, idCity);
@@ -244,42 +258,39 @@ public class Main {
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
             String facultyInstitute = scan.nextLine().toUpperCase();
             return new FacultyInstitute(0, facultyInstitute, formations, idCity);
-        }
-          
+        }     
     }
 
-    public static StayCard inputStayCard(Acemanager admin){
-        System.out.print("Please enter card ID number ? ");
+    public static Card inputCard(Acemanager admin, int idCity){
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease enter card ID number: ");
+       
         String cardNum = scan.nextLine().toUpperCase();
-        System.out.print("Please fill in the obtention date? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease fill in the obtention date: ");
         String obtentionDate = scan.nextLine();
-        System.out.print("Enter the expiration date ? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter the expiration date ? ");
         String expirationDate = scan.nextLine();
-        System.out.print("Enter the pin ? ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter the pin ? ");
         int pin = scan.nextInt();
         scan.nextLine(); //next Line trap
-        System.out.print("Please enter the reason of the residence permit?  ");
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease enter the reason of the residence permit?  ");
         String reason = scan.nextLine();
 
-        // TO DO: ask for member name and pick the corresponding ID
-        int idMember = 0;
-        // Check the last ID and add new entry as new id
-        int idCard = 0;
-        // Get the city of the input city name
-        int idCity = 0;
 
-        return new StayCard(idCard, idMember, idCity, cardNum, obtentionDate, expirationDate, pin, reason);
-
+        Card card = new Card(0, admin.getMembers().length + 1, idCity, cardNum, obtentionDate, expirationDate, pin, reason);
+        card.setIdCard(admin.getCards().length + 1);
+        return card;
     }
 
     public static City inputCity(Acemanager admin, FacultyInstitute[] facs) {
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhat's the city called ? " );    
         String name = scan.nextLine().toUpperCase();
-        while(!admin.checkCity(name)){
+        while(admin.checkCity(name) == null){
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich region is the city located? " );
             String region = scan.nextLine().toUpperCase();
     
-            return new City(0, name, region, facs);
+            City city = new City(0, name, region, facs);
+            city.setIdCity(admin.getCities().length + 1);
+            return city;
         }
         return null;
     }
@@ -326,19 +337,19 @@ public class Main {
         return members;
     }
 
-    public static StayCard[] fillStayCard(){
-        StayCard card1 = new StayCard(1, 1, 1, "C018507B", "23/09/2023", "23/09/2026", 234361, "Reg. Exc.");
-        StayCard card2 = new StayCard(2, 3, 2, "C019879H", "21/05/2022", "21/05/2025", 234565, "Reg. Exc.");
-        StayCard card3 = new StayCard(3, 2, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Etudiant");
-        StayCard card4 = new StayCard(4, 5, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Reg. Exc.");
-        StayCard card5 = new StayCard(5, 4, 3, "C019561L", "10/02/2021", "10/02/2024", 202565, "Travail");
-        StayCard card6 = new StayCard(6, 7, 3, "C012361L", "10/02/2021", "10/02/2024", 202565, "Travail");
-        StayCard card7 = new StayCard(7, 6, 1, "C019563M", "02/01/2023", "02/01/2026", 203565, "Travail");
-        StayCard card8 = new StayCard(8, 9, 8, "C019523N", "01/01/2024", "01/01/2027", 103465, "Etudiant");
-        StayCard card9 = new StayCard(9, 10, 7, "C023456C", "02/01/2023", "02/01/2026", 123565, "Etudiant");
-        StayCard card10 = new StayCard(10, 8, 5, "C034567P", "14/09/2020", "14/09/2023", 203565, "Travail");
+    public static Card[] fillStayCard(){
+        Card card1 = new Card(1, 1, 1, "C018507B", "23/09/2023", "23/09/2026", 234361, "Reg. Exc.");
+        Card card2 = new Card(2, 3, 2, "C019879H", "21/05/2022", "21/05/2025", 234565, "Reg. Exc.");
+        Card card3 = new Card(3, 2, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Etudiant");
+        Card card4 = new Card(4, 5, 4, "C019561K", "19/02/2021", "19/02/2024", 212565, "Reg. Exc.");
+        Card card5 = new Card(5, 4, 3, "C019561L", "10/02/2021", "10/02/2024", 202565, "Travail");
+        Card card6 = new Card(6, 7, 3, "C012361L", "10/02/2021", "10/02/2024", 202565, "Travail");
+        Card card7 = new Card(7, 6, 1, "C019563M", "02/01/2023", "02/01/2026", 203565, "Travail");
+        Card card8 = new Card(8, 9, 8, "C019523N", "01/01/2024", "01/01/2027", 103465, "Etudiant");
+        Card card9 = new Card(9, 10, 7, "C023456C", "02/01/2023", "02/01/2026", 123565, "Etudiant");
+        Card card10 = new Card(10, 8, 5, "C034567P", "14/09/2020", "14/09/2023", 203565, "Travail");
 
-        StayCard[] cards = {card1, card2, card3, card4, card5, card6, card7, card8, card9, card10};
+        Card[] cards = {card1, card2, card3, card4, card5, card6, card7, card8, card9, card10};
 
         return cards;
 

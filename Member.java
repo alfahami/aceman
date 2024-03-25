@@ -6,7 +6,7 @@ public class Member {
     private int idMember;
     private StringBuilder passport;
 
-    private int idStayCard;
+    private int idCard;
     private int matriculeAmci;
     private int idCity;
     private int idFacultyInstitute;
@@ -25,9 +25,9 @@ public class Member {
     public Member(){
 
     }
-    public Member(int idMember, int idStayCard, int idCity, int idFacultyInstitute, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
+    public Member(int idMember, int idCard, int idCity, int idFacultyInstitute, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
         this.idMember = idMember;
-        this.idStayCard = idStayCard;
+        this.idCard = idCard;
         this.idCity = idCity;
         this.idFormation = idFormation;
         this.idFacultyInstitute = idFacultyInstitute;
@@ -42,9 +42,9 @@ public class Member {
         this.isMember = isMember;
     }
 
-    public Member(int idStayCard, int idCity, int idFacultyInstitute, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
+    public Member(int idCard, int idCity, int idFacultyInstitute, int idFormation, String firstName, String lastName, String passport, String birthDate, int matriculeAmci, String email, boolean isMember) {
        // this.idMember = idMember;
-        this.idStayCard = idStayCard;
+       this.idCard = idCard;
         this.idCity = idCity;
         this.idFormation = idFormation;
         this.idFacultyInstitute = idFacultyInstitute;
@@ -61,7 +61,7 @@ public class Member {
 
     public Member(Member source){
         this.idMember = source.idMember;
-        this.idStayCard = source.idStayCard;
+        this.idCard = source.idCard;
         this.idCity = source.idCity;
         this.idFormation = source.idFormation;
         this.idFacultyInstitute = source.idFacultyInstitute;
@@ -92,12 +92,12 @@ public class Member {
         this.passport = new StringBuilder(passport);
     }
 
-    public int getIdStayCard() {
-        return this.idStayCard;
+    public int getIdCard() {
+        return this.idCard;
     }
 
-    public void setIdStayCard(int idStayCard) {
-        this.idStayCard = idStayCard;
+    public void setIdCard(int idCard) {
+        this.idCard = idCard;
     }
 
     public int getMatriculeAmci() {

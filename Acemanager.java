@@ -4,21 +4,21 @@ public class Acemanager {
     static final int INITIAL_SIZE = 10;
     private Member[] members = new Member[INITIAL_SIZE];
     private Formation[] formations = new Formation[INITIAL_SIZE];
-    private StayCard[] stayCards = new StayCard[INITIAL_SIZE];
+    private Card[] cards = new Card[INITIAL_SIZE];
     private FacultyInstitute[] facultyInstitutes = new FacultyInstitute[INITIAL_SIZE];
     private City[] cities = new City[INITIAL_SIZE];
 
-    public Acemanager(City[] cities, Formation[] formations, FacultyInstitute[] facs, Member[] members, StayCard[] cards){
+    public Acemanager(City[] cities, Formation[] formations, FacultyInstitute[] facs, Member[] members, Card[] cards){
         this.members = new Member[members.length];
         for (int i = 0; i < this.members.length; i++) {
             this.members[i] = new Member(members[i]);
             this.members[i].setIdMember(i+1);
         }     
         
-        this.stayCards = new StayCard[cards.length];
-        for (int i = 0; i < this.stayCards.length; i++) {
-            this.stayCards[i] = new StayCard(cards[i]);
-            this.stayCards[i].setIdCard(i+1);
+        this.cards = new Card[cards.length];
+        for (int i = 0; i < this.cards.length; i++) {
+            this.cards[i] = new Card(cards[i]);
+            this.cards[i].setIdCard(i+1);
         }   
         
         this.cities = new City[cities.length];
@@ -74,7 +74,11 @@ public class Acemanager {
     }
 
     public Member[] getMembers(){
-        return this.members;
+        Member[] copyMembers = new Member[this.members.length];
+        for (int i = 0; i < copyMembers.length; i++) {
+            copyMembers[i] = new Member(this.members[i]);
+        }
+        return copyMembers;
     }
 
     public Formation getFormation(int i) {
@@ -82,7 +86,11 @@ public class Acemanager {
     }
 
     public Formation[] getFormations(){
-        return this.formations;
+        Formation[] copyFormations = new Formation[this.formations.length];
+        for (int i = 0; i < copyFormations.length; i++) {
+            copyFormations[i] = new Formation(this.formations[i]);
+        }
+        return copyFormations;
     }
 
     public void setFormation(Formation formation, int i) {
@@ -90,17 +98,21 @@ public class Acemanager {
         this.formations[i] = copy;
     }
 
-    public StayCard getStayCard(int i) {
-        return new StayCard(this.stayCards[i]);
+    public Card getCard(int i) {
+        return new Card(this.cards[i]);
     }
 
-    public void setStayCard(int i, StayCard stayCard) {
-        StayCard copy = new StayCard(stayCard);
-        this.stayCards[i] = copy;
+    public void setCard(Card stayCard, int i) {
+        Card copy = new Card(stayCard);
+        this.cards[i] = copy;
     }
 
-    public StayCard[] getCards(){
-        return this.stayCards;
+    public Card[] getCards(){
+        Card[] copyCards = new Card[this.cards.length];
+        for (int i = 0; i < copyCards.length; i++) {
+            copyCards[i] = new Card(this.cards[i]);
+        }
+        return copyCards;
     }
 
     public City getCity(int i){
@@ -113,6 +125,10 @@ public class Acemanager {
     }
 
     public City[] getCities(){
+        City[] copyCities = new City[this.cities.length];
+        for (int i = 0; i < copyCities.length; i++) {
+            copyCities[i] = new City(this.cities[i]);
+        }
         return this.cities;
     }
 
@@ -121,6 +137,10 @@ public class Acemanager {
     }
 
     public FacultyInstitute[] getFaculties(){
+        FacultyInstitute[] copyFacsInst = new FacultyInstitute[this.facultyInstitutes.length];
+        for (int i = 0; i < copyFacsInst.length; i++) {
+            copyFacsInst[i] = new FacultyInstitute(this.facultyInstitutes[i]);
+        }
         return this.facultyInstitutes;
     }
 
@@ -128,24 +148,31 @@ public class Acemanager {
         FacultyInstitute copy = new FacultyInstitute(fac);
         this.facultyInstitutes[i] = copy;
     }
-   
-    public StayCard getCard(int i){
-        return this.stayCards[i];
-    }
 
     public void addMember(Member newMember){
-
-        newMember.setIdMember(this.getMembers().length + 1);
+        newMember.setIdMember(this.members.length + 1);
         this.grow(members);
-        this.setMember(newMember, this.getMembers().length - 1); 
+        this.setMember(newMember, this.members.length - 1); 
         this.printAnyArrays(this.getMembers());
+    }
+
+    public Member findMemberByName(String fullName){
+        for (int i = 0; i < this.members.length; i++) {
+            if(fullName.equals(this.members[i].getFirstName() + this.members[i].getLastName()))
+            return this.members[i];
+        }
+        return null;
+    } 
+
+    public void addCard(Card newCard){
+        this.grow(cards);
+        this.setCard(newCard, this.cards.length - 1);
     }
 
     public boolean addCity(City newCity){
         if(newCity != null){
-            newCity.setIdCity(this.getCities().length + 1);
             this.grow(cities);
-            this.setCity(newCity, this.getCities().length - 1); 
+            this.setCity(newCity, this.cities.length - 1); 
             return true;
         } else {
             return false;
@@ -199,11 +226,11 @@ public class Acemanager {
                     this.formations[i].setIdFormation(i+1);
                 }
                 break;
-            case "StayCard[]":
-                this.stayCards = new StayCard[arrays.length];
+            case "Card[]":
+                this.cards = new Card[arrays.length + 1];
                 for (int i = 0; i < arrays.length; i++) {
-                    this.stayCards[i] = new StayCard((StayCard) arrays[i]);
-                    this.stayCards[i].setIdCard(i+1);
+                    this.cards[i] = new Card((Card) arrays[i]);
+                    this.cards[i].setIdCard(i+1);
                 }
                 break;
             case "Role[]":
@@ -222,8 +249,8 @@ public class Acemanager {
     }
     
     public boolean checkCin(String cin){
-        for (int i = 0; i < this.stayCards.length; i++) {
-            if(cin.equals(stayCards[i].getCardNum())) return true;
+        for (int i = 0; i < this.cards.length; i++) {
+            if(cin.equals(cards[i].getCardNum())) return true;
         }
         return false;
     }
@@ -236,11 +263,11 @@ public class Acemanager {
         
     }
 
-    public boolean checkCity(String city){
+    public City checkCity(String city){
         for (int i = 0; i < this.cities.length; i++) {
-            if(city.equals(cities[i].getName())) return true;
+            if(city.equals(cities[i].getName())) return new City(cities[i]);
         }
-        return false;
+        return null;
     }
     
     public void printAnyArrays(Object[] arrays){
@@ -264,7 +291,17 @@ public class Acemanager {
                             // THINK ABOUT USING STRINGBUILDER as it offers a set length, the idea would be to print all the Stringbuilder object and when no value found print space
                             
                     /*### HACK ENDS  */
-                        System.out.println( printId(i, member.getIdMember())+ " | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + getCardById(member.getIdStayCard()).getCardNum() + " | " + formatString(getCardById(member.getIdStayCard()).getPattern(), 10) + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
+                        System.out.println( printId(i, member.getIdMember())+ " | " + formatString(fullName, 17) + "| " + member.getAge() + "  | " + member.getPassport() + " | "  + member.getMatriculeAmci() + " | " + 
+                        
+                        (getCardById(member.getIdCard()) != null ? getCardById(member.getIdCard()).getCardNum() : "No Card!") + " | " + 
+                        
+                        (getCardById(member.getIdCard()) != null ? formatString(getCardById(member.getIdCard()).getPattern(), 10) : formatString("No Card!", 10))
+                        
+                        + "| " + formatString(getCityName(member.getIdCity()), 9)  + "| " + formatString(getFormationMember(member.getIdFormation()).getName(), 19) 
+                        
+                        + "| " + formatString(getFormationMember(member.getIdFormation()).getFCertificate(), 10) + "| " + formatString(getMemberFaculty(member.getIdFacultyInstitute()).getNameFacInst(), 6) + 
+                        
+                        "| " + (member.isMember() == true ? (formatString("YES ", 6)) : (formatString("NO ", 6))) + " | " + formatString(getMember(i).getEmail(), 16) + "|");
                         System.out.print(i < arrays.length - 1 ? " ----|--------------------|-----|-----------|----------|----------|-------------|------------|----------------------|-------------|---------|----------|-------------------|\n" : "\n\n");
                         }
                         break;
@@ -274,7 +311,7 @@ public class Acemanager {
                         System.out.print("\n\t\t\t\t     ID |\tCITY       |\t\tREGION\t          |   \t\tFACULTIES\t\t |\n\t\t\t\t    ----|------------------|------------------------------|--------------------------------------|\n");
                         for (int i = 0; i < arrays.length; i++) {
                             City city = this.getCity(i);
-                            System.out.println("\t\t\t\t   " + printId(i, city.getIdCity()) + " | " + formatString(city.getName(), 14) + " | " + formatString(city.getRegion(), 26) + " | "  + Arrays.toString(city.getFacs()) + "  |");
+                            System.out.println("\t\t\t\t   " + printId(i, city.getIdCity()) + " | " + formatString(city.getName(), 14) + " | " + formatString(city.getRegion(), 26) + " | "  + Arrays.toString(city.getFacultyName()) + "  |");
                             System.out.print((i < arrays.length - 1) ? "\t\t\t\t    ----|------------------|------------------------------|--------------------------------------|\n" : "\n\n");
                         }
                         break;
@@ -297,11 +334,11 @@ public class Acemanager {
                             System.out.print((i < arrays.length - 1) ? "\t\t    ----|---------------|-----------------------------------------------------------------------------------------------------------------|\n" : "\n\n");
                         }
                         break;
-                    case "StayCard[]":
+                    case "Card[]":
                         System.out.println(printTableTitle("LIST OF STAY CARDS"));
                         System.out.print("\n\t\t\t     ID | \tFULL NAME\t  | BIRTH DATE |   CIN    |  STAY REASON | OBTENTION DATE | EXPIRATION DATE |  PIN   |\n\t\t\t    ----|-------------------------|------------|----------|--------------|----------------|-----------------|--------|\n");
                         for (int i = 0; i < arrays.length; i++) {
-                            StayCard card = getCard(i);
+                            Card card = getCard(i);
                             System.out.println("\t\t\t   " + printId(i, card.getIdCard()) + " | " + formatString(getMemberCard(card.getIdMember()).getFirstName() + " " + getMemberCard(card.getIdMember()).getLastName(), 21) + " | " + getMemberCard(card.getIdMember()).getBirthDate() + " | " + card.getCardNum() + " | "+ formatString(card.getPattern(), 10) + " | " + formatString(card.getObtentionDate(), 12) + " | " + formatString(card.getExpirationDate(), 13) + " | " + card.getPin() + " |");
                             System.out.print((i < arrays.length - 1) ? "\t\t\t    ----|-------------------------|------------|----------|--------------|----------------|-----------------|--------|\n" : "\n\n");
                         }
@@ -312,10 +349,10 @@ public class Acemanager {
         } else System.exit(0);
     }
 
-    public StayCard getCardById(int idStayCard){
-            for (int j = 0; j < this.stayCards.length; j++) {
-                if(idStayCard == getStayCard(j).getIdCard()){
-                    return getStayCard(j);
+    public Card getCardById(int idCard){
+            for (int j = 0; j < this.cards.length; j++) {
+                if(idCard == getCard(j).getIdCard()){
+                    return getCard(j);
                 } 
             }
             return null;   
