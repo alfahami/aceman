@@ -73,14 +73,8 @@ public class Main {
                         break;
                     case "3.2":
                         //TODO ADD CARDS
-                        /* Card newCard = inputCard(admin);
-                        if(newCard == null) {
-                            System.out.println("There was an error when adding the card! Please try again!");
-                            cls(admin);
-                        } else {
-                            admin.addCard(newCard);
-                            cls(admin);
-                        } */
+                        System.out.println("You can only add a card while adding a member. Check add member please");
+                        cls(admin);
                         break;
                     case "3.3":
                         //TODO UPDATE A CARD
@@ -127,7 +121,7 @@ public class Main {
                         cls(admin);
                         break;
                     case "5.2":
-                        Formation newFormation = inputFormation(option);
+                        Formation newFormation = inputFormation(admin);
                         admin.addFormation(newFormation);
                         // PRESS ANY KEY TO CONTINUE
                         cls(admin);
@@ -194,7 +188,7 @@ public class Main {
         }
 
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhere does the member live ? ");
-        String cityName = scan.nextLine();
+        String cityName = scan.nextLine().toUpperCase();
         City cityMember = admin.checkCity(cityName);
         int idCity = 0;
         if(cityMember != null){
@@ -209,11 +203,10 @@ public class Main {
        System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease, enter member's cin? ");
         String cin = scan.nextLine().toUpperCase();
         while(admin.checkCin(cin)) {
-            System.out.print("\n\t\t\t\t\t\t\t\t\t\t\tCIN number already in use\n\t\t\t\t\t\t\t\t\tPlease enter the correct cin number: ");
+            System.out.print("\n\t\t\t\t\t\t\t\t\t\t\tCIN number already in use\n\t\t\t\t\t\t\t\t\t\tPlease enter the correct cin number: ");
             cin = scan.nextLine();
         }
         System.out.println("\n\t\t\t\t\t\t\t\t\t\t\tCIN doesn't exist yet, let's add it ");
-        // TODO
         Card newCard = inputCard(admin, idCity);
         admin.addCard(newCard);
         int idCard = newCard.getIdCard();
@@ -227,16 +220,26 @@ public class Main {
             regNumber = scan.nextInt();
         }
         scan.nextLine();
+
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich Fields is the member subscribed to? ");
+        String field = scan.nextLine().toUpperCase();
+        Formation formation = admin.findFormationByName(field);
+        int idFormation = 0;
+        if(formation != null) idFormation = formation.getIdFormation();
+        else {
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\tFaculty does't exist,let's go ahead and add it");
+            Formation newFormation = inputFormation(admin);
+            admin.addFormation(newFormation);
+            idFormation = newFormation.getIdFormation();
+        }
+        
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter member's email ");
         String email = scan.nextLine().toLowerCase();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tIs the member adhering? type \"true or false\" ");
         boolean mAdmission = scan.nextBoolean();
         scan.nextLine();
         
-        int idFormation = 3;
-        int idFacultyInstitute = 5;
-
-        return new Member(idCard, idCity, idFacultyInstitute, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
+        return new Member(admin.getMembers().length + 1, idCard, idCity, 2, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
     }  
 
     public static FacultyInstitute inputFacultyInstitute(Acemanager admin, Formation[] formations, City[] cities, String cityName){
@@ -257,7 +260,7 @@ public class Main {
             admin.printAnyArrays(admin.getCities());
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
             String facultyInstitute = scan.nextLine().toUpperCase();
-            return new FacultyInstitute(0, facultyInstitute, formations, idCity);
+            return new FacultyInstitute(admin.getFaculties().length + 1, facultyInstitute, formations, idCity);
         }     
     }
 
@@ -275,10 +278,7 @@ public class Main {
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tPlease enter the reason of the residence permit?  ");
         String reason = scan.nextLine();
 
-
-        Card card = new Card(0, admin.getMembers().length + 1, idCity, cardNum, obtentionDate, expirationDate, pin, reason);
-        card.setIdCard(admin.getCards().length + 1);
-        return card;
+        return new Card(admin.getCards().length + 1, admin.getMembers().length + 1, idCity, cardNum, obtentionDate, expirationDate, pin, reason);
     }
 
     public static City inputCity(Acemanager admin, FacultyInstitute[] facs) {
@@ -288,14 +288,12 @@ public class Main {
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich region is the city located? " );
             String region = scan.nextLine().toUpperCase();
     
-            City city = new City(0, name, region, facs);
-            city.setIdCity(admin.getCities().length + 1);
-            return city;
+            return new City(admin.getCities().length + 1, name, region, facs);
         }
         return null;
     }
 
-    public static Formation inputFormation(int id){
+    public static Formation inputFormation(Acemanager admin){
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhat's the name of the formation? ");
         String formationName = scan.nextLine().toUpperCase();
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tHow many years does the formation have? ");
@@ -305,7 +303,7 @@ public class Main {
         String certificate = scan.nextLine().toUpperCase();
         int idCity = 0;
         
-        return new Formation(id, idCity, formationName, duration, certificate);
+        return new Formation(admin.getFormations().length + 1, idCity, formationName, duration, certificate);
     }
 
     // FILL BASE ARRAYS

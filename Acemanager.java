@@ -5,7 +5,7 @@ public class Acemanager {
     private Member[] members = new Member[INITIAL_SIZE];
     private Formation[] formations = new Formation[INITIAL_SIZE];
     private Card[] cards = new Card[INITIAL_SIZE];
-    private FacultyInstitute[] facultyInstitutes = new FacultyInstitute[INITIAL_SIZE];
+    private FacultyInstitute[] facs = new FacultyInstitute[INITIAL_SIZE];
     private City[] cities = new City[INITIAL_SIZE];
 
     public Acemanager(City[] cities, Formation[] formations, FacultyInstitute[] facs, Member[] members, Card[] cards){
@@ -33,10 +33,10 @@ public class Acemanager {
             this.formations[i].setIdFormation(i+1);
         }  
 
-        this.facultyInstitutes = new FacultyInstitute[facs.length];
-        for (int i = 0; i < this.facultyInstitutes.length; i++) {
-            this.facultyInstitutes[i] = new FacultyInstitute(facs[i]);
-            this.facultyInstitutes[i].setIdFacultyInstitute(i+1);
+        this.facs = new FacultyInstitute[facs.length];
+        for (int i = 0; i < this.facs.length; i++) {
+            this.facs[i] = new FacultyInstitute(facs[i]);
+            this.facs[i].setIdFacultyInstitute(i+1);
         }  
     }
 
@@ -133,24 +133,23 @@ public class Acemanager {
     }
 
     public FacultyInstitute getFacultyInstitute(int i) {
-        return new FacultyInstitute(this.facultyInstitutes[i]);
+        return new FacultyInstitute(this.facs[i]);
     }
 
     public FacultyInstitute[] getFaculties(){
-        FacultyInstitute[] copyFacsInst = new FacultyInstitute[this.facultyInstitutes.length];
+        FacultyInstitute[] copyFacsInst = new FacultyInstitute[this.facs.length];
         for (int i = 0; i < copyFacsInst.length; i++) {
-            copyFacsInst[i] = new FacultyInstitute(this.facultyInstitutes[i]);
+            copyFacsInst[i] = new FacultyInstitute(this.facs[i]);
         }
-        return this.facultyInstitutes;
+        return copyFacsInst;
     }
 
     public void setFaculty(FacultyInstitute fac, int i){
         FacultyInstitute copy = new FacultyInstitute(fac);
-        this.facultyInstitutes[i] = copy;
+        this.facs[i] = copy;
     }
 
     public void addMember(Member newMember){
-        newMember.setIdMember(this.members.length + 1);
         this.grow(members);
         this.setMember(newMember, this.members.length - 1); 
         this.printAnyArrays(this.getMembers());
@@ -180,21 +179,26 @@ public class Acemanager {
     }
 
     public void addFaculty(FacultyInstitute newFac){
-        newFac.setIdFacultyInstitute((this.getFaculties().length));
         this.grow(this.getFaculties());
-        this.setFaculty(newFac, this.getFaculties().length - 1);
+        this.setFaculty(newFac, this.facs.length - 1);
         this.printAnyArrays(this.getFaculties());
     }
 
+    public Formation findFormationByName(String field){
+        for (int i = 0; i < this.formations.length; i++) {
+            if(field.equals(formations[i].getName())) return new Formation(formations[i]);
+        }
+        return null;
+    }
+
     public void addFormation(Formation newFormation){
-        newFormation.setIdFormation(this.getFormations().length);
-        this.grow(this.getFaculties());
-        this.setFormation(newFormation, this.getFormations().length - 1);
+        this.grow(this.getFormations());
+        this.setFormation(newFormation, this.formations.length - 1);
         this.printAnyArrays(this.getFormations());
     }
 
     public void grow(Object[] arrays){
-        
+    
         String className = arrays.getClass().getCanonicalName(); 
 
         switch(className){
@@ -213,10 +217,10 @@ public class Acemanager {
             } 
             break;
             case "Faculty[]":
-                this.facultyInstitutes = new FacultyInstitute[arrays.length + 1];
+                this.facs = new FacultyInstitute[arrays.length + 1];
                 for (int i = 0; i < arrays.length; i++) {
-                    this.facultyInstitutes[i] = new FacultyInstitute((FacultyInstitute) arrays[i]);
-                    this.facultyInstitutes[i].setIdFacultyInstitute(i+1);
+                    this.facs[i] = new FacultyInstitute((FacultyInstitute) arrays[i]);
+                    this.facs[i].setIdFacultyInstitute(i+1);
                 }
                 break;
             case "Formation[]":
@@ -369,7 +373,7 @@ public class Acemanager {
     }
 
     public Formation getFormationMember(int idFormation){
-            for (int j = 0; j < this.formations.length; j++) {
+            for (int j = 0; j < this.getFormations().length; j++) {
                 if(idFormation == getFormation(j).getIdFormation()){
                    return getFormation(j);
                 } 
@@ -378,9 +382,9 @@ public class Acemanager {
     }
 
     public FacultyInstitute getMemberFaculty(int idFacultyInstitute){
-            for (int j = 0; j < this.facultyInstitutes.length; j++) {
+            for (int j = 0; j < this.facs.length; j++) {
                 if(idFacultyInstitute == getFacultyInstitute(j).getIdFacultyInstitute()){
-                    return new FacultyInstitute(facultyInstitutes[j]);
+                    return new FacultyInstitute(facs[j]);
                 } 
             }
             return null; 
