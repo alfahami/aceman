@@ -179,9 +179,16 @@ public class Acemanager {
     }
 
     public void addFaculty(FacultyInstitute newFac){
-        this.grow(this.getFaculties());
+        this.grow(this.facs);
         this.setFaculty(newFac, this.facs.length - 1);
-        this.printAnyArrays(this.getFaculties());
+        //this.printAnyArrays(this.getFaculties());
+    }
+
+    public FacultyInstitute findFacultyByName(String fac){
+        for (int i = 0; i < this.facs.length; i++) {
+            if(fac.equals(this.facs[i].getNameFacInst())) return new FacultyInstitute(this.facs[i]);
+        }
+        return null;
     }
 
     public Formation findFormationByName(String field){
@@ -216,7 +223,7 @@ public class Acemanager {
                 this.cities[i].setIdCity(i+1);
             } 
             break;
-            case "Faculty[]":
+            case "FacultyInstitute[]":
                 this.facs = new FacultyInstitute[arrays.length + 1];
                 for (int i = 0; i < arrays.length; i++) {
                     this.facs[i] = new FacultyInstitute((FacultyInstitute) arrays[i]);

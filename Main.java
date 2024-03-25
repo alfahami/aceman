@@ -62,7 +62,6 @@ public class Main {
                     default:
                         break;
                 }
-                
                 break;
             case 3:
                 String choice1 = xMenu(3, "Card");
@@ -169,8 +168,7 @@ public class Main {
             default:   
                 bye();
                 break;
-        }
-        
+        } 
     }
     
     public static Member inputMemberDetails(Acemanager admin){
@@ -232,6 +230,18 @@ public class Main {
             admin.addFormation(newFormation);
             idFormation = newFormation.getIdFormation();
         }
+
+        System.out.print("\n\t\t\t\t\t\t\t\t\t\tWhich Faculty does the member study? ");
+        String fac = scan.nextLine();
+        int idFaculty = 0;
+        if(admin.findFacultyByName(fac) != null)
+            idFaculty = admin.findFacultyByName(fac).getIdFacultyInstitute();
+        else {
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\tFaculty/Institute doesn't exist, let's add it");
+            FacultyInstitute newFaculty = inputFacultyInstitute(admin, admin.getFormations(), admin.getCities(), cityName);
+            admin.addFaculty(newFaculty);
+            idFaculty = newFaculty.getIdFacultyInstitute();
+        }
         
         System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter member's email ");
         String email = scan.nextLine().toLowerCase();
@@ -239,7 +249,7 @@ public class Main {
         boolean mAdmission = scan.nextBoolean();
         scan.nextLine();
         
-        return new Member(admin.getMembers().length + 1, idCard, idCity, 2, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
+        return new Member(admin.getMembers().length + 1, idCard, idCity, idFaculty, idFormation, fname, lname, passport, birthDate, regNumber, email, mAdmission);
     }  
 
     public static FacultyInstitute inputFacultyInstitute(Acemanager admin, Formation[] formations, City[] cities, String cityName){
@@ -248,7 +258,7 @@ public class Main {
             idCity = admin.checkCity(cityName).getIdCity();
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
             String facultyInstitute = scan.nextLine().toUpperCase();
-            return new FacultyInstitute(0, facultyInstitute, formations, idCity);
+            return new FacultyInstitute(admin.getFaculties().length + 1, facultyInstitute, formations, idCity);
         
             // If the city is not found, it should be added
         } else {
@@ -260,6 +270,7 @@ public class Main {
             admin.printAnyArrays(admin.getCities());
             System.out.print("\n\t\t\t\t\t\t\t\t\t\tEnter Faculty/Institue name? ");
             String facultyInstitute = scan.nextLine().toUpperCase();
+
             return new FacultyInstitute(admin.getFaculties().length + 1, facultyInstitute, formations, idCity);
         }     
     }
